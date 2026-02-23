@@ -37,13 +37,13 @@
         }
     },
     "comment": {
-        "enable": false,
+        "enable": true,
         "provider": "giscus",
         "giscus": {
-            "repo": "bdiiweuifueir/bdiiweuifueir",
-            "repoId": "请在此填入RepoID",
+            "repo": "bdiiweuifueir/acg-home-website",
+            "repoId": "R_kgDORW-1ng",
             "category": "Announcements",
-            "categoryId": "请在此填入CategoryID",
+            "categoryId": "DIC_kwDORW-1ns4C3Dl9",
             "mapping": "pathname",
             "reactionsEnabled": "1",
             "emitMetadata": "0",
