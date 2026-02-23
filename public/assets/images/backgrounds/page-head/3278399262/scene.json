@@ -1,0 +1,274 @@
+{
+	"camera" : 
+	{
+		"center" : "-1258.82007 207.66812 -1.00000",
+		"eye" : "-1258.82007 207.66812 0.00000",
+		"up" : "0.00000 1.00000 0.00000"
+	},
+	"general" : 
+	{
+		"ambientcolor" : "0.30000 0.30000 0.30000",
+		"bloom" : false,
+		"bloomhdrfeather" : 0.1,
+		"bloomhdriterations" : 8,
+		"bloomhdrscatter" : 1.619,
+		"bloomhdrstrength" : 2.0,
+		"bloomhdrthreshold" : 1.0,
+		"bloomstrength" : 2.0,
+		"bloomthreshold" : 0.64999998,
+		"bloomtint" : "1.00000 1.00000 1.00000",
+		"camerafade" : true,
+		"cameraparallax" : false,
+		"cameraparallaxamount" : 0.5,
+		"cameraparallaxdelay" : 0.1,
+		"cameraparallaxmouseinfluence" : 0.5,
+		"camerapreview" : true,
+		"camerashake" : false,
+		"camerashakeamplitude" : 0.5,
+		"camerashakeroughness" : 1.0,
+		"camerashakespeed" : 3.0,
+		"clearcolor" : "0.70000 0.70000 0.70000",
+		"clearenabled" : true,
+		"farz" : 10000.0,
+		"fov" : 50.0,
+		"gravitydirection" : "0.00000 -1.00000 0.00000",
+		"gravitystrength" : 1.0,
+		"hdr" : false,
+		"nearz" : 0.0099999998,
+		"orthogonalprojection" : 
+		{
+			"height" : 2116,
+			"width" : 3500
+		},
+		"perspectiveoverridefov" : 95.0,
+		"skylightcolor" : "0.30000 0.30000 0.30000",
+		"texturereduction" : 4,
+		"winddirection" : "0.70700 0.70700 0.00000",
+		"windenabled" : false,
+		"windstrength" : 1.0,
+		"zoom" : 1.0
+	},
+	"objects" : 
+	[
+		{
+			"angles" : "-0.00000 -0.00000 -0.00043",
+			"castshadow" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/foliagesway/effect.json",
+					"id" : 27,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"phase" : 0.5,
+								"power" : 1.0,
+								"ratio" : 0.30000001,
+								"scale" : 0.050000001,
+								"scrolldirection" : 0.0,
+								"speeduv" : 1.0700001,
+								"strength" : 0.44
+							},
+							"id" : 28,
+							"textures" : [ null, "masks/foliagesway_mask_f01b4cbc", null ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "newproperty",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/shake/effect.json",
+					"id" : 57,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"bounds" : "0 1",
+								"friction" : "1 1",
+								"speed" : 0.47999999,
+								"strength" : 0.039000001
+							},
+							"id" : 58,
+							"textures" : [ null, "masks/shake_mask_b5f0b98d" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "newproperty",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 86,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 2.8998406,
+								"exponent" : 0.86000001,
+								"scale" : 60.41,
+								"speed" : 0.75,
+								"strength" : 0.050000001
+							},
+							"id" : 87,
+							"textures" : [ null, "masks/waterwaves_mask_81968eff" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "newproperty",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/shake/effect.json",
+					"id" : 148,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"bounds" : "0 1",
+								"friction" : "1 1",
+								"speed" : 1.0,
+								"strength" : 0.046
+							},
+							"id" : 149,
+							"textures" : [ null, "masks/shake_mask_31b4ad5f" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "newproperty",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/shake/effect.json",
+					"id" : 177,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"bounds" : "0 1",
+								"friction" : "1 1",
+								"speed" : 1.0,
+								"strength" : 0.046
+							},
+							"id" : 178,
+							"textures" : [ null, "masks/shake_mask_5e15875a" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "newproperty",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/shake/effect.json",
+					"id" : 220,
+					"name" : "手",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"bounds" : "0 1",
+								"friction" : "1 1",
+								"speed" : 1.0,
+								"strength" : 0.041000001
+							},
+							"id" : 221,
+							"textures" : [ null, "masks/shake_mask_f33856df" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "newproperty",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/cloudmotion/effect.json",
+					"id" : 45,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"ui_editor_properties_amount" : 0.1,
+								"ui_editor_properties_direction" : 1.570796,
+								"ui_editor_properties_granularity" : 1.99,
+								"ui_editor_properties_granularity_horizontal" : 0.5,
+								"ui_editor_properties_speed" : 0.02
+							},
+							"id" : 46,
+							"textures" : [ null, "masks/cloudmotion_mask_f43044ad", null ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "newproperty",
+						"value" : true
+					}
+				}
+			],
+			"id" : 16,
+			"image" : "models/wallhaven-dpy16m.json",
+			"locktransforms" : true,
+			"name" : "wallhaven-dpy16m",
+			"origin" : "1750.00000 1058.00000 0.00000",
+			"size" : "3500.00000 2116.00000"
+		},
+		{
+			"id" : 20,
+			"instanceoverride" : 
+			{
+				"alpha" : 0.30000001,
+				"id" : 9,
+				"speed" : 0.87
+			},
+			"locktransforms" : true,
+			"name" : "Light shafts 0",
+			"origin" : "1650.29321 1149.39783 0.00000",
+			"particle" : "particles/presets/light_shafts_0.json",
+			"scale" : "1.59815 1.59815 1.59815",
+			"visible" : 
+			{
+				"user" : "newproperty1",
+				"value" : true
+			}
+		},
+		{
+			"id" : 54,
+			"instanceoverride" : 
+			{
+				"alpha" : 0.5,
+				"id" : 55,
+				"speed" : 0.28
+			},
+			"locktransforms" : true,
+			"name" : "雾 1",
+			"origin" : "1246.04565 1808.45044 0.00000",
+			"particle" : "particles/presets/fog1.json",
+			"scale" : "4.86081 1.00000 1.00000"
+		}
+	],
+	"version" : 3
+}

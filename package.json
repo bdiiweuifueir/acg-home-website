@@ -1,9 +1,15 @@
 {
-  "name": "acg-home",
+  "name": "acg-home-website",
   "version": "1.0.0",
   "description": "ACG-Home",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -12,9 +18,22 @@
   "author": "成成0v0 (hic.top, chengcheng@miao.ms)",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "eslint": "^9.31.0"
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "alpinejs": "^3.15.8",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.5.5",
+    "markdown-it": "^14.1.1",
+    "prettier": "^3.8.1",
+    "typed.js": "^3.0.0",
+    "vite": "^6.0.0"
   },
   "dependencies": {
-    "eslint-config-prettier": "^9.1.0"
+    "aplayer": "^1.10.1",
+    "dompurify": "^3.3.1",
+    "highlight.js": "^11.11.1",
+    "medium-zoom": "^1.1.0",
+    "meting": "^2.0.2",
+    "vanilla-tilt": "^1.8.1"
   }
 }

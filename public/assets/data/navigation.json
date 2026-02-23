@@ -1,0 +1,92 @@
+[
+    {
+        "category": "社区论坛 (Community)",
+        "icon": "fa-solid fa-comments",
+        "items": [
+            {
+                "title": "KUN Galgame",
+                "link": "https://www.kungal.com/",
+                "icon": "https://www.kungal.com/kungalgame-trans.webp",
+                "desc": "最萌的Galgame论坛"
+            },
+            {
+                "title": "Bangumi",
+                "link": "https://bgm.tv/",
+                "icon": "https://bgm.tv/img/ico/ico_ios.png",
+                "desc": "番组计划"
+            },
+            {
+                "title": "VNDB",
+                "link": "https://vndb.org/",
+                "icon": "https://s.vndb.org/s/vndb.ico",
+                "desc": "Visual Novel Database"
+            },
+            {
+                "title": "绯月ScarletMoon",
+                "link": "https://kf.miaola.info/",
+                "icon": "fa-solid fa-moon",
+                "desc": "Galgame资源分享"
+            }
+        ]
+    },
+    {
+        "category": "资源下载 (Download)",
+        "icon": "fa-solid fa-download",
+        "items": [
+            {
+                "title": "Steam",
+                "link": "https://store.steampowered.com/",
+                "icon": "fa-brands fa-steam",
+                "desc": "G胖快乐屋"
+            },
+            {
+                "title": "DLsite",
+                "link": "https://www.dlsite.com/",
+                "icon": "fa-solid fa-cart-shopping",
+                "desc": "同人音声与游戏"
+            },
+            {
+                "title": "Nyaa",
+                "link": "https://nyaa.si/",
+                "icon": "fa-solid fa-magnet",
+                "desc": "Anime Torrent"
+            },
+            {
+                "title": "South+",
+                "link": "https://www.south-plus.net/",
+                "icon": "fa-solid fa-globe",
+                "desc": "南+"
+            }
+        ]
+    },
+    {
+        "category": "实用工具 (Tools)",
+        "icon": "fa-solid fa-toolbox",
+        "items": [
+            {
+                "title": "MQA 翻译",
+                "link": "https://mqa.ma/",
+                "icon": "fa-solid fa-language",
+                "desc": "Galgame机翻工具"
+            },
+            {
+                "title": "VNR",
+                "link": "https://vnr.gnol.net/",
+                "icon": "fa-solid fa-closed-captioning",
+                "desc": "Visual Novel Reader"
+            },
+            {
+                "title": "萌娘百科",
+                "link": "https://zh.moegirl.org.cn/",
+                "icon": "https://zh.moegirl.org.cn/favicon.ico",
+                "desc": "万物皆可萌"
+            },
+            {
+                "title": "2DFan",
+                "link": "https://2dfan.org/",
+                "icon": "fa-solid fa-fan",
+                "desc": "Galgame信息站"
+            }
+        ]
+    }
+]

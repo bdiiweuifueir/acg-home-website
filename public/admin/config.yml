@@ -1,0 +1,358 @@
+# Backend configuration
+# Using 'git-gateway' for GitHub integration (requires Netlify or similar proxy)
+# For local development, run `npx decap-server`
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# UI Localization
+locale: "zh_CN"
+
+# Local backend for testing (uncomment when running `npx decap-server`)
+# backend:
+#   name: test-repo
+
+# Media storage
+media_folder: "public/assets/images"
+public_folder: "/assets/images"
+
+# Editorial Workflow
+publish_mode: editorial_workflow
+
+# Collections
+collections:
+  # Content Pages
+  - name: "content"
+    label: "Content Pages"
+    files:
+      - name: "home-content"
+        label: "Home Content"
+        file: "public/assets/markdown/content-page.md"
+        fields:
+          - { label: "Body", name: "body", widget: "markdown" }
+      - name: "announcement"
+        label: "Announcement"
+        file: "public/assets/markdown/announcement.md"
+        fields:
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  # Configuration (JSON)
+  - name: "config"
+    label: "Global Configuration"
+    files:
+      - name: "site-config"
+        label: "Site Config"
+        file: "public/config.json"
+        editor:
+          preview: false
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - {
+              label: "Master Info",
+              name: "masterInfo",
+              widget: "object",
+              fields:
+                [
+                  { label: "Name", name: "name", widget: "string" },
+                  { label: "Avatar", name: "avatar", widget: "image" },
+                  { label: "Website", name: "website", widget: "string" },
+                  {
+                    label: "Social Links",
+                    name: "socialLink",
+                    widget: "object",
+                    fields:
+                      [
+                        {
+                          label: "Links",
+                          name: "link",
+                          widget: "object",
+                          fields:
+                            [
+                              { label: "Bilibili", name: "bilibili", widget: "string", required: false },
+                              { label: "GitHub", name: "github", widget: "string", required: false },
+                              { label: "Email", name: "email", widget: "string", required: false },
+                            ],
+                        },
+                        {
+                          label: "Icons (FontAwesome Classes)",
+                          name: "icon",
+                          widget: "object",
+                          fields:
+                            [
+                              { label: "Bilibili", name: "bilibili", widget: "string", default: "fa-brands fa-bilibili" },
+                              { label: "GitHub", name: "github", widget: "string", default: "fa-brands fa-github" },
+                              { label: "Email", name: "email", widget: "string", default: "fa-solid fa-envelope" },
+                            ],
+                        },
+                        { label: "Enabled Links", name: "enable", widget: "list", default: ["bilibili", "github", "email"] },
+                      ],
+                  },
+                ],
+            }
+          - {
+              label: "Page Head",
+              name: "pageHead",
+              widget: "object",
+              fields:
+                [
+                  {
+                    label: "Typed Content",
+                    name: "typedContent",
+                    widget: "list",
+                    default: ["Hello World"],
+                  },
+                ],
+            }
+          - {
+              label: "Music Player",
+              name: "music",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  { label: "Server", name: "server", widget: "select", options: ["netease", "tencent", "kugou", "xiami", "baidu"], default: "netease" },
+                  { label: "Type", name: "type", widget: "select", options: ["song", "playlist", "album", "search", "artist"], default: "playlist" },
+                  { label: "ID", name: "id", widget: "string", default: "60198" },
+                  { label: "Auto Link", name: "auto", widget: "string", required: false },
+                  { label: "Fixed Mode", name: "fixed", widget: "boolean", default: true },
+                  { label: "Mini Mode", name: "mini", widget: "boolean", default: true },
+                  { label: "Autoplay", name: "autoplay", widget: "boolean", default: false },
+                  { label: "Theme Color", name: "theme", widget: "string", default: "#2980b9" },
+                  { label: "Volume", name: "volume", widget: "number", value_type: "float", min: 0, max: 1, step: 0.1, default: 0.7 },
+                  { label: "Loop Mode", name: "loop", widget: "select", options: ["all", "one", "none"], default: "all" },
+                  { label: "Order", name: "order", widget: "select", options: ["list", "random"], default: "list" },
+                  { label: "List Folded", name: "listFolded", widget: "boolean", default: true },
+                ],
+            }
+          - {
+              label: "Live2D",
+              name: "live2d",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  { label: "CDN Path", name: "cdnPath", widget: "string", default: "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js" },
+                  {
+                    label: "Mobile Settings",
+                    name: "mobile",
+                    widget: "object",
+                    fields: [{ label: "Show on Mobile", name: "show", widget: "boolean", default: false }],
+                  },
+                ],
+            }
+          - {
+              label: "Sakura Effect",
+              name: "sakura",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  { label: "Delay (ms)", name: "delay", widget: "number", default: 200 },
+                  { label: "Min Speed", name: "minSpeed", widget: "number", value_type: "float", default: 1.0 },
+                  { label: "Max Speed", name: "maxSpeed", widget: "number", value_type: "float", default: 2.0 },
+                  { label: "Min Size", name: "minSize", widget: "number", default: 9 },
+                  { label: "Max Size", name: "maxSize", widget: "number", default: 14 },
+                ],
+            }
+          - {
+              label: "Lightbox",
+              name: "lightbox",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  {
+                    label: "Options",
+                    name: "options",
+                    widget: "object",
+                    fields:
+                      [
+                        { label: "Background Color", name: "background", widget: "string", default: "rgba(0, 0, 0, 0.8)" },
+                        { label: "Margin", name: "margin", widget: "number", default: 24 },
+                      ],
+                  },
+                ],
+            }
+          - {
+              label: "Click Effect",
+              name: "clickEffect",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  { label: "Text List", name: "text", widget: "list", default: ["富强", "民主", "文明", "和谐"] },
+                  { label: "Colors", name: "colors", widget: "list", default: ["#ff0000", "#00ff00", "#0000ff"] },
+                ],
+            }
+          - {
+              label: "Tilt Effect",
+              name: "tilt",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  {
+                    label: "Options",
+                    name: "options",
+                    widget: "object",
+                    fields:
+                      [
+                        { label: "Max Tilt", name: "max", widget: "number", default: 10 },
+                        { label: "Speed", name: "speed", widget: "number", default: 400 },
+                        { label: "Glare", name: "glare", widget: "boolean", default: true },
+                        { label: "Max Glare", name: "max-glare", widget: "number", value_type: "float", default: 0.3 },
+                      ],
+                  },
+                  { label: "Selectors", name: "selectors", widget: "list", default: [".card-item", ".left-area"] },
+                ],
+            }
+          - {
+              label: "Runtime Counter",
+              name: "runtime",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  { label: "Start Time", name: "startTime", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false },
+                ],
+            }
+          - {
+              label: "Context Menu",
+              name: "contextMenu",
+              widget: "object",
+              fields: [{ label: "Enable", name: "enable", widget: "boolean", default: true }],
+            }
+          - {
+              label: "Konami Code",
+              name: "konami",
+              widget: "object",
+              fields: [{ label: "Enable", name: "enable", widget: "boolean", default: true }],
+            }
+          - {
+              label: "Title Trick",
+              name: "titleTrick",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  { label: "Leave Title", name: "leaveTitle", widget: "string", default: "(つ ェ ⊂) 我藏好了哦~" },
+                  { label: "Return Title", name: "returnTitle", widget: "string", default: "(*゜ロ゜)ノ 被发现了~" },
+                ],
+            }
+          - {
+              label: "Anime List",
+              name: "animeList",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  { label: "Data Path", name: "dataPath", widget: "string", default: "/assets/data/anime-list.json" },
+                  { label: "More Link", name: "moreLink", widget: "string", default: "https://bangumi.tv/" },
+                ],
+            }
+          - {
+              label: "Anime News",
+              name: "animeNews",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  { label: "Data Path", name: "dataPath", widget: "string", default: "/assets/data/anime-news.json" },
+                ],
+            }
+          - {
+              label: "Random Background",
+              name: "randomBg",
+              widget: "object",
+              fields:
+                [
+                  { label: "Enable", name: "enable", widget: "boolean", default: true },
+                  { 
+                    label: "Image Sources (API URLs)", 
+                    name: "sources", 
+                    widget: "list", 
+                    default: ["https://api.ixiaowai.cn/gqapi/gqapi.php", "https://img.paulzzh.com/touhou/random"] 
+                  },
+                ],
+            }
+          - {
+              label: "ICP Info",
+              name: "icp",
+              widget: "object",
+              fields:
+                [
+                  {
+                    label: "Info",
+                    name: "info",
+                    widget: "object",
+                    fields:
+                      [
+                        {
+                          label: "Code",
+                          name: "code",
+                          widget: "object",
+                          fields:
+                            [
+                              { label: "China", name: "china", widget: "string", required: false },
+                              { label: "MoeGov", name: "moegov", widget: "string", required: false },
+                            ],
+                        },
+                        {
+                          label: "Link",
+                          name: "link",
+                          widget: "object",
+                          fields:
+                            [
+                              { label: "China", name: "china", widget: "string", required: false },
+                              { label: "MoeGov", name: "moegov", widget: "string", required: false },
+                            ],
+                        },
+                      ],
+                  },
+                  { label: "Enabled Providers", name: "enable", widget: "list", default: ["moegov"] },
+                ],
+            }
+
+  # Data Files (JSON)
+  - name: "data"
+    label: "Data Files"
+    files:
+      - name: "anime-list"
+        label: "Anime List Data"
+        file: "public/assets/data/anime-list.json"
+        fields:
+          - {
+              label: "Anime List",
+              name: "list", # Decap CMS needs a root field for array if file is just an array, but standard JSON array file is tricky.
+              # Decap CMS 'file' collection with json format usually expects an object root.
+              # If the file is a raw array [{},{}], Decap CMS might struggle without a custom widget or specific config.
+              # However, for simplicity, we assume the user can edit the raw JSON or we wrap it.
+              # BUT `public/assets/data/anime-list.json` IS an array.
+              # Decap CMS supports list widget for array at root if configured correctly or using a workaround.
+              # Let's try list widget directly.
+              widget: "list",
+              fields:
+                [
+                  { label: "Title (CN)", name: "title_cn", widget: "string" },
+                  { label: "Cover URL", name: "cover", widget: "image" },
+                  { label: "Link", name: "link", widget: "string" },
+                  { label: "Progress", name: "progress", widget: "string" },
+                  { label: "Score", name: "score", widget: "number", value_type: "float", min: 0, max: 10, step: 0.1 },
+                  { label: "Status", name: "status", widget: "select", options: ["watching", "completed", "planned", "dropped"] },
+                ],
+            }
+      - name: "anime-news"
+        label: "Anime News Data"
+        file: "public/assets/data/anime-news.json"
+        fields:
+          - {
+              label: "News List",
+              name: "news", # Same issue as above, trying list widget
+              widget: "list",
+              fields:
+                [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Link", name: "link", widget: "string" },
+                  { label: "Date", name: "date", widget: "string", required: false },
+                ],
+            }

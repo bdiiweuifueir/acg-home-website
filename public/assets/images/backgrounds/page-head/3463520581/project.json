@@ -1,0 +1,126 @@
+{
+	"approved" : true,
+	"contentrating" : "Everyone",
+	"description" : "BGM / The First Town · Yuki Kajiura\n\nArtist / ???\n\n[h2]DISCLAIMER[/h2]\n[b]I do not own any artwork, I only do the animations. If the source is missing, and you know who it is, please write a comment with the artist's name[/b]\n\n[url=https://ko-fi.com/asukikoori][img]https://i.imgur.com/Zk2lXIW.png[/img][/url]",
+	"file" : "wallpaper.mp4",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"animations" : 
+			{
+				"index" : 1,
+				"order" : 101,
+				"text" : "Animations",
+				"type" : "bool",
+				"value" : true
+			},
+			"bloom" : 
+			{
+				"index" : 3,
+				"order" : 103,
+				"text" : "💡Bloom",
+				"type" : "bool",
+				"value" : false
+			},
+			"blurbackground" : 
+			{
+				"index" : 4,
+				"order" : 104,
+				"text" : "Blur (Background)",
+				"type" : "bool",
+				"value" : false
+			},
+			"cameramovement" : 
+			{
+				"index" : 7,
+				"order" : 107,
+				"text" : "📺 Camera Movement",
+				"type" : "bool",
+				"value" : true
+			},
+			"characterssize" : 
+			{
+				"index" : 0,
+				"options" : 
+				[
+					{
+						"label" : "Big 16:9",
+						"value" : "0"
+					},
+					{
+						"label" : "Little (Phone)",
+						"value" : "1"
+					}
+				],
+				"order" : 100,
+				"text" : "Characters Size",
+				"type" : "combo",
+				"value" : "0"
+			},
+			"extra" : 
+			{
+				"index" : 6,
+				"order" : 106,
+				"text" : "Extra",
+				"type" : "group",
+				"value" : ""
+			},
+			"opacity" : 
+			{
+				"condition" : "blurbackground.value",
+				"fraction" : true,
+				"index" : 5,
+				"max" : 1,
+				"min" : 0,
+				"order" : 105,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Opacity",
+				"type" : "slider",
+				"value" : 1
+			},
+			"particles" : 
+			{
+				"index" : 8,
+				"order" : 108,
+				"text" : "💨 Particles (Wind)",
+				"type" : "bool",
+				"value" : true
+			},
+			"particlesleaves" : 
+			{
+				"index" : 9,
+				"order" : 109,
+				"text" : "🍂Particles (Leaves)",
+				"type" : "bool",
+				"value" : true
+			},
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"vfxvramheavy" : 
+			{
+				"index" : 2,
+				"order" : 102,
+				"text" : "VFX (🏋🏻VRAM Heavy🏋🏻)",
+				"type" : "group",
+				"value" : ""
+			}
+		}
+	},
+	"preview" : "preview.gif",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"tags" : [ "Anime" ],
+	"title" : "Kirito x Asuna / Sword Art Online [4K]",
+	"type" : "scene",
+	"version" : 4,
+	"visibility" : "public",
+	"workshopid" : "3463520581",
+	"workshopurl" : "steam://url/CommunityFilePage/3463520581"
+}

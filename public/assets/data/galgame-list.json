@@ -1,0 +1,74 @@
+[
+    {
+        "title": "ATRI -My Dear Moments-",
+        "cover": "https://bgm.tv/pic/cover/l/f1/1c/296765_3s2c1.jpg",
+        "link": "https://bgm.tv/subject/296765",
+        "status": "completed",
+        "score": 8.5,
+        "date": "2020-06-19"
+    },
+    {
+        "title": "Summer Pockets",
+        "cover": "https://bgm.tv/pic/cover/l/02/89/202688_6800x.jpg",
+        "link": "https://bgm.tv/subject/202688",
+        "status": "playing",
+        "score": 8.0,
+        "date": "2018-06-29"
+    },
+    {
+        "title": "千恋＊万花",
+        "cover": "https://bgm.tv/pic/cover/l/c0/83/159828_h2wWa.jpg",
+        "link": "https://bgm.tv/subject/159828",
+        "status": "planned",
+        "score": 0,
+        "date": "2016-07-29"
+    },
+    {
+        "title": "WHITE ALBUM2",
+        "cover": "https://bgm.tv/pic/cover/l/02/76/1688_s1121.jpg",
+        "link": "https://bgm.tv/subject/1688",
+        "status": "completed",
+        "score": 9.2,
+        "date": "2011-12-22"
+    },
+    {
+        "title": "Baldr Sky DiveX",
+        "cover": "https://bgm.tv/pic/cover/l/70/4e/2260_ff8F0.jpg",
+        "link": "https://bgm.tv/subject/2260",
+        "status": "completed",
+        "score": 9.0,
+        "date": "2009-03-27"
+    },
+    {
+        "title": "素晴らしき日々",
+        "cover": "https://bgm.tv/pic/cover/l/10/f1/6966_k494z.jpg",
+        "link": "https://bgm.tv/subject/6966",
+        "status": "dropped",
+        "score": 8.8,
+        "date": "2010-03-26"
+    },
+    {
+        "title": "魔法使いの夜",
+        "cover": "https://bgm.tv/pic/cover/l/20/47/10560_00B5u.jpg",
+        "link": "https://bgm.tv/subject/10560",
+        "status": "playing",
+        "score": 9.0,
+        "date": "2012-04-12"
+    },
+    {
+        "title": "Clannad",
+        "cover": "https://bgm.tv/pic/cover/l/37/12/1687_j4444.jpg",
+        "link": "https://bgm.tv/subject/1687",
+        "status": "planned",
+        "score": 0,
+        "date": "2004-04-28"
+    },
+    {
+        "title": "Steins;Gate",
+        "cover": "https://bgm.tv/pic/cover/l/30/80/2890_9191d.jpg",
+        "link": "https://bgm.tv/subject/2890",
+        "status": "completed",
+        "score": 9.3,
+        "date": "2009-10-15"
+    }
+]

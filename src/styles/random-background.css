@@ -1,0 +1,81 @@
+/* Random Background Switcher Styles */
+
+/* Wallpaper Container */
+#global-wallpaper-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -9999; /* Put it behind everything */
+    pointer-events: none; /* Let clicks pass through */
+    overflow: hidden;
+    background-color: #efefef; /* Fallback color */
+}
+
+/* Wallpaper Layer (for smooth transition) */
+.wallpaper-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Smooth fade in/out */
+}
+
+.wallpaper-layer.active {
+    opacity: 1;
+}
+
+/* Button Container */
+#random-bg-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* z-index is set via JS/Constants */
+    color: #333;
+    transition: transform 0.3s, background 0.3s, opacity 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+#random-bg-btn:hover {
+    transform: rotate(180deg) scale(1.1);
+    background: rgba(255, 255, 255, 1);
+    color: #ff4081;
+}
+
+#random-bg-btn.loading {
+    animation: random-bg-spin 1s linear infinite;
+    pointer-events: none; /* Disable click while loading */
+    opacity: 0.7;
+}
+
+@keyframes random-bg-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Specific Icon Style - Use direct child selector to avoid global pollution */
+#random-bg-btn > i {
+    font-size: 20px !important; /* Force size to avoid inheritance issues */
+    line-height: 1;
+}
+
+/* Hide button when immersive player is active */
+body.immersive-active #random-bg-btn {
+    opacity: 0;
+    pointer-events: none;
+}

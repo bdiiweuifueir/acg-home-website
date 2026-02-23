@@ -37,6 +37,7 @@
 ### 使用的项目
 
 - 语言: 前端三件套 (HTML, CSS, JavaScript)
+- 构建工具: [Vite](https://vitejs.dev/)
 - Markdown 渲染器: [markdown-it.js](https://github.com/markdown-it/markdown-it)
 - 文本打字效果: [Typed.js](https://github.com/mattboldt/typed.js)
 - 字体图标: FontAwesome
@@ -45,6 +46,47 @@
 ### 你知道吗？
 
 这个项目原本是基于 [wexuo/home](https://github.com/wexuo/home) 的修改版，现在因为各种问题我完全重写了整个项目。现在本项目的页面排版布局仍然使用了原作者的设计，但代码和设计理念是完全不同的~
+
+## 开发与构建
+
+本项目已全面拥抱现代前端工程化，使用 Vite 作为构建工具，并配置了 ESLint + Prettier 进行代码规范检查。
+
+### 环境准备
+
+确保你已安装 Node.js (推荐 v18+)。
+
+```bash
+# 安装依赖
+npm install
+```
+
+### 开发命令
+
+```bash
+# 启动本地开发服务器 (带有热更新)
+npm run dev
+
+# 构建生产版本 (输出到 dist 目录)
+npm run build
+
+# 预览构建后的生产版本
+npm run preview
+```
+
+### 代码规范
+
+本项目遵循严格的代码规范，提交代码前请确保通过检查：
+
+```bash
+# 检查代码规范
+npm run lint
+
+# 自动修复简单的规范问题
+npm run lint:fix
+
+# 格式化所有代码
+npm run format
+```
 
 ## 如何使用？
 

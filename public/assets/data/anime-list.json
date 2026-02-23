@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "title": "Frieren: Beyond Journey's End",
+        "title_cn": "葬送的芙莉莲",
+        "cover": "/assets/images/anime/frieren.jpg", 
+        "status": "watching",
+        "progress": "20/28",
+        "score": 9.8,
+        "link": "https://cns.agedongman.com.cn/"
+    },
+    {
+        "id": 2,
+        "title": "Oshi no Ko",
+        "title_cn": "【我推的孩子】",
+        "cover": "/assets/images/anime/my kids.jpg",
+        "status": "completed",
+        "progress": "11/11",
+        "score": 9.5,
+        "link": "https://cns.agedongman.com.cn/"
+    },
+    {
+        "id": 3,
+        "title": "Lycoris Recoil",
+        "title_cn": "莉可丽丝",
+        "cover": "/assets/images/anime/lili.webp",
+        "status": "completed",
+        "progress": "13/13",
+        "score": 9.0,
+        "link": "https://cns.agedongman.com.cn/"
+    },
+    {
+        "id": 4,
+        "title": "Bocchi the Rock!",
+        "title_cn": "孤独摇滚！",
+        "cover": "/assets/images/anime/bochi.webp",
+        "status": "planned",
+        "progress": "0/12",
+        "score": 0,
+        "link": "https://cns.agedongman.com.cn/"
+    }
+]

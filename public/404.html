@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 页面未找到 | ACG-Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+            color: #333;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+        h1 {
+            font-size: 8rem;
+            margin: 0;
+            color: #f43f5e;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
+        p {
+            font-size: 1.5rem;
+            margin: 10px 0 30px;
+            color: #666;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #f43f5e;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(244, 63, 94, 0.4);
+        }
+        .bg-img {
+            position: absolute;
+            bottom: 0;
+            right: 5%;
+            width: 300px;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: -1;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p>这里什么都没有哦... 是不是迷路了？</p>
+        <a href="/" class="btn">返回首页</a>
+    </div>
+    <!-- 使用站内已有的二次元素材 -->
+    <img src="/assets/images/anime/lili.webp" alt="404 Girl" class="bg-img" onerror="this.style.display='none'">
+</body>
+</html>

@@ -1,0 +1,3812 @@
+{
+	"camera" : 
+	{
+		"center" : "62.99192 287.14056 -1.00000",
+		"eye" : "62.99192 287.14056 0.00000",
+		"up" : "0.00000 1.00000 0.00000"
+	},
+	"general" : 
+	{
+		"ambientcolor" : "0.30000 0.30000 0.30000",
+		"bloom" : false,
+		"bloomhdrfeather" : 0.1,
+		"bloomhdriterations" : 8,
+		"bloomhdrscatter" : 1.619,
+		"bloomhdrstrength" : 2.0,
+		"bloomhdrthreshold" : 1.0,
+		"bloomstrength" : 2.0,
+		"bloomthreshold" : 0.64999998,
+		"bloomtint" : "1.00000 1.00000 1.00000",
+		"camerafade" : true,
+		"cameraparallax" : false,
+		"cameraparallaxamount" : 0.5,
+		"cameraparallaxdelay" : 0.1,
+		"cameraparallaxmouseinfluence" : 0.5,
+		"camerapreview" : true,
+		"camerashake" : 
+		{
+			"user" : "cameramovement",
+			"value" : true
+		},
+		"camerashakeamplitude" : 0.5,
+		"camerashakeroughness" : 1.0,
+		"camerashakespeed" : 0.63999999,
+		"clearcolor" : "0.00000 0.00000 0.00000",
+		"clearenabled" : true,
+		"farz" : 10000.0,
+		"fov" : 50.0,
+		"gravitydirection" : "0.00000 -1.00000 0.00000",
+		"gravitystrength" : 1.0,
+		"hdr" : false,
+		"nearz" : 0.0099999998,
+		"orthogonalprojection" : 
+		{
+			"height" : 2160,
+			"width" : 3840
+		},
+		"perspectiveoverridefov" : 90.0,
+		"skylightcolor" : "0.30000 0.30000 0.30000",
+		"texturereduction" : 4,
+		"winddirection" : "0.70700 0.70700 0.00000",
+		"windenabled" : false,
+		"windstrength" : 1.0,
+		"zoom" : 1.0
+	},
+	"objects" : 
+	[
+		{
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"id" : 1142,
+			"image" : "models/sky.json",
+			"locktransforms" : true,
+			"name" : "sky",
+			"origin" : "1926.14038 1074.82312 0.00000",
+			"scale" : "2.11330 2.11330 2.11330",
+			"size" : "1920.00000 1080.00000"
+		},
+		{
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1298,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.3920602,
+								"exponent" : 1,
+								"scale" : 10.69,
+								"speed" : 8.3699999,
+								"strength" : 0.17
+							},
+							"id" : 1299,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_c20a6d52_copy2",
+								"masks/waterwaves_mask_ba3479ba"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 1152,
+			"image" : "models/extra bg.json",
+			"locktransforms" : true,
+			"name" : "extra bg",
+			"origin" : "1920.00000 524.01788 0.00000",
+			"scale" : "1.04000 1.04000 1.04000",
+			"size" : "3840.00000 1122.00000"
+		},
+		{
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/workshop/2098390419/scroll/effect.json",
+					"id" : 903,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"repeat" : "1 1",
+								"speedx" : 0.050000001,
+								"speedy" : 0
+							},
+							"id" : 904
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/tint/effect.json",
+					"id" : 928,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"combos" : 
+							{
+								"BLENDMODE" : 11
+							},
+							"constantshadervalues" : 
+							{
+								"alpha" : 1.0,
+								"color" : "0.596078431372549 0.8509803921568627 1"
+							},
+							"id" : 929,
+							"textures" : [ null, "masks/tint_mask_0cf02f39" ]
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/tint/effect.json",
+					"id" : 1433,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"combos" : 
+							{
+								"BLENDMODE" : 11
+							},
+							"constantshadervalues" : 
+							{
+								"alpha" : 1,
+								"color" : "0.596078431372549 0.8509803921568627 1"
+							},
+							"id" : 1434,
+							"textures" : [ null, "masks/tint_mask_0cf02f39" ]
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/opacity/effect.json",
+					"id" : 1001,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"alpha" : 1.0
+							},
+							"id" : 1002,
+							"textures" : [ null, "masks/opacity_mask_bbe99f8b" ]
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/workshop/2924967132/waterripple/effect.json",
+					"id" : 1803,
+					"name" : "Cloud Ripple (optional)",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"animationspeed" : 0.050000001,
+								"ratio" : 1,
+								"ripplestrength" : 0.050000001,
+								"scale" : 2,
+								"scrolldirection" : -1.019874,
+								"scrollspeed" : 0.050000001
+							},
+							"id" : 1804,
+							"textures" : [ null, null, "workshop/2924967132/effects/waterripplenormal" ]
+						}
+					],
+					"visible" : true
+				}
+			],
+			"id" : 900,
+			"image" : "models/workshop/2098390419/clouds2.json",
+			"locktransforms" : true,
+			"name" : "Basic Clouds Movement",
+			"origin" : "1890.77856 1284.72339 0.00000",
+			"scale" : "2.09965 2.09965 2.09965",
+			"size" : "1920.00000 1080.00000"
+		},
+		{
+			"alpha" : 0.88,
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/workshop/2098390419/scroll/effect.json",
+					"id" : 1068,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"repeat" : "1 1",
+								"speedx" : 0.079999998,
+								"speedy" : 0
+							},
+							"id" : 1069
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/tint/effect.json",
+					"id" : 1070,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"combos" : 
+							{
+								"BLENDMODE" : 11
+							},
+							"constantshadervalues" : 
+							{
+								"alpha" : 1.0,
+								"color" : "0.596078431372549 0.8509803921568627 1"
+							},
+							"id" : 1071,
+							"textures" : [ null, "masks/tint_mask_0cf02f39" ]
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/tint/effect.json",
+					"id" : 1440,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"combos" : 
+							{
+								"BLENDMODE" : 11
+							},
+							"constantshadervalues" : 
+							{
+								"alpha" : 1,
+								"color" : "0.596078431372549 0.8509803921568627 1"
+							},
+							"id" : 1441,
+							"textures" : [ null, "masks/tint_mask_0cf02f39" ]
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/opacity/effect.json",
+					"id" : 1072,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"alpha" : 1.0
+							},
+							"id" : 1073,
+							"textures" : [ null, "masks/opacity_mask_bbe99f8b_copy1" ]
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/perspective/effect.json",
+					"id" : 1076,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"point0" : "0.00162 0.59821",
+								"point1" : "1.00000 0.58420",
+								"point2" : "1 1",
+								"point3" : "0 1"
+							},
+							"id" : 1077
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/workshop/2924967132/waterripple/effect.json",
+					"id" : 1815,
+					"name" : "Cloud Ripple (optional)",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"animationspeed" : 0.050000001,
+								"ratio" : 1,
+								"ripplestrength" : 0.050000001,
+								"scale" : 2,
+								"scrolldirection" : -1.019874,
+								"scrollspeed" : 0.050000001
+							},
+							"id" : 1816,
+							"textures" : [ null, null, "workshop/2924967132/effects/waterripplenormal" ]
+						}
+					],
+					"visible" : true
+				}
+			],
+			"id" : 1067,
+			"image" : "models/workshop/2098390419/clouds2.json",
+			"locktransforms" : true,
+			"name" : "Basic Clouds Movement",
+			"origin" : "1890.77856 1409.22900 0.00000",
+			"scale" : "2.09965 2.09965 2.09965",
+			"size" : "1920.00000 1080.00000"
+		},
+		{
+			"angles" : "-0.00000 -0.00000 -0.53006",
+			"disablepropagation" : false,
+			"id" : 372,
+			"instanceoverride" : 
+			{
+				"count" : 0.69999999,
+				"id" : 375,
+				"lifetime" : 1.3,
+				"rate" : 2.02,
+				"size" : 2.0,
+				"speed" : 3.3800001
+			},
+			"locktransforms" : true,
+			"name" : "Leaves (green)",
+			"origin" : "4068.95020 833.44427 0.00000",
+			"particle" : "particles/presets/leaves2.json",
+			"scale" : "0.56890 0.56890 0.56890",
+			"solid" : true,
+			"visible" : 
+			{
+				"user" : "particlesleaves",
+				"value" : true
+			}
+		},
+		{
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/workshop/2798319181/bokeh_blur/effect.json",
+					"id" : 1720,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"id" : 1721
+						},
+						{
+							"id" : 1722,
+							"textures" : [ null, "masks/coc_mask_d9d7f292" ]
+						},
+						{
+							"combos" : 
+							{
+								"PRECISE" : 1
+							},
+							"constantshadervalues" : 
+							{
+								"Aperture" : 1.0
+							},
+							"id" : 1723
+						},
+						{
+							"combos" : 
+							{
+								"PRECISE" : 1,
+								"VERTICAL" : 1
+							},
+							"constantshadervalues" : 
+							{
+								"Aperture" : 1.0,
+								"Opacity" : 
+								{
+									"user" : "opacity",
+									"value" : 1
+								}
+							},
+							"id" : 1724
+						},
+						{
+							"constantshadervalues" : 
+							{
+								"Aperture" : 1.0,
+								"Gamma" : 1.0,
+								"Highlights" : 1.0
+							},
+							"id" : 1725
+						},
+						{
+							"constantshadervalues" : 
+							{
+								"Aperture" : 1.0
+							},
+							"id" : 1726
+						},
+						{
+							"combos" : 
+							{
+								"VERTICAL" : 1
+							},
+							"constantshadervalues" : 
+							{
+								"Aperture" : 1.0,
+								"Opacity" : 
+								{
+									"user" : "opacity",
+									"value" : 1
+								}
+							},
+							"id" : 1727
+						}
+					],
+					"visible" : 
+					{
+						"user" : "blurbackground",
+						"value" : false
+					}
+				}
+			],
+			"id" : 1682,
+			"image" : "models/util/composelayer.json",
+			"locktransforms" : true,
+			"name" : "blur",
+			"origin" : "1920.00000 1080.00000 0.00000",
+			"scale" : "1.05115 1.05115 1.05115",
+			"size" : "3840.00000 2160.00000"
+		},
+		{
+			"alpha" : 0.0,
+			"animationlayers" : 
+			[
+				{
+					"additive" : true,
+					"animation" : 1953,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 1956,
+					"name" : "Animation 1",
+					"rate" : 1.0,
+					"visible" : true
+				}
+			],
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"id" : 30,
+			"image" : "models/puppet.json",
+			"locktransforms" : true,
+			"name" : "ASUNA PUPPET",
+			"origin" : "2169.78760 954.88818 0.00000",
+			"scale" : "1.04495 1.04495 1.04495",
+			"size" : "50.00000 50.00000",
+			"visible" : 
+			{
+				"user" : 
+				{
+					"condition" : "0",
+					"name" : "characterssize"
+				},
+				"value" : true
+			}
+		},
+		{
+			"alpha" : 0.91000003,
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 272,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.8655946,
+								"exponent" : 1.0,
+								"scale" : 9,
+								"speed" : 6.5900002,
+								"strength" : 0.23999999
+							},
+							"id" : 273
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 270,
+			"image" : "models/hair extra.json",
+			"name" : "hair extra",
+			"origin" : "-186.18539 -303.44849 0.00000",
+			"parent" : 30,
+			"scale" : "0.95698 0.95698 0.95698",
+			"size" : "1110.00000 1008.00000"
+		},
+		{
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/opacity/effect.json",
+					"id" : 563,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"alpha" : 1.0
+							},
+							"id" : 564,
+							"textures" : [ null, "masks/opacity_mask_a9f40617" ]
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 380,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.4380195,
+								"exponent" : 1.0,
+								"scale" : 3,
+								"speed" : 7.8400002,
+								"strength" : 0.25999999
+							},
+							"id" : 381,
+							"textures" : [ null, "masks/waterwaves_mask_d5b72ea8" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 70,
+			"image" : "models/hair back big chunk.json",
+			"name" : "HAIR BACK (BIG)",
+			"origin" : "-266.26917 -265.83508 0.00000",
+			"parent" : 30,
+			"size" : "945.00000 864.00000"
+		},
+		{
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 416,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.4380195,
+								"exponent" : 1,
+								"scale" : 3,
+								"speed" : 8.0200005,
+								"strength" : 0.25999999
+							},
+							"id" : 0,
+							"textures" : [ null, "masks/waterwaves_mask_d5b72ea8_copy1" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 82,
+			"image" : "models/hair back c3.json",
+			"name" : "hair back c3",
+			"origin" : "-75.65543 -20.40717 0.00000",
+			"parent" : 70,
+			"size" : "795.00000 730.00000"
+		},
+		{
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 439,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.7989953,
+								"exponent" : 1,
+								"scale" : 5,
+								"speed" : 5.8800001,
+								"strength" : 0.25999999
+							},
+							"id" : 440,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy2",
+								"masks/waterwaves_mask_08023d90"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 74,
+			"image" : "models/hair back c3 part 2.json",
+			"name" : "hair back c3 part 2",
+			"origin" : "-204.77551 -72.66223 0.00000",
+			"parent" : 70,
+			"size" : "932.00000 636.00000"
+		},
+		{
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 483,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.7989953,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.34999999
+							},
+							"id" : 484,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy3",
+								"masks/waterwaves_mask_08023d90_copy1"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 78,
+			"image" : "models/hair back c3 part 3.json",
+			"name" : "hair back c3 part 3",
+			"origin" : "-262.10620 16.21118 0.00000",
+			"parent" : 70,
+			"size" : "967.00000 478.00000"
+		},
+		{
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 673,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -3.1415927,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.25
+							},
+							"id" : 674,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy4",
+								"masks/waterwaves_mask_08023d90_copy2"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 134,
+			"image" : "models/main hair back c2.json",
+			"name" : "main hair back c2",
+			"origin" : "291.86389 69.35059 0.00000",
+			"parent" : 70,
+			"size" : "572.00000 1068.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 759,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -3.1415927,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.40000001
+							},
+							"id" : 760,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy5",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 54,
+			"image" : "models/c2 part 4.json",
+			"name" : "c2 part 4",
+			"origin" : "131.39453 -403.72668 0.00000",
+			"parent" : 134,
+			"size" : "415.00000 634.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 836,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.5002728,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.52,
+								"strength" : 0.40000001
+							},
+							"id" : 837,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy6",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 62,
+			"image" : "models/c2 part 6.json",
+			"name" : "c2 part 6",
+			"origin" : "94.72461 -426.65234 0.00000",
+			"parent" : 134,
+			"size" : "449.00000 727.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 872,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.5658593,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.52,
+								"strength" : 0.40000001
+							},
+							"id" : 873,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy7",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 58,
+			"image" : "models/c2 part 5.json",
+			"name" : "c2 part 5",
+			"origin" : "86.57617 -410.73340 0.00000",
+			"parent" : 134,
+			"size" : "433.00000 672.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 910,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 2.4930184,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.40000001
+							},
+							"id" : 911,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy8",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 42,
+			"image" : "models/c2 part 2.json",
+			"name" : "c2 part 2",
+			"origin" : "140.24194 -207.98621 0.00000",
+			"parent" : 134,
+			"size" : "458.00000 562.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 950,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 2.3877816,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 9.2600002,
+								"strength" : 0.30000001
+							},
+							"id" : 951,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy9",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 38,
+			"image" : "models/c2 part 1.json",
+			"name" : "c2 part 1",
+			"origin" : "94.87183 -17.66150 0.00000",
+			"parent" : 134,
+			"size" : "387.00000 465.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1004,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 1.9254512,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.1700001,
+								"strength" : 0.31
+							},
+							"id" : 1005,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy10",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/opacity/effect.json",
+					"id" : 1143,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"alpha" : 1.0
+							},
+							"id" : 1144,
+							"textures" : [ null, "masks/opacity_mask_ab7ac6f6" ]
+						}
+					],
+					"visible" : true
+				}
+			],
+			"id" : 50,
+			"image" : "models/c2 part 3.json",
+			"name" : "c2 part 3",
+			"origin" : "130.13989 -284.04968 0.00000",
+			"parent" : 134,
+			"size" : "478.00000 641.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1049,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 2.0236101,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.40000001
+							},
+							"id" : 1050,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy11",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 46,
+			"image" : "models/c2 part 3 c_.json",
+			"name" : "c2 part 3 c_",
+			"origin" : "158.13745 -249.01282 0.00000",
+			"parent" : 134,
+			"size" : "429.00000 407.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1095,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -3.1415927,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.40000001
+							},
+							"id" : 1096,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy12",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 66,
+			"image" : "models/c2 part 7.json",
+			"name" : "c2 part 7",
+			"origin" : "51.94873 -411.17786 0.00000",
+			"parent" : 134,
+			"size" : "406.00000 614.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1200,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.2167928,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 8.9099998,
+								"strength" : 0.31
+							},
+							"id" : 1201,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy13",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 106,
+			"image" : "models/hair top back c1.json",
+			"name" : "hair top back c1",
+			"origin" : "-294.34839 -118.81543 0.00000",
+			"parent" : 134,
+			"size" : "614.00000 629.00000"
+		},
+		{
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1765,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.8966428,
+								"exponent" : 1.0,
+								"scale" : 4,
+								"speed" : 7.3000002,
+								"strength" : 0.18000001
+							},
+							"id" : 1766,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1938,
+					"name" : "ww2",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.8980056,
+								"exponent" : 1,
+								"scale" : 7,
+								"speed" : 7.6599998,
+								"strength" : 0.18000001
+							},
+							"id" : 1939,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy1" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 2064,
+					"name" : "ww3",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.104907,
+								"exponent" : 1,
+								"scale" : 9,
+								"speed" : 8.3699999,
+								"strength" : 0.18000001
+							},
+							"id" : 2065,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy2" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 16,
+			"image" : "models/asuna body bottom.json",
+			"name" : "asuna body bottom",
+			"origin" : "-215.55396 -209.21405 0.00000",
+			"parent" : 30,
+			"size" : "1738.00000 1719.00000"
+		},
+		{
+			"animationlayers" : 
+			[
+				{
+					"additive" : true,
+					"animation" : 264,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 267,
+					"name" : "eyes",
+					"rate" : 1.0,
+					"visible" : true
+				},
+				{
+					"additive" : true,
+					"animation" : 2385,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 2421,
+					"name" : "breathing",
+					"rate" : 1.0,
+					"visible" : true
+				}
+			],
+			"attachment" : "Attachment bottom",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 2269,
+					"name" : "ww4",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.3596008,
+								"exponent" : 1,
+								"scale" : 9,
+								"speed" : 10.51,
+								"strength" : 0.18000001
+							},
+							"id" : 2270,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy4" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 22,
+			"image" : "models/asuna body.json",
+			"name" : "asuna body",
+			"origin" : "-22.28406 192.28162 0.00000",
+			"parent" : 16,
+			"size" : "720.00000 1156.00000"
+		},
+		{
+			"attachment" : "head",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1415,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.3860803,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.34999999
+							},
+							"id" : 1416,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy16",
+								"masks/waterwaves_mask_08023d90_copy5"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 86,
+			"image" : "models/hair c1 behind 1.json",
+			"name" : "hair c1 behind 1",
+			"origin" : "-72.00995 -475.79163 0.00000",
+			"parent" : 22,
+			"scale" : "0.97028 0.97028 0.97028",
+			"size" : "504.00000 564.00000"
+		},
+		{
+			"attachment" : "head",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1306,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.3860803,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.34
+							},
+							"id" : 1307,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy15",
+								"masks/waterwaves_mask_08023d90_copy4"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 90,
+			"image" : "models/hair c1 behind 2.json",
+			"name" : "hair c1 behind 2",
+			"origin" : "-29.18358 -417.42462 0.00000",
+			"parent" : 22,
+			"size" : "594.00000 540.00000"
+		},
+		{
+			"attachment" : "head",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1252,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.3860803,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.34
+							},
+							"id" : 1253,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy14",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 94,
+			"image" : "models/hair c1.json",
+			"name" : "hair c1",
+			"origin" : "-57.06885 -381.94836 0.00000",
+			"parent" : 22,
+			"size" : "781.00000 880.00000"
+		},
+		{
+			"attachment" : "head",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1528,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -0.85976237,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 10.86,
+								"strength" : 0.37
+							},
+							"id" : 1529,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy17",
+								"masks/waterwaves_mask_08023d90_copy6"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 110,
+			"image" : "models/hair top c1 1.json",
+			"name" : "hair top c1 1",
+			"origin" : "-75.68494 155.77197 0.00000",
+			"parent" : 22,
+			"size" : "381.00000 372.00000"
+		},
+		{
+			"attachment" : "head",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1633,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.6517488,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 7.1300001,
+								"strength" : 0.27000001
+							},
+							"id" : 1634,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy18",
+								"masks/waterwaves_mask_08023d90_copy6"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 1695,
+					"name" : "ww2",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.5302868,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 7.1300001,
+								"strength" : 0.17
+							},
+							"id" : 1696,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy19",
+								"masks/waterwaves_mask_08023d90_copy6"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 114,
+			"image" : "models/hair top c1.json",
+			"name" : "hair top c1",
+			"origin" : "-327.27368 -111.99878 0.00000",
+			"parent" : 22,
+			"size" : "1132.00000 835.00000"
+		},
+		{
+			"alpha" : 0.0,
+			"animationlayers" : 
+			[
+				{
+					"additive" : true,
+					"animation" : 1953,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 430,
+					"name" : "Animation 1",
+					"rate" : 1.0,
+					"visible" : true
+				}
+			],
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"id" : 428,
+			"image" : "models/puppet.json",
+			"locktransforms" : true,
+			"name" : "ASUNA PUPPET lil",
+			"origin" : "2296.02563 778.28558 0.00000",
+			"scale" : "0.79823 0.79823 0.79823",
+			"size" : "50.00000 50.00000",
+			"visible" : 
+			{
+				"user" : 
+				{
+					"condition" : "1",
+					"name" : "characterssize"
+				},
+				"value" : false
+			}
+		},
+		{
+			"alpha" : 0.91000003,
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 434,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.8655946,
+								"exponent" : 1.0,
+								"scale" : 9,
+								"speed" : 6.5900002,
+								"strength" : 0.23999999
+							},
+							"id" : 435
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 433,
+			"image" : "models/hair extra.json",
+			"name" : "hair extra",
+			"origin" : "-186.18539 -303.44849 0.00000",
+			"parent" : 428,
+			"scale" : "0.95698 0.95698 0.95698",
+			"size" : "1110.00000 1008.00000"
+		},
+		{
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/opacity/effect.json",
+					"id" : 441,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"alpha" : 1.0
+							},
+							"id" : 442,
+							"textures" : [ null, "masks/opacity_mask_a9f40617" ]
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 443,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.4380195,
+								"exponent" : 1.0,
+								"scale" : 3,
+								"speed" : 7.8400002,
+								"strength" : 0.25999999
+							},
+							"id" : 444,
+							"textures" : [ null, "masks/waterwaves_mask_d5b72ea8" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 437,
+			"image" : "models/hair back big chunk.json",
+			"name" : "HAIR BACK (BIG)",
+			"origin" : "-266.26917 -265.83508 0.00000",
+			"parent" : 428,
+			"size" : "945.00000 864.00000"
+		},
+		{
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 455,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.4380195,
+								"exponent" : 1,
+								"scale" : 3,
+								"speed" : 8.0200005,
+								"strength" : 0.25999999
+							},
+							"id" : 456,
+							"textures" : [ null, "masks/waterwaves_mask_d5b72ea8_copy1" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 449,
+			"image" : "models/hair back c3.json",
+			"name" : "hair back c3",
+			"origin" : "-75.65543 -20.40717 0.00000",
+			"parent" : 437,
+			"size" : "795.00000 730.00000"
+		},
+		{
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 459,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.7989953,
+								"exponent" : 1,
+								"scale" : 5,
+								"speed" : 5.8800001,
+								"strength" : 0.25999999
+							},
+							"id" : 460,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy2",
+								"masks/waterwaves_mask_08023d90"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 458,
+			"image" : "models/hair back c3 part 2.json",
+			"name" : "hair back c3 part 2",
+			"origin" : "-204.77551 -72.66223 0.00000",
+			"parent" : 437,
+			"size" : "932.00000 636.00000"
+		},
+		{
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 463,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.7989953,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.34999999
+							},
+							"id" : 464,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy3",
+								"masks/waterwaves_mask_08023d90_copy1"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 462,
+			"image" : "models/hair back c3 part 3.json",
+			"name" : "hair back c3 part 3",
+			"origin" : "-262.10620 16.21118 0.00000",
+			"parent" : 437,
+			"size" : "967.00000 478.00000"
+		},
+		{
+			"attachment" : "hair back",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 468,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -3.1415927,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.25
+							},
+							"id" : 469,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy4",
+								"masks/waterwaves_mask_08023d90_copy2"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 466,
+			"image" : "models/main hair back c2.json",
+			"name" : "main hair back c2",
+			"origin" : "291.86389 69.35059 0.00000",
+			"parent" : 437,
+			"size" : "572.00000 1068.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 480,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -3.1415927,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.40000001
+							},
+							"id" : 481,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy5",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 474,
+			"image" : "models/c2 part 4.json",
+			"name" : "c2 part 4",
+			"origin" : "131.39453 -403.72668 0.00000",
+			"parent" : 466,
+			"size" : "415.00000 634.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 486,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.5002728,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.52,
+								"strength" : 0.40000001
+							},
+							"id" : 487,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy6",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 485,
+			"image" : "models/c2 part 6.json",
+			"name" : "c2 part 6",
+			"origin" : "94.72461 -426.65234 0.00000",
+			"parent" : 466,
+			"size" : "449.00000 727.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 490,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.5658593,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.52,
+								"strength" : 0.40000001
+							},
+							"id" : 491,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy7",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 489,
+			"image" : "models/c2 part 5.json",
+			"name" : "c2 part 5",
+			"origin" : "86.57617 -410.73340 0.00000",
+			"parent" : 466,
+			"size" : "433.00000 672.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 494,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 2.4930184,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.40000001
+							},
+							"id" : 495,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy8",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 493,
+			"image" : "models/c2 part 2.json",
+			"name" : "c2 part 2",
+			"origin" : "140.24194 -207.98621 0.00000",
+			"parent" : 466,
+			"size" : "458.00000 562.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 498,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 2.3877816,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 9.2600002,
+								"strength" : 0.30000001
+							},
+							"id" : 499,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy9",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 497,
+			"image" : "models/c2 part 1.json",
+			"name" : "c2 part 1",
+			"origin" : "94.87183 -17.66150 0.00000",
+			"parent" : 466,
+			"size" : "387.00000 465.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 502,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 1.9254512,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.1700001,
+								"strength" : 0.31
+							},
+							"id" : 503,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy10",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/opacity/effect.json",
+					"id" : 504,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"alpha" : 1.0
+							},
+							"id" : 505,
+							"textures" : [ null, "masks/opacity_mask_ab7ac6f6" ]
+						}
+					],
+					"visible" : true
+				}
+			],
+			"id" : 501,
+			"image" : "models/c2 part 3.json",
+			"name" : "c2 part 3",
+			"origin" : "130.13989 -284.04968 0.00000",
+			"parent" : 466,
+			"size" : "478.00000 641.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 509,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 2.0236101,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.40000001
+							},
+							"id" : 510,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy11",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 508,
+			"image" : "models/c2 part 3 c_.json",
+			"name" : "c2 part 3 c_",
+			"origin" : "158.13745 -249.01282 0.00000",
+			"parent" : 466,
+			"size" : "429.00000 407.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 513,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -3.1415927,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.40000001
+							},
+							"id" : 514,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy12",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 512,
+			"image" : "models/c2 part 7.json",
+			"name" : "c2 part 7",
+			"origin" : "51.94873 -411.17786 0.00000",
+			"parent" : 466,
+			"size" : "406.00000 614.00000"
+		},
+		{
+			"attachment" : "hair back 2",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 517,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.2167928,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 8.9099998,
+								"strength" : 0.31
+							},
+							"id" : 518,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy13",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 516,
+			"image" : "models/hair top back c1.json",
+			"name" : "hair top back c1",
+			"origin" : "-294.34839 -118.81543 0.00000",
+			"parent" : 466,
+			"size" : "614.00000 629.00000"
+		},
+		{
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 527,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.8966428,
+								"exponent" : 1.0,
+								"scale" : 4,
+								"speed" : 7.3000002,
+								"strength" : 0.18000001
+							},
+							"id" : 528,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 529,
+					"name" : "ww2",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.8980056,
+								"exponent" : 1,
+								"scale" : 7,
+								"speed" : 7.6599998,
+								"strength" : 0.18000001
+							},
+							"id" : 530,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy1" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 531,
+					"name" : "ww3",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.104907,
+								"exponent" : 1,
+								"scale" : 9,
+								"speed" : 8.3699999,
+								"strength" : 0.18000001
+							},
+							"id" : 532,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy2" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 520,
+			"image" : "models/asuna body bottom.json",
+			"name" : "asuna body bottom",
+			"origin" : "-215.55396 -209.21405 0.00000",
+			"parent" : 428,
+			"size" : "1738.00000 1719.00000"
+		},
+		{
+			"animationlayers" : 
+			[
+				{
+					"additive" : true,
+					"animation" : 264,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 539,
+					"name" : "eyes",
+					"rate" : 1.0,
+					"visible" : true
+				},
+				{
+					"additive" : true,
+					"animation" : 2385,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 541,
+					"name" : "breathing",
+					"rate" : 1.0,
+					"visible" : true
+				}
+			],
+			"attachment" : "Attachment bottom",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 551,
+					"name" : "ww4",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.3596008,
+								"exponent" : 1,
+								"scale" : 9,
+								"speed" : 10.51,
+								"strength" : 0.18000001
+							},
+							"id" : 552,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy4" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 537,
+			"image" : "models/asuna body.json",
+			"name" : "asuna body",
+			"origin" : "-22.28406 192.28162 0.00000",
+			"parent" : 520,
+			"size" : "720.00000 1156.00000"
+		},
+		{
+			"attachment" : "head",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 565,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.3860803,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.34999999
+							},
+							"id" : 566,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy16",
+								"masks/waterwaves_mask_08023d90_copy5"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 557,
+			"image" : "models/hair c1 behind 1.json",
+			"name" : "hair c1 behind 1",
+			"origin" : "-72.00995 -475.79163 0.00000",
+			"parent" : 537,
+			"scale" : "0.97028 0.97028 0.97028",
+			"size" : "504.00000 564.00000"
+		},
+		{
+			"attachment" : "head",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 569,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.3860803,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.34
+							},
+							"id" : 570,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy15",
+								"masks/waterwaves_mask_08023d90_copy4"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 568,
+			"image" : "models/hair c1 behind 2.json",
+			"name" : "hair c1 behind 2",
+			"origin" : "-29.18358 -417.42462 0.00000",
+			"parent" : 537,
+			"size" : "594.00000 540.00000"
+		},
+		{
+			"attachment" : "head",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 573,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.3860803,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 5.8800001,
+								"strength" : 0.34
+							},
+							"id" : 574,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy14",
+								"masks/waterwaves_mask_08023d90_copy3"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 572,
+			"image" : "models/hair c1.json",
+			"name" : "hair c1",
+			"origin" : "-57.06885 -381.94836 0.00000",
+			"parent" : 537,
+			"size" : "781.00000 880.00000"
+		},
+		{
+			"attachment" : "head",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 577,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -0.85976237,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 10.86,
+								"strength" : 0.37
+							},
+							"id" : 578,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy17",
+								"masks/waterwaves_mask_08023d90_copy6"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 576,
+			"image" : "models/hair top c1 1.json",
+			"name" : "hair top c1 1",
+			"origin" : "-75.68494 155.77197 0.00000",
+			"parent" : 537,
+			"size" : "381.00000 372.00000"
+		},
+		{
+			"attachment" : "head",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 581,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.6517488,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 7.1300001,
+								"strength" : 0.27000001
+							},
+							"id" : 582,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy18",
+								"masks/waterwaves_mask_08023d90_copy6"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 583,
+					"name" : "ww2",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.5302868,
+								"exponent" : 1,
+								"scale" : 6,
+								"speed" : 7.1300001,
+								"strength" : 0.17
+							},
+							"id" : 584,
+							"textures" : 
+							[
+								null,
+								"masks/waterwaves_mask_d5b72ea8_copy19",
+								"masks/waterwaves_mask_08023d90_copy6"
+							]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 580,
+			"image" : "models/hair top c1.json",
+			"name" : "hair top c1",
+			"origin" : "-327.27368 -111.99878 0.00000",
+			"parent" : 537,
+			"size" : "1132.00000 835.00000"
+		},
+		{
+			"alpha" : 0.0,
+			"animationlayers" : 
+			[
+				{
+					"additive" : true,
+					"animation" : 1949,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 1952,
+					"name" : "Animation 1",
+					"rate" : 1.0,
+					"visible" : true
+				}
+			],
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"id" : 34,
+			"image" : "models/puppet - Copy.json",
+			"locktransforms" : true,
+			"name" : "KIRITO PUPPET",
+			"origin" : "2577.97803 1112.90869 0.00000",
+			"scale" : "1.04000 1.04000 1.04000",
+			"size" : "50.00000 50.00000",
+			"visible" : 
+			{
+				"user" : 
+				{
+					"condition" : "0",
+					"name" : "characterssize"
+				},
+				"value" : true
+			}
+		},
+		{
+			"angles" : "-0.00000 -0.00000 -0.17111",
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 2513,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.1232102,
+								"exponent" : 1,
+								"scale" : 9,
+								"speed" : 9.2600002,
+								"strength" : 0.28
+							},
+							"id" : 2514,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy7" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 26,
+			"image" : "models/back mantle.json",
+			"name" : "back mantle",
+			"origin" : "14.85982 -516.78998 0.00000",
+			"parent" : 34,
+			"scale" : "0.82513 1.23158 0.82513",
+			"size" : "1217.00000 557.00000"
+		},
+		{
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"id" : 130,
+			"image" : "models/kirito legs.json",
+			"name" : "kirito legs",
+			"origin" : "61.48877 -696.04187 0.00000",
+			"parent" : 34,
+			"size" : "508.00000 615.00000"
+		},
+		{
+			"animationlayers" : 
+			[
+				{
+					"additive" : true,
+					"animation" : 374,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 377,
+					"name" : "Animation 1",
+					"rate" : 1.0,
+					"visible" : true
+				}
+			],
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 2996,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.2754996,
+								"exponent" : 1,
+								"scale" : 7,
+								"speed" : 10.51,
+								"strength" : 0.19
+							},
+							"id" : 2997,
+							"textures" : [ null, "masks/waterwaves_mask_ad7e3e6e_copy2" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 126,
+			"image" : "models/kirito face.json",
+			"name" : "kirito face",
+			"origin" : "24.35071 723.64856 0.00000",
+			"parent" : 34,
+			"size" : "852.00000 726.00000"
+		},
+		{
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 2834,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.2754996,
+								"exponent" : 1.0,
+								"scale" : 7,
+								"speed" : 10.51,
+								"strength" : 0.19
+							},
+							"id" : 2835,
+							"textures" : [ null, "masks/waterwaves_mask_ad7e3e6e" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 98,
+			"image" : "models/hair kirito back.json",
+			"name" : "hair kirito back",
+			"origin" : "203.64429 804.47485 0.00000",
+			"parent" : 34,
+			"size" : "316.00000 373.00000"
+		},
+		{
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/opacity/effect.json",
+					"id" : 3186,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"alpha" : 1.0
+							},
+							"id" : 3187,
+							"textures" : [ null, "masks/opacity_mask_ae39d823" ]
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 2914,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.2754996,
+								"exponent" : 1,
+								"scale" : 9,
+								"speed" : 8.7299995,
+								"strength" : 0.15000001
+							},
+							"id" : 2915,
+							"textures" : [ null, "masks/waterwaves_mask_ad7e3e6e_copy1" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 102,
+			"image" : "models/hair kirito front.json",
+			"name" : "hair kirito front",
+			"origin" : "152.69629 815.30286 0.00000",
+			"parent" : 34,
+			"size" : "505.00000 478.00000"
+		},
+		{
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 2589,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.104907,
+								"exponent" : 1,
+								"scale" : 9,
+								"speed" : 9.2600002,
+								"strength" : 0.28
+							},
+							"id" : 2590,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy6" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 3360,
+					"name" : "ww2",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 0.32312337,
+								"exponent" : 1,
+								"scale" : 42.709999,
+								"speed" : 10.86,
+								"strength" : 0.13
+							},
+							"id" : 3361,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy8" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/shake/effect.json",
+					"id" : 3237,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"bounds" : "0 1",
+								"friction" : "1 1",
+								"speed" : 1.0,
+								"strength" : 0.085000001
+							},
+							"id" : 3238,
+							"textures" : [ null, "masks/shake_mask_c8a61f1a" ]
+						}
+					],
+					"visible" : true
+				}
+			],
+			"id" : 122,
+			"image" : "models/kirito body.json",
+			"name" : "kirito body",
+			"parent" : 34,
+			"size" : "1298.00000 1737.00000"
+		},
+		{
+			"animationlayers" : 
+			[
+				{
+					"additive" : true,
+					"animation" : 3330,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 3345,
+					"name" : "Animation 1",
+					"rate" : 1.0,
+					"visible" : true
+				}
+			],
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/shake/effect.json",
+					"id" : 3268,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"bounds" : "0 1",
+								"friction" : "1 1",
+								"speed" : 1,
+								"strength" : 0.085000001
+							},
+							"id" : 3269,
+							"textures" : [ null, "masks/shake_mask_c8a61f1a_copy1" ]
+						}
+					],
+					"visible" : true
+				}
+			],
+			"id" : 118,
+			"image" : "models/kirito arm.json",
+			"name" : "kirito arm",
+			"origin" : "705.42151 -48.88062 0.00000",
+			"parent" : 34,
+			"size" : "1513.00000 1686.00000"
+		},
+		{
+			"alpha" : 0.0,
+			"animationlayers" : 
+			[
+				{
+					"additive" : true,
+					"animation" : 1949,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 365,
+					"name" : "Animation 1",
+					"rate" : 1.0,
+					"visible" : true
+				}
+			],
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"id" : 360,
+			"image" : "models/puppet - Copy.json",
+			"locktransforms" : true,
+			"name" : "KIRITO PUPPET lil",
+			"origin" : "2577.97803 861.13147 0.00000",
+			"scale" : "0.79823 0.79823 0.79823",
+			"size" : "50.00000 50.00000",
+			"visible" : 
+			{
+				"user" : 
+				{
+					"condition" : "1",
+					"name" : "characterssize"
+				},
+				"value" : false
+			}
+		},
+		{
+			"angles" : "-0.00000 -0.00000 -0.17111",
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 369,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.1232102,
+								"exponent" : 1,
+								"scale" : 9,
+								"speed" : 9.2600002,
+								"strength" : 0.28
+							},
+							"id" : 370,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy7" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 368,
+			"image" : "models/back mantle.json",
+			"name" : "back mantle",
+			"origin" : "14.85982 -516.78998 0.00000",
+			"parent" : 360,
+			"scale" : "0.82513 1.23158 0.82513",
+			"size" : "1217.00000 557.00000"
+		},
+		{
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"id" : 373,
+			"image" : "models/kirito legs.json",
+			"name" : "kirito legs",
+			"origin" : "61.48877 -696.04187 0.00000",
+			"parent" : 360,
+			"size" : "508.00000 615.00000"
+		},
+		{
+			"animationlayers" : 
+			[
+				{
+					"additive" : true,
+					"animation" : 374,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 379,
+					"name" : "Animation 1",
+					"rate" : 1.0,
+					"visible" : true
+				}
+			],
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 388,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.2754996,
+								"exponent" : 1,
+								"scale" : 7,
+								"speed" : 10.51,
+								"strength" : 0.19
+							},
+							"id" : 389,
+							"textures" : [ null, "masks/waterwaves_mask_ad7e3e6e_copy2" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 376,
+			"image" : "models/kirito face.json",
+			"name" : "kirito face",
+			"origin" : "24.35071 723.64856 0.00000",
+			"parent" : 360,
+			"size" : "852.00000 726.00000"
+		},
+		{
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 395,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.2754996,
+								"exponent" : 1.0,
+								"scale" : 7,
+								"speed" : 10.51,
+								"strength" : 0.19
+							},
+							"id" : 396,
+							"textures" : [ null, "masks/waterwaves_mask_ad7e3e6e" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 394,
+			"image" : "models/hair kirito back.json",
+			"name" : "hair kirito back",
+			"origin" : "203.64429 804.47485 0.00000",
+			"parent" : 360,
+			"size" : "316.00000 373.00000"
+		},
+		{
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/opacity/effect.json",
+					"id" : 399,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"alpha" : 1.0
+							},
+							"id" : 400,
+							"textures" : [ null, "masks/opacity_mask_ae39d823" ]
+						}
+					],
+					"visible" : true
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 401,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.2754996,
+								"exponent" : 1,
+								"scale" : 9,
+								"speed" : 8.7299995,
+								"strength" : 0.15000001
+							},
+							"id" : 402,
+							"textures" : [ null, "masks/waterwaves_mask_ad7e3e6e_copy1" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 398,
+			"image" : "models/hair kirito front.json",
+			"name" : "hair kirito front",
+			"origin" : "152.69629 815.30286 0.00000",
+			"parent" : 360,
+			"size" : "505.00000 478.00000"
+		},
+		{
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 406,
+					"name" : "ww1",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -2.104907,
+								"exponent" : 1,
+								"scale" : 9,
+								"speed" : 9.2600002,
+								"strength" : 0.28
+							},
+							"id" : 407,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy6" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 408,
+					"name" : "ww2",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : 0.32312337,
+								"exponent" : 1,
+								"scale" : 42.709999,
+								"speed" : 10.86,
+								"strength" : 0.13
+							},
+							"id" : 409,
+							"textures" : [ null, "masks/waterwaves_mask_7cac9364_copy8" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				},
+				{
+					"file" : "effects/shake/effect.json",
+					"id" : 410,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"bounds" : "0 1",
+								"friction" : "1 1",
+								"speed" : 1.0,
+								"strength" : 0.085000001
+							},
+							"id" : 411,
+							"textures" : [ null, "masks/shake_mask_c8a61f1a" ]
+						}
+					],
+					"visible" : true
+				}
+			],
+			"id" : 405,
+			"image" : "models/kirito body.json",
+			"name" : "kirito body",
+			"parent" : 360,
+			"size" : "1298.00000 1737.00000"
+		},
+		{
+			"animationlayers" : 
+			[
+				{
+					"additive" : true,
+					"animation" : 3330,
+					"blend" : 1.0,
+					"blendin" : false,
+					"blendout" : false,
+					"blendtime" : 0.5,
+					"id" : 418,
+					"name" : "Animation 1",
+					"rate" : 1.0,
+					"visible" : true
+				}
+			],
+			"attachment" : "Attachment",
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/shake/effect.json",
+					"id" : 420,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"bounds" : "0 1",
+								"friction" : "1 1",
+								"speed" : 1,
+								"strength" : 0.085000001
+							},
+							"id" : 421,
+							"textures" : [ null, "masks/shake_mask_c8a61f1a_copy1" ]
+						}
+					],
+					"visible" : true
+				}
+			],
+			"id" : 415,
+			"image" : "models/kirito arm.json",
+			"name" : "kirito arm",
+			"origin" : "705.42151 -48.88062 0.00000",
+			"parent" : 360,
+			"size" : "1513.00000 1686.00000"
+		},
+		{
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 363,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.2633425,
+								"exponent" : 1.0,
+								"scale" : 8,
+								"speed" : 8.5500002,
+								"strength" : 0.23
+							},
+							"id" : 364,
+							"textures" : [ null, "masks/waterwaves_mask_c20a6d52" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "animations",
+						"value" : true
+					}
+				}
+			],
+			"id" : 361,
+			"image" : "models/Terrain front.json",
+			"locktransforms" : true,
+			"name" : "Terrain front",
+			"origin" : "2584.52490 192.08063 0.00000",
+			"scale" : "1.04000 1.04000 1.04000",
+			"size" : "2585.00000 463.00000"
+		},
+		{
+			"angles" : "0.00000 -0.00000 -3.12838",
+			"disablepropagation" : false,
+			"id" : 1959,
+			"instanceoverride" : 
+			{
+				"alpha" : 0.69999999,
+				"count" : 1.4,
+				"id" : 1961,
+				"size" : 0.83999997,
+				"speed" : 1.04
+			},
+			"locktransforms" : true,
+			"name" : "Wind particles",
+			"origin" : "4746.43164 1404.64661 0.00000",
+			"particle" : "particles/workshop/2991402338/Gusts_of_wind.json",
+			"scale" : "3.53487 3.53487 3.53487",
+			"solid" : true,
+			"visible" : 
+			{
+				"user" : "particles",
+				"value" : true
+			}
+		},
+		{
+			"angles" : "0.00000 -0.00000 -3.07181",
+			"disablepropagation" : false,
+			"id" : 1966,
+			"instanceoverride" : 
+			{
+				"alpha" : 0.07,
+				"count" : 1.4,
+				"id" : 1968,
+				"rate" : 0.60000002,
+				"speed" : 1.04
+			},
+			"locktransforms" : true,
+			"name" : "Gusts of wind",
+			"origin" : "4536.75586 1523.37683 0.00000",
+			"particle" : "particles/workshop/2780300536/Gusts_of_wind.json",
+			"scale" : "4.11350 4.11350 4.11350",
+			"solid" : true,
+			"visible" : 
+			{
+				"user" : "particles",
+				"value" : true
+			}
+		},
+		{
+			"angles" : "-0.00000 -0.00000 -0.41689",
+			"disablepropagation" : false,
+			"id" : 350,
+			"instanceoverride" : 
+			{
+				"count" : 0.2,
+				"id" : 351,
+				"lifetime" : 1.3,
+				"rate" : 2.02,
+				"size" : 2.0,
+				"speed" : 3.3800001
+			},
+			"locktransforms" : true,
+			"name" : "Leaves (green)",
+			"origin" : "4223.88867 1707.58008 0.00000",
+			"particle" : "particles/presets/leaves2.json",
+			"solid" : true,
+			"visible" : 
+			{
+				"user" : "particlesleaves",
+				"value" : true
+			}
+		},
+		{
+			"castshadow" : false,
+			"clampuvs" : true,
+			"disablepropagation" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/workshop/2822917890/bloom/effect.json",
+					"id" : 1616,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"gamma" : 5,
+								"opacity" : 1.0,
+								"radius" : 10,
+								"strength" : 0.16,
+								"threshold" : 0
+							},
+							"id" : 1617
+						},
+						{
+							"constantshadervalues" : 
+							{
+								"opacity" : 1.0,
+								"radius" : 10,
+								"strength" : 0.16
+							},
+							"id" : 1618
+						},
+						{
+							"combos" : 
+							{
+								"VERTICAL" : 1
+							},
+							"constantshadervalues" : 
+							{
+								"opacity" : 1.0,
+								"radius" : 10,
+								"strength" : 0.16
+							},
+							"id" : 1619
+						},
+						{
+							"id" : 1620
+						},
+						{
+							"constantshadervalues" : 
+							{
+								"opacity" : 1.0,
+								"radius" : 10,
+								"strength" : 0.16
+							},
+							"id" : 1621
+						},
+						{
+							"combos" : 
+							{
+								"VERTICAL" : 1
+							},
+							"constantshadervalues" : 
+							{
+								"opacity" : 1.0,
+								"radius" : 10,
+								"strength" : 0.16
+							},
+							"id" : 1622
+						},
+						{
+							"id" : 1623
+						},
+						{
+							"constantshadervalues" : 
+							{
+								"opacity" : 1.0,
+								"radius" : 10,
+								"strength" : 0.16
+							},
+							"id" : 1624
+						},
+						{
+							"combos" : 
+							{
+								"VERTICAL" : 1
+							},
+							"constantshadervalues" : 
+							{
+								"opacity" : 1.0,
+								"radius" : 10,
+								"strength" : 0.16
+							},
+							"id" : 1625
+						},
+						{
+							"id" : 1626
+						},
+						{
+							"constantshadervalues" : 
+							{
+								"opacity" : 1.0,
+								"radius" : 10,
+								"strength" : 0.16
+							},
+							"id" : 1627
+						},
+						{
+							"combos" : 
+							{
+								"VERTICAL" : 1
+							},
+							"constantshadervalues" : 
+							{
+								"opacity" : 1.0,
+								"radius" : 10,
+								"strength" : 0.16
+							},
+							"id" : 1628
+						},
+						{
+							"id" : 1629
+						},
+						{
+							"id" : 1630
+						},
+						{
+							"id" : 1631
+						},
+						{
+							"constantshadervalues" : 
+							{
+								"Tint" : "1 1 1",
+								"opacity" : 1.0
+							},
+							"id" : 1632,
+							"textures" : [ null, "masks/apply_mask_a0eb1037" ]
+						}
+					],
+					"visible" : 
+					{
+						"user" : "bloom",
+						"value" : false
+					}
+				}
+			],
+			"id" : 1614,
+			"image" : "models/util/composelayer.json",
+			"locktransforms" : true,
+			"name" : "bloom",
+			"origin" : "1920.00000 1080.00000 0.00000",
+			"scale" : "1.05115 1.05115 1.05115",
+			"size" : "3840.00000 2160.00000"
+		},
+		{
+			"disablepropagation" : false,
+			"id" : 413,
+			"locktransforms" : true,
+			"maxtime" : 5.0,
+			"mintime" : 1.0,
+			"muteineditor" : true,
+			"name" : "The First Town.mp3",
+			"playbackmode" : "loop",
+			"solid" : true,
+			"sound" : [ "sounds/The First Town.mp3" ],
+			"startsilent" : false,
+			"volume" : 0.5
+		}
+	],
+	"version" : 5
+}

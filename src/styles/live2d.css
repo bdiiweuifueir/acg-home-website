@@ -1,0 +1,25 @@
+/* Live2D 容器样式调整 */
+#waifu {
+    z-index: 100 !important; /* 保证在合适层级 */
+    /* 避免与左下角音乐播放器重叠 */
+    /* 默认 left: 0, bottom: 0 */
+    transition: left 0.3s ease;
+}
+
+#waifu.with-music-player {
+    left: 90px !important; /* 动态避让 */
+}
+
+#live2dcanvas {
+    /* 确保 canvas 不会拦截不必要的点击 */
+    /* 但需要保留交互能力 */
+}
+
+/* 隐藏 Live2D 在加载时的丑陋占位符（如果有） */
+#waifu-toggle {
+    background-color: transparent !important;
+}
+
+#waifu-tool {
+    color: #555;
+}

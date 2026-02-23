@@ -1,0 +1,231 @@
+/* - 全局样式 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "HarmonyOS_Regular", sans-serif;
+    /* background-color: #efefef; */ /* Handled by Random Background Plugin */
+    overflow-x: hidden;
+}
+
+/* 移除默认的链接下划线背景，针对图标链接 */
+a:has(i) {
+    background: none !important;
+}
+
+/* - 全局样式 End */
+
+/* - 页首 */
+.page-head {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 320px;
+    background-color: transparent;
+}
+
+.page-head > .title,
+.page-head > .typed-cursor {
+    height: max-content;
+    margin-top: 160px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
+}
+/* - 页首 End */
+
+/* - 主体容器 */
+.primary-container {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: auto;
+    /* background-color: brown; */
+}
+
+/* 左侧区域 */
+.primary-container > .left-area {
+    max-width: 350px;
+    width: 30%;
+    margin-right: 16px;
+
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+}
+
+/* 右侧区域 */
+.primary-container > .right-area {
+    max-width: 1050px;
+    width: 70%;
+}
+/* - 主体容器 End */
+
+/* 内容版块 */
+.primary-container > .right-area > .content-page {
+    position: relative;
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 12px;
+    padding: 20px 46px 46px 46px;
+    background-color: rgba(255, 255, 255, 0.9); /* Changed from #ffffff to semi-transparent */
+    backdrop-filter: blur(10px); /* Glassmorphism */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 8px 6px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+
+    * {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+/* 内容板块的贴纸 */
+/* 已移除默认贴纸 */
+
+/* - 左侧卡片 */
+.primary-container > .left-area > .cards > .card-item {
+    width: 100%;
+    margin-top: 16px;
+    padding: 18px 20px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9); /* Changed from #ffffff to semi-transparent */
+    backdrop-filter: blur(10px); /* Glassmorphism */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 8px 6px rgba(0, 0, 0, 0.06);
+    font-size: 14px;
+}
+
+/* 标题 */
+.primary-container > .left-area > .cards > .card-item > .title {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+
+    i {
+        margin-right: 10px;
+    }
+}
+
+/* - 个人信息 */
+.primary-container > .left-area > .cards > .card-item#personal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.primary-container > .left-area > .cards > .card-item#personal-info > .avatar {
+    width: 120px;
+    height: auto;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.primary-container > .left-area > .cards > .card-item#personal-info > .name {
+    margin: 12px 0 14px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.primary-container > .left-area > .cards > .card-item#personal-info > .social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary-container > .left-area > .cards > .card-item#personal-info > .social-icons a {
+    display: inline-block; /* Fix for anchor tag collapsing */
+    text-decoration: none;
+    background: none; /* Remove global underline */
+    line-height: 1;
+}
+
+.primary-container > .left-area > .cards > .card-item#personal-info > .social-icons i {
+    padding: 7px;
+    border-radius: 50%;
+    font-size: 16px;
+    background-color: #b5e0ff;
+    color: #304660;
+    width: 16px; /* Ensure width */
+    height: 16px; /* Ensure height */
+    box-sizing: content-box; /* Include padding in total size logic if needed, but content-box adds padding outside width */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary-container > .left-area > .cards > .card-item#personal-info > .social-icons a + a {
+    margin-left: 14px;
+}
+/* - 个人信息 End */
+
+/* 一言 */
+.primary-container > .left-area > .cards > .card-item#hitokoto > .content a#hitokoto-text {
+    color: unset;
+}
+
+/* - 浏览设置 */
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item {
+    margin-top: 8px;
+    padding: 6px 10px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: rgba(192, 229, 255, 0.6); /* Semi-transparent #c0e5ff */
+}
+
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #304660;
+
+    i {
+        margin-right: 5px;
+    }
+}
+
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .themes {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .themes > .theme-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    margin: 0 4px 4px 0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .themes > .theme-item i {
+    margin-right: 4px;
+}
+
+/* - 页脚 */
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 32px 0 20px 0;
+    font-size: 12px;
+    color: #304660;
+}
+
+.footer .line-break {
+    margin: 10px 0;
+    opacity: 0.5;
+}
+/* - 页脚 End */

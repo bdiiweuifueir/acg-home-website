@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>后台管理 | ACG-Home</title>
+        <!-- Netlify Identity Widget -->
+        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+        
+        <style>
+            /* 全局背景美化 */
+            body {
+                background-image: url('/assets/images/backgrounds/page-head/wallhaven-r7mgow.jpg'); /* 使用现有的高清壁纸 */
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+            }
+
+            /* 针对 Decap CMS 登录页面的样式覆盖 
+               注意：由于 CMS 是 React 渲染的，我们需要覆盖其生成的类或结构
+            */
+            div[class*="AuthenticationPage"] {
+                background-color: rgba(0, 0, 0, 0.4) !important; /* 半透明遮罩 */
+                backdrop-filter: blur(5px);
+            }
+
+            section[class*="AuthenticationPage"] {
+                background-color: rgba(255, 255, 255, 0.9) !important;
+                border-radius: 16px !important;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+                padding: 40px !important;
+                max-width: 400px !important;
+            }
+
+            /* 登录按钮美化 */
+            button[class*="LoginButton"] {
+                background-color: #ff4081 !important; /* 粉色主题 */
+                color: white !important;
+                border: none !important;
+                border-radius: 25px !important;
+                font-weight: bold !important;
+                transition: transform 0.2s, background-color 0.2s !important;
+            }
+
+            button[class*="LoginButton"]:hover {
+                background-color: #f50057 !important;
+                transform: scale(1.05);
+            }
+
+            /* 顶部 Logo 或标题区域（如果存在） */
+            h1, h2, h3 {
+                color: #333 !important;
+            }
+            
+            /* 隐藏默认的 Netlify CMS 灰色背景 */
+            #nc-root {
+                height: 100vh;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Include the script that builds the page and powers Decap CMS -->
+        <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+        
+        <script>
+            // 注册中文语言包 (Decap CMS 自动包含，但显式调用更安全)
+            // CMS.registerLocale('zh_CN', CMS.getLocale('zh_CN'));
+            
+            // 如果使用了 Netlify Identity，需要初始化
+            if (window.netlifyIdentity) {
+                window.netlifyIdentity.on("init", user => {
+                    if (!user) {
+                        window.netlifyIdentity.on("login", () => {
+                            document.location.href = "/admin/";
+                        });
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>

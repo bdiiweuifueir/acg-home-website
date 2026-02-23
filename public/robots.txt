@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /assets/data/
+
+Sitemap: https://traehtmlafbx.vercel.app/sitemap.xml

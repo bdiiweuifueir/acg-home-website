@@ -1,0 +1,16 @@
+[
+    {
+        "title": "Hello World",
+        "date": "2023-10-27",
+        "tags": ["Life", "Tech"],
+        "summary": "这是我的第一篇博客文章，记录了搭建这个网站的心路历程。",
+        "path": "hello-world.md"
+    },
+    {
+        "title": "关于二次元的碎碎念",
+        "date": "2023-11-01",
+        "tags": ["Anime"],
+        "summary": "最近看了一些很有趣的番剧，想和大家分享一下。",
+        "path": "anime-thoughts.md"
+    }
+]

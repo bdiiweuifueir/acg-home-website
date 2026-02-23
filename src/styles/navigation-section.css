@@ -1,0 +1,125 @@
+/* Navigation Section Styles - Inspired by KUN Visual Novel */
+#navigation-section-card .content {
+    padding: 16px;
+    background: var(--card-bg, rgba(255, 255, 255, 0.8));
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.nav-category {
+    margin-bottom: 24px;
+}
+
+.nav-category:last-child {
+    margin-bottom: 0;
+}
+
+.nav-category-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color, #333);
+    margin-bottom: 12px;
+    padding-left: 8px;
+    border-left: 3px solid var(--primary-color, #3b82f6);
+    opacity: 0.9;
+}
+
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 12px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.nav-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color, #3b82f6);
+}
+
+.nav-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Default Gradient */
+    transition: transform 0.3s;
+}
+
+.nav-item:hover .nav-icon {
+    transform: scale(1.05) rotate(5deg);
+}
+
+.nav-item:active .nav-icon {
+    transform: scale(0.95) rotate(0deg);
+}
+
+.nav-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.nav-title {
+    font-size: 12px;
+    color: var(--text-color, #555);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    font-weight: 500;
+}
+
+.nav-desc {
+    font-size: 10px;
+    color: #999;
+    text-align: center;
+    margin-top: 2px;
+    display: none; /* Hidden by default, maybe show on larger cards */
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    #navigation-section-card .content {
+        background: rgba(30, 41, 59, 0.8);
+    }
+    
+    .nav-item {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-title {
+        color: #ddd;
+    }
+    
+    .nav-category-title {
+        color: #eee;
+    }
+}
