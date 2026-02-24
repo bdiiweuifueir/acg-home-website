@@ -20,7 +20,11 @@ export function initAnimeList(config) {
         <span class="title"><i class="fa-solid fa-tv"></i>追番列表</span>
         <div class="content">
             <div id="anime-list-container" class="anime-grid">
-                <div class="loading-text">Loading...</div>
+                <!-- Skeleton Loader -->
+                <div class="skeleton-item"></div>
+                <div class="skeleton-item"></div>
+                <div class="skeleton-item"></div>
+                <div class="skeleton-item"></div>
             </div>
             <div class="more-link">
                 <a href="${config.animeList.moreLink || "#"}" target="_blank">查看更多 <i class="fa-solid fa-angle-right"></i></a>

@@ -9,6 +9,7 @@
     color: #888;
     font-size: 12px;
     padding: 10px;
+    display: none; /* Hidden by default if using skeleton */
 }
 .more-link {
     text-align: center;
@@ -90,4 +91,42 @@
 .anime-score {
     color: #ffd700;
     font-weight: bold;
+}
+
+/* Skeleton Loader */
+.skeleton-item {
+    background-color: #eee;
+    background-image: linear-gradient(
+        90deg,
+        #eee,
+        #f5f5f5,
+        #eee
+    );
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    aspect-ratio: 3/4;
+    display: inline-block;
+    width: 100%;
+    animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+/* Dark mode support for skeleton */
+[data-theme="dark"] .skeleton-item {
+    background-color: #333;
+    background-image: linear-gradient(
+        90deg,
+        #333,
+        #444,
+        #333
+    );
 }
