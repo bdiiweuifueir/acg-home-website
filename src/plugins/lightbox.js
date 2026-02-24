@@ -11,6 +11,9 @@ export function initLightbox(config) {
         margin: 24,
         background: "rgba(0, 0, 0, 0.8)",
         scrollOffset: 0,
+        // Add zoom limit to prevent overly large images
+        // Unfortunately medium-zoom doesn't have a maxZoom option directly, 
+        // but margin helps constraint it.
     };
 
     // 合并用户配置
