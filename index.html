@@ -67,9 +67,9 @@
             <div class="left-area">
                 <div class="cards">
                     <div class="card-item" id="personal-info">
-                        <img class="avatar" :src="config.content.masterInfo.avatar || '/assets/images/avatar.png'" />
+                        <img class="avatar" :src="config.content.masterInfo.avatar || '/assets/images/avatar.png'" :alt="config.content.masterInfo.name + ' 的头像'" />
                         <span class="name" x-text="config.content.masterInfo.name">Loading...</span>
-                        <div class="social-icons">Loading...</div>
+                        <div class="social-icons" aria-label="社交媒体链接">Loading...</div>
                         <div style="margin-top: 10px; text-align: center; display: flex; justify-content: center; gap: 15px;">
                             <a href="#about" class="about-btn" style="font-size: 12px; color: #49b1f5; text-decoration: none;"><i class="fa-solid fa-user"></i> 关于我</a>
                             <a href="#friends" class="about-btn" style="font-size: 12px; color: #49b1f5; text-decoration: none;"><i class="fa-solid fa-link"></i> 友情链接</a>

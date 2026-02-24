@@ -8,6 +8,8 @@ export function initBackToTop() {
     btn.id = "back-to-top";
     btn.innerHTML = `<i class="fa-solid fa-arrow-up"></i>`;
     btn.title = "回到顶部";
+    btn.setAttribute("role", "button");
+    btn.setAttribute("aria-label", "回到顶部");
     btn.style.zIndex = Z_INDEX.RANDOM_BG_BTN;
     
     document.body.appendChild(btn);

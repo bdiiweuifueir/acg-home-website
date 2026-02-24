@@ -27,6 +27,9 @@ export function initHitokoto(config) {
         refreshBtn.className = "hitokoto-refresh-btn";
         refreshBtn.innerHTML = `<i class="fa-solid fa-rotate-right"></i>`;
         refreshBtn.title = "刷新一言";
+        refreshBtn.setAttribute("role", "button");
+        refreshBtn.setAttribute("aria-label", "刷新一言");
+        refreshBtn.setAttribute("tabindex", "0"); // Make it focusable
         
         refreshBtn.addEventListener("click", (e) => {
             e.stopPropagation();
