@@ -1,0 +1,96 @@
+{
+	"contentrating" : "Everyone",
+	"description" : "画师：芜尽山\r\n夏虹身着带有藏族元素的服饰，毛领与彩色织纹的细节，让她与身后的雪山🗻🗻🗻、日光城建筑完美呼应。她闭着眼睛舒展双臂，任由长发被高原的风肆意扬起，手中的转经筒在阳光☀️☀️☀️下泛着细碎的光，仿佛正随着风的节奏轻轻转动。背景里，连绵的雪山与层次丰富的云霞铺展开辽阔的天地✨✨✨。\r\n❗️❗️作品已获得授权 禁止搬运商用 二次创作需要艾特❗️❗️\r\n喜欢的可以给一键三连 有免费的小礼物也可以送送  万分感谢",
+	"file" : "wallpaper.mp4",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"centerph3batvtcenteriah3bbacenterh4brihaventdonewallpaperforfourmonthsmanyeffectshavebeenforgottenispentalongtimemakingthiswallpaperandhopeeveryonelikesitbrabh4p" : 
+			{
+				"index" : 0,
+				"order" : 100,
+				"text" : "<center><p><h3><b><a>可以给个一键三连吗？  谢谢各位哥哥姐姐  有免费的小礼物也可以送送  万分感谢 TVT </center></i></a></h3></b><b><a><center><h4><br> Can you give a one-click triple like? Thanks to all the brothers and sisters. If there are also any small free gifts, you can send them too. Many thanks!</br></a><b></h4></p>"
+			},
+			"newproperty" : 
+			{
+				"index" : 3,
+				"order" : 103,
+				"text" : "流星/Meteor",
+				"type" : "bool",
+				"value" : true
+			},
+			"newproperty1" : 
+			{
+				"index" : 2,
+				"order" : 102,
+				"text" : "设置/Settings",
+				"type" : "group",
+				"value" : ""
+			},
+			"newproperty2" : 
+			{
+				"index" : 4,
+				"order" : 104,
+				"text" : "镜头/太阳/Lens/Sun",
+				"type" : "bool",
+				"value" : true
+			},
+			"newproperty3" : 
+			{
+				"index" : 5,
+				"order" : 105,
+				"text" : "前彩带/Front ribbon",
+				"type" : "bool",
+				"value" : false
+			},
+			"newproperty4" : 
+			{
+				"index" : 6,
+				"order" : 106,
+				"text" : "细彩带/Thin ribbon",
+				"type" : "bool",
+				"value" : false
+			},
+			"newproperty5" : 
+			{
+				"fraction" : true,
+				"index" : 1,
+				"max" : 1,
+				"min" : 0,
+				"order" : 101,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "背景音频/Background audio",
+				"type" : "slider",
+				"value" : 0.6
+			},
+			"newproperty6" : 
+			{
+				"index" : 7,
+				"order" : 107,
+				"text" : "天空/Sky",
+				"type" : "color",
+				"value" : "0.34509803921568627 0.8392156862745098 1"
+			},
+			"schemecolor" : 
+			{
+				"index" : 0,
+				"order" : 100,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			}
+		}
+	},
+	"preview" : "preview.gif",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"tags" : [ "Anime" ],
+	"title" : "孤独摇滚 【虹夏-云间】——🐟渊",
+	"type" : "scene",
+	"version" : 2,
+	"visibility" : "public",
+	"workshopid" : "3650475846",
+	"workshopurl" : "steam://url/CommunityFilePage/3650475846"
+}

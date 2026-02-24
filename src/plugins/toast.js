@@ -21,11 +21,14 @@ export function showToast(message, type = "info") {
         toast.classList.add("toast-notification");
     }
 
-    let icon = "fa-circle-info";
-    if (type === "success") icon = "fa-check";
-    if (type === "error") icon = "fa-triangle-exclamation";
+    let iconClass = "fa-circle-info";
+    if (type === "success") iconClass = "fa-check";
+    if (type === "error") iconClass = "fa-triangle-exclamation";
 
-    toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
+    // Use textContent for safety
+    toast.innerHTML = `<i class="fa-solid ${iconClass}"></i> <span class="toast-message"></span>`;
+    toast.querySelector(".toast-message").textContent = message;
+
     toast.className = "toast-notification"; // reset
     toast.classList.add(type);
     

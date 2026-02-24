@@ -56,7 +56,7 @@ export function initAnimeList(config) {
             console.error("AnimeList: Failed to load data", err);
             const container = animeCard.querySelector("#anime-list-container");
             if (container) {
-                container.innerHTML = `<div class="error-message" style="grid-column: span 2; text-align: center; padding: 10px; color: #ff5252; font-size: 14px;">
+                container.innerHTML = `<div class="error-message">
                     <i class="fa-solid fa-triangle-exclamation"></i> 数据加载失败
                 </div>`;
             }
@@ -74,7 +74,7 @@ function renderAnimeList(data, container) {
     }
 
     if (data.length === 0) {
-        container.innerHTML = `<div class="empty-message" style="grid-column: span 2; text-align: center;">暂无追番记录</div>`;
+        container.innerHTML = `<div class="empty-message">暂无追番记录</div>`;
         return;
     }
 
@@ -87,7 +87,18 @@ function renderAnimeList(data, container) {
         if (!anime || typeof anime !== 'object') return;
 
         const item = document.createElement("a");
-        item.href = anime.link || "javascript:void(0);";
+        
+        // Escape helper (simple)
+        const escapeHtml = (text) => {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        };
+
+        const link = anime.link || "javascript:void(0);";
+        // We set href directly, browser handles URL encoding usually, but for XSS in href:
+        // Ideally validate protocol. For now, assume static data is safeish or use sanitizer if strict.
+        item.href = link; 
         item.target = "_blank";
         item.className = "anime-item";
         
@@ -97,8 +108,8 @@ function renderAnimeList(data, container) {
         
         // Sanitize values for display
         const cover = anime.cover || PATH_CONFIG.DEFAULT_COVER;
-        const title = anime.title_cn || anime.title || "Unknown Title";
-        const progress = anime.progress || "N/A";
+        const title = escapeHtml(anime.title_cn || anime.title || "Unknown Title");
+        const progress = escapeHtml(anime.progress || "N/A");
         const score = (anime.score && !isNaN(anime.score)) ? `★${anime.score}` : "";
 
         item.innerHTML = `

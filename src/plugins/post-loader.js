@@ -3,8 +3,18 @@ import { md } from "../utils.js";
 import hljs from "highlight.js";
 import DOMPurify from "dompurify";
 import "highlight.js/styles/atom-one-dark.css";
+import { refreshLightbox } from "./lightbox.js";
+import { initComment } from "./comment.js";
 
-export function initPostLoader(config) {
+// Global instance to hold lightbox reference
+let lightboxInstance = null;
+
+export function initPostLoader(config, lightbox) {
+    // Store lightbox instance
+    if (lightbox) {
+        lightboxInstance = lightbox;
+    }
+
     // Check if post loader is enabled in config (we can add a new config section or just enable by default)
     // For now, let's assume it's always available if the DOM element exists.
     
@@ -17,9 +27,20 @@ export function initPostLoader(config) {
     
     window.addEventListener("hashchange", handleHashChange);
     
+    // Expose pagination function to global scope for onclick events
+    window.changePage = (page) => {
+        const container = document.querySelector(".content-page .markdown-content");
+        if (container) {
+            loadPostList(container, page);
+        }
+    };
+
     // Initial Load
     handleHashChange();
 }
+
+// Pagination state
+const PAGE_SIZE = 5;
 
 async function handleHashChange() {
     const hash = window.location.hash;
@@ -35,28 +56,47 @@ async function handleHashChange() {
     } else if (hash.startsWith("#about")) {
         // Load About Page
         await loadAbout(container);
+    } else if (hash.startsWith("#friends")) {
+        // Load Friends Page
+        await loadFriends(container);
+    } else if (hash === "" || hash === "#" || hash.startsWith("#page")) {
+        // Load Post List (Home) - Default
+        await loadPostList(container);
     } else {
-        // Load Post List (Home)
+        // Unknown hash - Fallback to Home or 404
+        console.warn(`Unknown hash: ${hash}, redirecting to home.`);
         await loadPostList(container);
     }
 }
 
-async function loadPostList(container) {
+async function loadPostList(container, page = 1) {
     container.innerHTML = `<div class="loading">Loading posts...</div>`;
     
     try {
         const response = await fetch("/assets/data/posts.json");
         if (!response.ok) throw new Error("Failed to load posts.json");
         
-        const posts = await response.json();
+        const allPosts = await response.json();
         
-        if (!Array.isArray(posts) || posts.length === 0) {
+        if (!Array.isArray(allPosts) || allPosts.length === 0) {
             container.innerHTML = "<p>暂无文章</p>";
             return;
         }
 
+        // Pagination Logic
+        const totalPosts = allPosts.length;
+        const totalPages = Math.ceil(totalPosts / PAGE_SIZE);
+        
+        // Ensure page is within bounds
+        if (page < 1) page = 1;
+        if (page > totalPages) page = totalPages;
+
+        const startIndex = (page - 1) * PAGE_SIZE;
+        const endIndex = startIndex + PAGE_SIZE;
+        const currentPosts = allPosts.slice(startIndex, endIndex);
+
         let html = `<div class="post-list">`;
-        posts.forEach(post => {
+        currentPosts.forEach(post => {
             html += `
                 <div class="post-item">
                     <h2 class="post-title"><a href="#post/${post.path}">${post.title}</a></h2>
@@ -72,7 +112,15 @@ async function loadPostList(container) {
         });
         html += `</div>`;
         
+        // Add Pagination Controls
+        if (totalPages > 1) {
+            html += renderPagination(page, totalPages);
+        }
+        
         container.innerHTML = html;
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         
     } catch (e) {
         console.error("Post List Error:", e);
@@ -80,6 +128,31 @@ async function loadPostList(container) {
         // Or show error.
         container.innerHTML = `<div class="error">无法加载文章列表</div>`;
     }
+}
+
+function renderPagination(currentPage, totalPages) {
+    let html = `<div class="pagination">`;
+    
+    // Prev Button
+    if (currentPage > 1) {
+        html += `<button class="page-btn prev" onclick="window.changePage(${currentPage - 1})"><i class="fa-solid fa-angle-left"></i> 上一页</button>`;
+    } else {
+        html += `<button class="page-btn prev disabled" disabled><i class="fa-solid fa-angle-left"></i> 上一页</button>`;
+    }
+
+    // Page Numbers (Simple version: show all or simplified range)
+    // For now, let's show current / total
+    html += `<span class="page-info">${currentPage} / ${totalPages}</span>`;
+
+    // Next Button
+    if (currentPage < totalPages) {
+        html += `<button class="page-btn next" onclick="window.changePage(${currentPage + 1})">下一页 <i class="fa-solid fa-angle-right"></i></button>`;
+    } else {
+        html += `<button class="page-btn next disabled" disabled>下一页 <i class="fa-solid fa-angle-right"></i></button>`;
+    }
+    
+    html += `</div>`;
+    return html;
 }
 
 async function loadAbout(container) {
@@ -106,9 +179,58 @@ async function loadAbout(container) {
             hljs.highlightElement(block);
         });
 
+        // Refresh Lightbox
+        if (lightboxInstance) {
+            refreshLightbox(lightboxInstance);
+        }
+
+        // Initialize Comment System (if enabled)
+        // Note: loadAbout is for static page, maybe we want comments there too?
+        if (window.config && window.config.comment && window.config.comment.enable) {
+             initComment(window.config, container);
+        }
+
     } catch (e) {
         console.error("Load About Error:", e);
         container.innerHTML = ERROR_TEMPLATES.MARKDOWN_LOAD_FAIL(fullPath);
+    }
+}
+
+async function loadFriends(container) {
+    container.innerHTML = `<div class="loading">Loading friends...</div>`;
+    
+    const backBtn = `<div class="post-nav"><a href="#" class="back-btn"><i class="fa-solid fa-arrow-left"></i> 返回列表</a></div>`;
+    
+    try {
+        const response = await fetch("/assets/data/friends.json");
+        if (!response.ok) throw new Error("Failed to load friends.json");
+        
+        const friends = await response.json();
+        
+        if (!Array.isArray(friends) || friends.length === 0) {
+            container.innerHTML = backBtn + "<p>暂无友情链接</p>";
+            return;
+        }
+
+        let html = backBtn + `<div class="friends-container">`;
+        friends.forEach(friend => {
+            html += `
+                <a href="${friend.link}" target="_blank" class="friend-card">
+                    <img src="${friend.avatar}" alt="${friend.name}" class="friend-avatar" onerror="this.src='/assets/images/avatar.png'">
+                    <div class="friend-info">
+                        <div class="friend-name">${friend.name}</div>
+                        <div class="friend-desc">${friend.description}</div>
+                    </div>
+                </a>
+            `;
+        });
+        html += `</div>`;
+        
+        container.innerHTML = html;
+        
+    } catch (e) {
+        console.error("Friends Load Error:", e);
+        container.innerHTML = backBtn + `<div class="error">无法加载友情链接</div>`;
     }
 }
 
@@ -143,6 +265,16 @@ async function loadPost(path, container) {
         container.querySelectorAll('pre code').forEach((block) => {
             hljs.highlightElement(block);
         });
+
+        // Refresh Lightbox
+        if (lightboxInstance) {
+            refreshLightbox(lightboxInstance);
+        }
+
+        // Initialize Comment System
+        if (window.config && window.config.comment && window.config.comment.enable) {
+             initComment(window.config, container);
+        }
 
     } catch (e) {
         console.error("Load Post Error:", e);

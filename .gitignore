@@ -122,3 +122,6 @@ dist
 # System Files
 .DS_Store
 Thumbs.db
+
+# Ignored user profile directory (mistakenly created)
+%USERPROFILE%/

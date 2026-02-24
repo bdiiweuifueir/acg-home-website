@@ -26,11 +26,17 @@ export function initTiltEffect(config) {
     const options = { ...defaultOptions, ...(config.tilt.options || {}) };
 
     // 获取需要应用效果的元素选择器
-    const selectors = config.tilt.selectors || DEFAULT_CONFIG.TILT.SELECTORS;
+    const selectors = config.tilt.selectors || DEFAULT_CONFIG.tilt.selectors;
+
+    if (!selectors || !Array.isArray(selectors)) {
+        return;
+    }
 
     // 绑定效果
     selectors.forEach(selector => {
         const elements = document.querySelectorAll(selector);
-        VanillaTilt.init(Array.from(elements), options);
+        if (elements.length > 0) {
+            VanillaTilt.init(Array.from(elements), options);
+        }
     });
 }

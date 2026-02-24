@@ -28,18 +28,18 @@ export function initHitokoto(config) {
         refreshBtn.innerHTML = `<i class="fa-solid fa-rotate-right"></i>`;
         refreshBtn.title = "刷新一言";
         
-        refreshBtn.onclick = (e) => {
+        refreshBtn.addEventListener("click", (e) => {
             e.stopPropagation();
             const icon = refreshBtn.querySelector("i");
-            icon.classList.add("fa-spin");
+            if (icon) icon.classList.add("fa-spin");
             
             fetchHitokoto(hitokotoElement).finally(() => {
                 // Minimum spin time for better UX
                 setTimeout(() => {
-                    icon.classList.remove("fa-spin");
+                    if (icon) icon.classList.remove("fa-spin");
                 }, 500);
             });
-        };
+        });
 
         container.appendChild(refreshBtn);
     }
@@ -48,7 +48,8 @@ export function initHitokoto(config) {
 }
 
 function fetchHitokoto(element) {
-    return fetch(API_ENDPOINTS.HITOKOTO)
+    const apiUrl = API_ENDPOINTS.HITOKOTO || "https://v1.hitokoto.cn/";
+    return fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

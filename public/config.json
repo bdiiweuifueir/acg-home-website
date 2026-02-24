@@ -14,14 +14,18 @@
                     "background": "linear-gradient(45deg, #eeeeee 50%, #1c1c1c 50%)"
                 }
             },
-            "enable": ["light", "!autoSwitch", "dark"],
+            "enable": [
+                "light",
+                "!autoSwitch",
+                "dark"
+            ],
             "default": "!autoSwitch"
         }
     },
     "masterInfo": {
         "name": "梦梦",
         "avatar": "/assets/images/avatar.png",
-        "website": "https://traehtmlafbx.vercel.app/",
+        "website": "https://traehtml4bcx.vercel.app/",
         "socialLink": {
             "link": {
                 "bilibili": "https://space.bilibili.com/675279872",
@@ -33,7 +37,11 @@
                 "github": "fa-brands fa-github",
                 "email": "fa-solid fa-envelope"
             },
-            "enable": ["bilibili", "github", "email"]
+            "enable": [
+                "bilibili",
+                "github",
+                "email"
+            ]
         }
     },
     "comment": {
@@ -54,7 +62,10 @@
         }
     },
     "pageHead": {
-        "typedContent": ["欢迎回家主人！", "这里记录着我的学习与生活~"]
+        "typedContent": [
+            "欢迎回家主人！",
+            "这里记录着我的学习与生活~"
+        ]
     },
     "icp": {
         "info": {
@@ -67,7 +78,10 @@
                 "moegov": "https://icp.gov.moe/?keyword=xxxxxxxx"
             }
         },
-        "enable": ["moegov", "china"]
+        "enable": [
+            "moegov",
+            "china"
+        ]
     },
     "music": {
         "enable": true,
@@ -125,14 +139,14 @@
                 "url": "/assets/music/TaiYou.mp3",
                 "cover": "https://img.youtube.com/vi/Qgj3xHRlGr8/maxresdefault.jpg",
                 "lrc": "/assets/music/太陽-ヨルシカ.lrc"
-            }            ,
+            },
             {
                 "name": "rifle",
                 "artist": "key vs. locket",
                 "url": "/assets/music/rifle.mp3",
                 "cover": "https://ts3.tc.mm.bing.net/th/id/OIP-C.6TF09r17MIyxCFU8URZVQAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3",
                 "lrc": "[00:00.00] 纯音乐 / 暂无歌词"
-            }            ,
+            },
             {
                 "name": "我们俩",
                 "artist": "郭顶",
@@ -169,18 +183,42 @@
     },
     "clickEffect": {
         "enable": true,
-        "text": ["富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善"],
-        "colors": ["#ff0000", "#00ff00", "#0000ff", "#ff00ff", "#ffff00", "#00ffff"]
+        "text": [
+            "富强",
+            "民主",
+            "文明",
+            "和谐",
+            "自由",
+            "平等",
+            "公正",
+            "法治",
+            "爱国",
+            "敬业",
+            "诚信",
+            "友善"
+        ],
+        "colors": [
+            "#ff0000",
+            "#00ff00",
+            "#0000ff",
+            "#ff00ff",
+            "#ffff00",
+            "#00ffff"
+        ]
     },
     "tilt": {
         "enable": true,
         "options": {
-            "max": 10,
+            "max": 5,
             "speed": 400,
             "glare": true,
-            "max-glare": 0.3
+            "max-glare": 0.2,
+            "scale": 1.02
         },
-        "selectors": [".card-item", ".left-area"]
+        "selectors": [
+            ".card-item",
+            ".left-area"
+        ]
     },
     "runtime": {
         "enable": true,
@@ -228,6 +266,7 @@
             "/assets/images/backgrounds/page-head/3463520581/wallpaper.mp4",
             "/assets/images/backgrounds/page-head/wallhaven-5we787.jpg",
             "/assets/images/backgrounds/page-head/wallhaven-r7mgow.jpg",
+            "/assets/images/backgrounds/page-head/3650475846/wallpaper.mp4",
             "https://api.ixiaowai.cn/gqapi/gqapi.php",
             "https://img.paulzzh.com/touhou/random",
             "https://acg.yanwz.cn/api.php"

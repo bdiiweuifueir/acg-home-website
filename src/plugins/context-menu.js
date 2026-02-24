@@ -63,8 +63,8 @@ export function initContextMenu(config) {
     function toggleTheme() {
         // 这里简单粗暴地找到当前选中的下一个主题
         // 实际逻辑可能更复杂，这里仅作为演示
-        const themes = window.config?.content?.theme?.colors?.enable || [];
-        if (themes.length > 0) {
+        const themes = window.config?.content?.theme?.colors?.enable;
+        if (themes && Array.isArray(themes) && themes.length > 0) {
             const currentTheme = localStorage.getItem(STORAGE_KEYS.THEME_COLOR);
             let nextIndex = themes.indexOf(currentTheme) + 1;
             if (nextIndex >= themes.length) {
@@ -79,18 +79,32 @@ export function initContextMenu(config) {
 
     // 显示菜单
     function showMenu(x, y) {
-        menu.style.left = `${x}px`;
-        menu.style.top = `${y}px`;
-        menu.classList.add("show");
-
-        // 调整位置防止溢出屏幕
+        // 先重置位置以获取尺寸
+        menu.style.left = "0px";
+        menu.style.top = "0px";
+        menu.style.display = "block"; // Ensure it's rendered for measurement
+        
         const rect = menu.getBoundingClientRect();
-        if (x + rect.width > window.innerWidth) {
-            menu.style.left = `${x - rect.width}px`;
+        const winWidth = window.innerWidth;
+        const winHeight = window.innerHeight;
+
+        let posX = x;
+        let posY = y;
+
+        // 右侧溢出检测
+        if (posX + rect.width > winWidth) {
+            posX = winWidth - rect.width - 5;
         }
-        if (y + rect.height > window.innerHeight) {
-            menu.style.top = `${y - rect.height}px`;
+
+        // 底部溢出检测
+        if (posY + rect.height > winHeight) {
+            posY = posY - rect.height;
         }
+
+        menu.style.left = `${posX}px`;
+        menu.style.top = `${posY}px`;
+        menu.style.display = ""; // Reset inline display style
+        menu.classList.add("show");
     }
 
     // 隐藏菜单

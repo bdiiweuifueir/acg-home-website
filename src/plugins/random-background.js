@@ -33,6 +33,10 @@ export function initRandomBackground(config) {
     // Create Wallpaper Container (Fixed background)
     createWallpaperContainer();
 
+    // Force body/html transparent to show wallpaper
+    document.documentElement.style.background = "transparent";
+    document.body.style.background = "transparent";
+
     // Restore last background from local storage (if valid and recent < 24h)
     const restored = restoreLastBackground();
 
@@ -249,6 +253,7 @@ function applyBackground(url) {
     }
 
     // Ensure body background doesn't block it
+    document.documentElement.style.background = "transparent";
     document.body.style.background = "transparent";
 }
 

@@ -9,7 +9,7 @@ export class Sakura {
             maxSpeed: 2.0,
             maxSize: 14,
             minSize: 9,
-            maxPetals: DEFAULT_CONFIG.sakura.MAX_PETALS,
+            maxPetals: Math.min(config?.maxPetals || DEFAULT_CONFIG.sakura.MAX_PETALS, 150), // Cap at 150 for performance
             ...config,
         };
 

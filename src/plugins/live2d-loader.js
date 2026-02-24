@@ -62,18 +62,20 @@ function handlePostLoad() {
 
     // Use MutationObserver to wait for DOM elements
     const observer = new MutationObserver((mutations) => {
+        let found = false;
         for (const mutation of mutations) {
             for (const node of mutation.addedNodes) {
                 if (node.nodeType === 1 && (node.id === "waifu" || node.id === "live2dcanvas")) {
                     applyStyles();
-                    // Once found, we can try to disconnect if both are present, 
-                    // or just keep watching for a short while to ensure stability.
-                    // For simplicity, we check if both are present.
-                    if (document.getElementById("waifu") && document.getElementById("live2dcanvas")) {
-                        observer.disconnect();
-                    }
+                    found = true;
                 }
             }
+        }
+        
+        // If we found the elements, we can disconnect.
+        // The widget usually injects them together or in close succession.
+        if (found && document.getElementById("waifu")) {
+             observer.disconnect();
         }
     });
     

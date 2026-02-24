@@ -1,0 +1,20 @@
+[
+    {
+        "name": "HIC.TOP",
+        "description": "成成0v0的博客",
+        "avatar": "https://hic.top/avatar.png",
+        "link": "https://hic.top"
+    },
+    {
+        "name": "Trae IDE",
+        "description": "强大的 AI 编程助手",
+        "avatar": "https://trae.ai/favicon.ico",
+        "link": "https://trae.ai"
+    },
+    {
+        "name": "Vercel",
+        "description": "Develop. Preview. Ship.",
+        "avatar": "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
+        "link": "https://vercel.com"
+    }
+]

@@ -1,6 +1,6 @@
 import { CONSOLE_STYLES } from "../constants.js";
 
-export function initComment(config) {
+export function initComment(config, targetContainer) {
     if (!config || !config.comment || !config.comment.enable) {
         return;
     }
@@ -16,14 +16,23 @@ export function initComment(config) {
         return;
     }
 
-    const container = document.querySelector(".primary-container > .right-area > .content-page");
+    // Determine container: use provided target or find default
+    const container = targetContainer || document.querySelector(".primary-container > .right-area > .content-page");
     if (!container) {
         console.warn("[Comment] Container not found.");
         return;
     }
 
+    // Check if comment area already exists
+    let commentArea = container.querySelector("#comment-area");
+    if (commentArea) {
+        // If it exists, we might need to clear it or update it.
+        // For simplicity in SPA, we can remove old and re-add.
+        commentArea.remove();
+    }
+
     // Create comment area
-    const commentArea = document.createElement("div");
+    commentArea = document.createElement("div");
     commentArea.id = "comment-area";
     commentArea.style.marginTop = "2rem";
     commentArea.style.padding = "1rem";

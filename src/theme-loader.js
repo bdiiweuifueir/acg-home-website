@@ -117,9 +117,6 @@ export class ThemeManager {
         });
     }
 
-    // processThemeFiles 和 runScripts 不再需要
-    // ...
-
     // 设置配色方案
     async setColor(colorId) {
         if (!this.metaData) {

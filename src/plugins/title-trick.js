@@ -6,26 +6,29 @@ export function initTitleTrick(config) {
     }
 
     const { leaveTitle, returnTitle, leaveDelay = 0, returnDelay = 2000 } = config.titleTrick;
-    const originalTitle = document.title;
-    let timer = null;
+    let originalTitle = document.title;
+    let leaveTimer = null;
+    let returnTimer = null;
 
     document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
             // 用户离开
-            if (leaveDelay > 0) {
-                setTimeout(() => {
-                    document.title = leaveTitle || "崩溃了！";
-                }, leaveDelay);
-            } else {
+            // Capture current title before changing it, in case it changed via SPA routing
+            originalTitle = document.title;
+            
+            // Clear any pending return timer
+            if (returnTimer) clearTimeout(returnTimer);
+
+            leaveTimer = setTimeout(() => {
                 document.title = leaveTitle || "崩溃了！";
-            }
-            if (timer) {
-                clearTimeout(timer);
-            }
+            }, leaveDelay);
         } else {
             // 用户回来
+            // Clear any pending leave timer
+            if (leaveTimer) clearTimeout(leaveTimer);
+
             document.title = returnTitle || "又好了~";
-            timer = setTimeout(() => {
+            returnTimer = setTimeout(() => {
                 document.title = originalTitle; // 恢复原标题
             }, returnDelay);
         }

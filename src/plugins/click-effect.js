@@ -12,7 +12,12 @@ export function initClickEffect(config) {
     }
 
     const effectConfig = config.clickEffect;
-    let index = 0;
+    
+    if (!effectConfig.text || !Array.isArray(effectConfig.text) || effectConfig.text.length === 0) {
+        return;
+    }
+
+    let textIndex = 0;
 
     // 点击事件监听
     document.addEventListener("click", e => {
@@ -20,8 +25,8 @@ export function initClickEffect(config) {
         const span = document.createElement("span");
 
         // 获取当前文字
-        const text = effectConfig.text[index];
-        index = (index + 1) % effectConfig.text.length;
+        const text = effectConfig.text[textIndex];
+        textIndex = (textIndex + 1) % effectConfig.text.length;
 
         // 设置内容
         span.textContent = text;

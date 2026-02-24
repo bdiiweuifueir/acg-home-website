@@ -160,6 +160,7 @@ function initImmersivePlayer(source) {
         bindImmersiveEvents(ap, immersiveContainer, toggleBtn);
     } else {
         console.error("APlayer instance not found for Immersive Player.");
+        toggleBtn.style.display = "none"; // Hide button if failed
     }
 }
 
@@ -296,7 +297,7 @@ function updateProgress(ap, elements) {
 function updateLrc(ap, lrcContainer) {
     const currentTime = ap.audio.currentTime || 0;
 
-    if (ap.lrc && ap.lrc.parsed && ap.lrc.parsed.length > 0) {
+    if (ap.lrc && ap.lrc.parsed && Array.isArray(ap.lrc.parsed) && ap.lrc.parsed.length > 0) {
         // Initialize LRC if needed
         const currentIndex = ap.list.index;
         if (lrcContainer.innerHTML === "" || lrcContainer.dataset.songIndex !== String(currentIndex)) {

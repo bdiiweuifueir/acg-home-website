@@ -7,6 +7,7 @@ import "./styles/elements.css";
 import "./styles/index.css";
 import "./styles/responsive/index.css";
 import "./styles/post-list.css"; // Import Post List styles
+import "./styles/friends.css"; // Import Friends styles
 import "./styles/live2d.css"; // Import Live2D styles
 
 import { getWebsiteConfig, renderMarkdown } from "./utils.js";
@@ -77,13 +78,9 @@ async function initApp() {
         } catch (e) {
             console.error("UI rendering failed:", e);
         }
-
-        // 6. 绑定事件
-        try {
-            bindEvents();
-        } catch (e) {
-            console.error("Event binding failed:", e);
-        }
+        
+        // 6. Init Mobile Menu
+        initMobileMenu();
 
     } catch (error) {
         console.error("Critical initialization failed:", error);
@@ -157,14 +154,20 @@ function initPlugins(config) {
         safeInit("Navigation", initNavigation, config.content);
         safeInit("RandomBackground", initRandomBackground, config.content);
         
-        // New features
+        // Initialize Lightbox first
+        lightboxInstance = safeInit("Lightbox", initLightbox, config.content);
+
+        // Then init other plugins that might depend on it
         safeInit("Hitokoto", initHitokoto, config.content);
         safeInit("BackToTop", initBackToTop, config.content);
         safeInit("GlobalSearch", initGlobalSearch, config.content);
-        safeInit("Comment", initComment, config.content);
-        safeInit("PostLoader", initPostLoader, config.content);
         
-        lightboxInstance = safeInit("Lightbox", initLightbox, config.content);
+        // PostLoader handles dynamic content and needs to refresh lightbox/comment
+        if (typeof initPostLoader === 'function') {
+             try {
+                 initPostLoader(config.content, lightboxInstance);
+             } catch(e) { console.error("PostLoader init failed", e); }
+        }
     }
     return lightboxInstance;
 }
@@ -346,11 +349,50 @@ function renderFooter(config, elements) {
 }
 
 /**
- * 绑定全局事件
+ * 初始化移动端菜单
  */
-function bindEvents() {
-    // 悬浮左侧区域逻辑已改为 CSS position: sticky 实现
-    // 保留此函数结构以便后续添加其他全局事件绑定
+function initMobileMenu() {
+    if (window.innerWidth >= 900) return;
+
+    // Create Toggle Button
+    const btn = document.createElement("div");
+    btn.className = "mobile-menu-btn";
+    btn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    document.body.appendChild(btn);
+
+    // Create Overlay
+    const overlay = document.createElement("div");
+    overlay.className = "drawer-overlay";
+    document.body.appendChild(overlay);
+
+    const leftArea = document.querySelector(SELECTORS.LEFT_AREA);
+    
+    // Toggle Logic
+    const toggleMenu = () => {
+        if (!leftArea) return;
+        leftArea.classList.toggle("open");
+        overlay.classList.toggle("open");
+        
+        // Change icon
+        const icon = btn.querySelector("i");
+        if (leftArea.classList.contains("open")) {
+            icon.className = "fa-solid fa-xmark";
+        } else {
+            icon.className = "fa-solid fa-bars";
+        }
+    };
+
+    btn.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", toggleMenu);
+    
+    // Close on link click (optional, but good UX)
+    if (leftArea) {
+        leftArea.addEventListener("click", (e) => {
+            if (e.target.tagName === 'A') {
+                toggleMenu();
+            }
+        });
+    }
 }
 
 /**

@@ -229,3 +229,13 @@ a:has(i) {
     opacity: 0.5;
 }
 /* - 页脚 End */
+
+/* - Animations */
+@keyframes roll {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.barrel-roll {
+    animation: roll 2s ease-in-out;
+}
