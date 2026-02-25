@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Kirikiri Web Emulator</title>
+    <style>
+        body { margin: 0; padding: 0; background: #000; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+        #canvas { display: block; max-width: 100%; max-height: 100%; }
+        .loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+        .progress-bar { width: 300px; height: 10px; background: #333; margin-top: 10px; border-radius: 5px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #49b1f5; width: 0%; transition: width 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <h1>正在加载 Kirikiri 引擎...</h1>
+        <p>这是一个模拟器占位符</p>
+        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+    </div>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        // 模拟加载过程
+        const progress = document.getElementById('progress');
+        let w = 0;
+        const timer = setInterval(() => {
+            w += 5;
+            progress.style.width = w + '%';
+            if (w >= 100) {
+                clearInterval(timer);
+                document.getElementById('loading').innerHTML = '<h1>需要 krkr.js 核心文件</h1><p>请下载并配置 web-kirikiri 项目</p>';
+            }
+        }, 100);
+
+        // 获取参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const dataPath = urlParams.get('data');
+        console.log('Loading game data from:', dataPath);
+    </script>
+</body>
+</html>

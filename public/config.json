@@ -257,11 +257,23 @@
         "enable": true,
         "list": [
             {
-                "id": "demo",
+                "id": "webgal_demo",
                 "title": "我的主页大冒险",
                 "cover": "/assets/images/anime/frieren.jpg",
                 "description": "基于 WebGAL 引擎的测试 Demo",
-                "path": "/webgal/index.html"
+                "path": "/games/engines/webgal/index.html",
+                "engine": "webgal"
+            },
+            {
+                "id": "krkr_demo",
+                "title": "Kirikiri 模拟测试",
+                "cover": "https://img1.imgtp.com/2023/08/23/8uXy2p1S.png",
+                "description": "运行经典的 Kirikiri2/KAG3 游戏",
+                "path": "/games/engines/krkr/index.html",
+                "engine": "krkr",
+                "args": {
+                    "data": "https://example.com/game/data.xp3"
+                }
             }
         ]
     },

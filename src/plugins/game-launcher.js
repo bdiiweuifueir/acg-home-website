@@ -21,7 +21,11 @@ export function initGameLauncher(config) {
         <span class="title"><i class="fa-solid fa-gamepad"></i> 在线试玩</span>
         <div class="content" style="display: flex; flex-direction: column; gap: 10px;">
             ${config.games.list.map(game => `
-                <div class="game-entry" data-path="${game.path}">
+                <div class="game-entry" 
+                     data-path="${game.path}" 
+                     data-engine="${game.engine || 'webgal'}"
+                     data-args='${JSON.stringify(game.args || {})}'
+                >
                     <img src="${game.cover}" alt="${game.title}">
                     <div class="game-info-overlay">
                         <div class="game-title">${game.title}</div>
@@ -47,7 +51,23 @@ export function initGameLauncher(config) {
     gameCard.querySelectorAll(".game-entry").forEach(entry => {
         entry.addEventListener("click", () => {
             const path = entry.getAttribute("data-path");
-            openGameModal(path);
+            const engine = entry.getAttribute("data-engine");
+            const args = JSON.parse(entry.getAttribute("data-args") || "{}");
+            
+            // Construct URL with arguments
+            let fullPath = path;
+            const queryParams = new URLSearchParams();
+            
+            if (engine === 'krkr' && args.data) {
+                queryParams.set('data', args.data);
+            }
+            // Add more engine-specific logic here
+
+            if (Array.from(queryParams).length > 0) {
+                fullPath += '?' + queryParams.toString();
+            }
+
+            openGameModal(fullPath);
         });
     });
 }
