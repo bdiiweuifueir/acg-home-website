@@ -265,15 +265,12 @@
                 "engine": "webgal"
             },
             {
-                "id": "krkr_demo",
-                "title": "Kirikiri 模拟测试",
-                "cover": "https://img1.imgtp.com/2023/08/23/8uXy2p1S.png",
-                "description": "运行经典的 Kirikiri2/KAG3 游戏",
-                "path": "/games/engines/krkr/index.html",
-                "engine": "krkr",
-                "args": {
-                    "data": "https://example.com/game/data.xp3"
-                }
+                "id": "fate_demo",
+                "title": "Fate/stay night (Demo)",
+                "cover": "https://img.moegirl.org.cn/common/thumb/4/4e/Fate_stay_night_logo.png/300px-Fate_stay_night_logo.png",
+                "description": "Saber 线的网页试玩版 (无需下载)",
+                "path": "https://fatestaynight.vnovel.org/saber",
+                "engine": "external"
             }
         ]
     },

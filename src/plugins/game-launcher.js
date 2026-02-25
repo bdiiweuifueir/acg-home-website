@@ -61,9 +61,10 @@ export function initGameLauncher(config) {
             if (engine === 'krkr' && args.data) {
                 queryParams.set('data', args.data);
             }
-            // Add more engine-specific logic here
-
-            if (Array.from(queryParams).length > 0) {
+            
+            if (engine === 'external') {
+                // External games use the path directly
+            } else if (Array.from(queryParams).length > 0) {
                 fullPath += '?' + queryParams.toString();
             }
 
