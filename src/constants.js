@@ -43,7 +43,11 @@ export const API_ENDPOINTS = {
     CONFIG: "./config.json",
 };
 
-export const BACKGROUND_SOURCES = ["https://api.ixiaowai.cn/gqapi/gqapi.php", "https://img.paulzzh.com/touhou/random", "https://acg.yanwz.cn/api.php", "https://t.mwm.moe/pc/"];
+export const BACKGROUND_SOURCES = [
+    "/assets/images/backgrounds/page-head/wallhaven-9delkw.jpg",
+    "/assets/images/backgrounds/page-head/wallhaven-5we787.jpg",
+    "/assets/images/backgrounds/page-head/wallhaven-r7mgow.jpg"
+];
 
 export const PATH_CONFIG = {
     THEMES_BASE: "assets/themes/",

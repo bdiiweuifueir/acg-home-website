@@ -295,50 +295,54 @@ function updateProgress(ap, elements) {
 }
 
 function updateLrc(ap, lrcContainer) {
-    const currentTime = ap.audio.currentTime || 0;
+    try {
+        const currentTime = ap.audio.currentTime || 0;
 
-    if (ap.lrc && ap.lrc.parsed && Array.isArray(ap.lrc.parsed) && ap.lrc.parsed.length > 0) {
-        // Initialize LRC if needed
-        const currentIndex = ap.list.index;
-        if (lrcContainer.innerHTML === "" || lrcContainer.dataset.songIndex !== String(currentIndex)) {
-            lrcContainer.dataset.songIndex = String(currentIndex);
-            lrcContainer.innerHTML = ap.lrc.parsed.map((line, index) => 
-                `<p class="lrc-line" data-index="${index}">${line[1]}</p>`
-            ).join("");
-        }
+        if (ap.lrc && ap.lrc.parsed && Array.isArray(ap.lrc.parsed) && ap.lrc.parsed.length > 0) {
+            // Initialize LRC if needed
+            const currentIndex = ap.list.index;
+            if (lrcContainer.innerHTML === "" || lrcContainer.dataset.songIndex !== String(currentIndex)) {
+                lrcContainer.dataset.songIndex = String(currentIndex);
+                lrcContainer.innerHTML = ap.lrc.parsed.map((line, index) => 
+                    `<p class="lrc-line" data-index="${index}">${line[1]}</p>`
+                ).join("");
+            }
 
-        // Find active line
-        let activeIndex = -1;
-        for (let i = 0; i < ap.lrc.parsed.length; i++) {
-            if (currentTime >= ap.lrc.parsed[i][0] && (!ap.lrc.parsed[i + 1] || currentTime < ap.lrc.parsed[i + 1][0])) {
-                activeIndex = i;
-                break;
+            // Find active line
+            let activeIndex = -1;
+            for (let i = 0; i < ap.lrc.parsed.length; i++) {
+                if (currentTime >= ap.lrc.parsed[i][0] && (!ap.lrc.parsed[i + 1] || currentTime < ap.lrc.parsed[i + 1][0])) {
+                    activeIndex = i;
+                    break;
+                }
+            }
+
+            if (activeIndex !== -1) {
+                const activeLine = lrcContainer.querySelector(`.lrc-line[data-index="${activeIndex}"]`);
+                if (activeLine && !activeLine.classList.contains("active")) {
+                    const currentActive = lrcContainer.querySelector(".lrc-line.active");
+                    if (currentActive) currentActive.classList.remove("active");
+                    
+                    activeLine.classList.add("active");
+
+                    // Scroll to center
+                    const containerHeight = lrcContainer.clientHeight;
+                    const lineHeight = activeLine.clientHeight;
+                    const scrollOffset = activeLine.offsetTop - containerHeight / 2 + lineHeight / 2;
+
+                    lrcContainer.scrollTo({
+                        top: Math.max(0, scrollOffset),
+                        behavior: "smooth",
+                    });
+                }
+            }
+        } else {
+            if (lrcContainer.innerHTML === "") {
+                lrcContainer.innerHTML = '<p class="lrc-line">暂无歌词 / No Lyrics</p>';
             }
         }
-
-        if (activeIndex !== -1) {
-            const activeLine = lrcContainer.querySelector(`.lrc-line[data-index="${activeIndex}"]`);
-            if (activeLine && !activeLine.classList.contains("active")) {
-                const currentActive = lrcContainer.querySelector(".lrc-line.active");
-                if (currentActive) currentActive.classList.remove("active");
-                
-                activeLine.classList.add("active");
-
-                // Scroll to center
-                const containerHeight = lrcContainer.clientHeight;
-                const lineHeight = activeLine.clientHeight;
-                const scrollOffset = activeLine.offsetTop - containerHeight / 2 + lineHeight / 2;
-
-                lrcContainer.scrollTo({
-                    top: Math.max(0, scrollOffset),
-                    behavior: "smooth",
-                });
-            }
-        }
-    } else {
-        if (lrcContainer.innerHTML === "") {
-            lrcContainer.innerHTML = '<p class="lrc-line">暂无歌词 / No Lyrics</p>';
-        }
+    } catch (e) {
+        // Silent fail for LRC updates to avoid flooding console
     }
 }
 

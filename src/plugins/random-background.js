@@ -106,7 +106,7 @@ async function handleClick() {
         if (preloadedResource) {
             resourceUrl = preloadedResource;
             preloadedResource = null; // Consume it
-            console.log("%c[Background]%c Using preloaded resource", CONSOLE_STYLES.TAG_BLUE, CONSOLE_STYLES.INFO);
+            // console.debug("[Background] Using preloaded resource");
         } else {
             // Fallback to fetch immediate if no preload (e.g. first click too fast)
             resourceUrl = await fetchNextResource();
@@ -202,7 +202,7 @@ function preloadNextResource() {
     fetchNextResource()
         .then(url => {
             preloadedResource = url;
-            console.log("%c[Background]%c Next resource preloaded", CONSOLE_STYLES.TAG_BLUE, CONSOLE_STYLES.INFO);
+            // console.debug("[Background] Next resource preloaded");
         })
         .catch(err => {
             console.warn("[Background] Preload failed, will fetch on click", err);

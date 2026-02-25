@@ -1,4 +1,4 @@
-import { CONSOLE_STYLES } from "../constants.js";
+import { CONSOLE_STYLES, PATH_CONFIG } from "../constants.js";
 import "../styles/galgame-section.css";
 
 // Module state to hold game data and filter
@@ -59,7 +59,7 @@ export function initGalgameSection(config) {
         fetchLocalData(config.galgame.dataPath || "/assets/data/galgame-list.json", galgameCard);
     }
 
-    console.log("%c[Plugin]%c GalgameSection Loaded (Optimized)", CONSOLE_STYLES.TAG_PURPLE, CONSOLE_STYLES.INFO);
+    console.debug("[Plugin] GalgameSection Loaded");
 }
 
 function renderFilterBar(card) {
@@ -177,6 +177,9 @@ function renderGalgameList(data, container) {
     container.innerHTML = "";
     // Show max 9 items to fit grid 3x3 neatly
     const displayData = data.slice(0, 9); 
+    
+    // Fallback image from constants
+    const fallbackImage = PATH_CONFIG.DEFAULT_COVER;
 
     displayData.forEach(game => {
         const item = document.createElement("a");
@@ -194,7 +197,7 @@ function renderGalgameList(data, container) {
 
         item.innerHTML = `
             <div class="galgame-cover-wrapper">
-                <img src="${game.cover}" alt="${game.title}" loading="lazy" onerror="this.onerror=null;this.src='/assets/images/backgrounds/page-head/old.jpg';this.style.objectFit='cover';">
+                <img src="${game.cover}" alt="${game.title}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}';this.style.objectFit='cover';">
                 <div class="galgame-status-badge ${statusClass}">${statusText}</div>
                 ${scoreHtml}
             </div>

@@ -1,4 +1,4 @@
-import { SELECTORS } from "../constants.js";
+import { SELECTORS, PATH_CONFIG } from "../constants.js";
 import "../styles/game-launcher.css";
 
 /**
@@ -17,6 +17,10 @@ export function initGameLauncher(config) {
     const gameCard = document.createElement("div");
     gameCard.className = "card-item";
     gameCard.id = "games-card";
+    
+    // Fallback image
+    const fallbackImage = PATH_CONFIG.DEFAULT_COVER;
+
     gameCard.innerHTML = `
         <span class="title"><i class="fa-solid fa-gamepad"></i> 在线试玩</span>
         <div class="content" style="display: flex; flex-direction: column; gap: 10px;">
@@ -26,7 +30,7 @@ export function initGameLauncher(config) {
                      data-engine="${game.engine || 'webgal'}"
                      data-args='${JSON.stringify(game.args || {})}'
                 >
-                    <img src="${game.cover}" alt="${game.title}">
+                    <img src="${game.cover}" alt="${game.title}" onerror="this.onerror=null;this.src='${fallbackImage}';">
                     <div class="game-info-overlay">
                         <div class="game-title">${game.title}</div>
                         <div class="game-desc">${game.description}</div>
