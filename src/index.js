@@ -152,7 +152,12 @@ function initPlugins(config) {
         safeInit("AnimeNews", initAnimeNews, config.content);
         safeInit("GalgameSection", initGalgameSection, config.content); 
         safeInit("MangaSection", initMangaSection, config.content); 
-        safeInit("GameLauncher", initGameLauncher, config.content);
+        
+        // Ensure Game Launcher is initialized and handle potential DOM timing issues
+        requestAnimationFrame(() => {
+            safeInit("GameLauncher", initGameLauncher, config.content);
+        });
+
         safeInit("Navigation", initNavigation, config.content);
         safeInit("RandomBackground", initRandomBackground, config.content);
         
