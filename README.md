@@ -127,3 +127,5 @@ npm run format
 
 直接提 PR 就行啦！  
 \(真的会有人对这个小破项目感兴趣吗 Σ(っ °Д °;)っ \)
+
+<!-- Trigger Vercel Build: 2026-02-25 -->
