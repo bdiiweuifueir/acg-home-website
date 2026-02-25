@@ -220,7 +220,7 @@ function applyBackground(url) {
 
     if (isVideo) {
         newLayer.innerHTML = `
-            <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
                 <source src="${url}" type="video/mp4">
             </video>
         `;
