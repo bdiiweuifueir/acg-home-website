@@ -35,8 +35,25 @@ public/
     ```
 
 #### 2. Kirikiri (Krkr) 游戏
-1.  **准备模拟器**: 下载 [web-kirikiri](https://github.com/zeas2/web-kirikiri) 或类似项目的核心文件 (`krkr.js`, `krkr.wasm` 等)，放入 `public/games/engines/krkr/`。
-2.  **准备游戏资源**: 提取游戏的 `data.xp3` 文件，上传到对象存储或放入 `public/games/resources/`（注意 Vercel 文件大小限制）。
+由于商业游戏体积通常较大（>100MB），**严禁直接放入项目仓库**。请使用对象存储。
+
+**推荐方案：Cloudflare R2（免费/高速）**
+
+1.  **准备模拟器**: 下载 [web-kirikiri](https://github.com/zeas2/web-kirikiri) 核心文件 (`krkr.js`, `krkr.wasm`) 放入 `public/games/engines/krkr/`。
+2.  **上传资源**:
+    *   注册 Cloudflare R2，创建一个公开桶（Bucket）。
+    *   将游戏的 `data.xp3` 上传。
+    *   **关键**: 在 R2 的 "Settings" -> "CORS Policy" 中添加允许跨域规则：
+        ```json
+        [
+          {
+            "AllowedOrigins": ["https://your-vercel-domain.app", "http://localhost:5173"],
+            "AllowedMethods": ["GET"],
+            "AllowedHeaders": ["*"]
+          }
+        ]
+        ```
+    *   获取文件直链，如 `https://pub-xxx.r2.dev/game.xp3`。
 3.  **配置入口**:
     ```json
     {
@@ -46,11 +63,10 @@ public/
         "path": "/games/engines/krkr/index.html",
         "cover": "...",
         "args": {
-            "data": "https://your-cdn.com/nekopara/data.xp3"
+            "data": "https://pub-xxx.r2.dev/game.xp3"
         }
     }
     ```
-    *   `args.data`: 必须填写 `.xp3` 文件的 URL（推荐使用 CDN 或外部直链，因为大文件不适合放在本项目仓库中）。
 
 ### 开发自定义剧本
 
