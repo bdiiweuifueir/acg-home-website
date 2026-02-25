@@ -27,6 +27,7 @@ import { initAnimeNews } from "./plugins/anime-news.js";
 import { initGalgameSection } from "./plugins/galgame-section.js"; // Import Galgame Plugin
 import { initMangaSection } from "./plugins/manga-section.js"; // Import Manga Plugin
 import { initNavigation } from "./plugins/navigation.js";
+import { initGameLauncher } from "./plugins/game-launcher.js"; // Import Game Launcher
 import { initRandomBackground } from "./plugins/random-background.js";
 import { initHitokoto } from "./plugins/hitokoto.js";
 import { initBackToTop } from "./plugins/back-to-top.js";
@@ -151,6 +152,7 @@ function initPlugins(config) {
         safeInit("AnimeNews", initAnimeNews, config.content);
         safeInit("GalgameSection", initGalgameSection, config.content); 
         safeInit("MangaSection", initMangaSection, config.content); 
+        safeInit("GameLauncher", initGameLauncher, config.content);
         safeInit("Navigation", initNavigation, config.content);
         safeInit("RandomBackground", initRandomBackground, config.content);
         

@@ -1,0 +1,16 @@
+bg: "/assets/images/backgrounds/page-head/wallhaven-9delkw.jpg"
+# 使用站内现有背景图作为演示背景
+
+"梦梦": "欢迎来到我的主页大冒险！"
+"梦梦": "这是一个基于 WebGAL 引擎的测试 Demo。"
+"梦梦": "虽然现在还很简单，但未来会有更多精彩的故事哦！"
+"梦梦": "点击屏幕继续..."
+
+# 切换背景
+bg: "/assets/images/backgrounds/page-head/old.jpg"
+
+"梦梦": "看！背景切换了！"
+"梦梦": "你可以在这里放置任何你想展示的内容。"
+"梦梦": "现在，去探索更多功能吧！"
+
+end
