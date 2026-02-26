@@ -7,6 +7,7 @@ export const STORAGE_KEYS = {
 export const SELECTORS = {
     PAGE_HEAD: ".page-head",
     LEFT_AREA: ".primary-container > .left-area",
+    LEFT_AREA_CARDS: ".primary-container > .left-area > .cards", // Added specific selector for cards container
     SOCIAL_ICONS: ".social-icons",
     ICP_INFO: ".icp-info",
     WEBMASTER_INFO: ".webmaster-info",

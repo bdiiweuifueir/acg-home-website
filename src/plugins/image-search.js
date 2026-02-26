@@ -5,9 +5,14 @@ import { showToast } from "./toast.js";
 export function initImageSearch(config) {
     // 1. Find or Create Tools Card
     let toolsCard = document.getElementById("tools-card");
-    const leftArea = document.querySelector(SELECTORS.LEFT_AREA + " > .cards");
     
-    if (!leftArea) return;
+    // Robust selector logic
+    const leftAreaCards = document.querySelector(SELECTORS.LEFT_AREA_CARDS) || document.querySelector(".primary-container > .left-area > .cards");
+    
+    if (!leftAreaCards) {
+        console.warn("ImageSearch: Left area cards container not found, cannot insert tool.");
+        return;
+    }
 
     if (!toolsCard) {
         toolsCard = document.createElement("div");
@@ -18,13 +23,18 @@ export function initImageSearch(config) {
             <div class="content tools-grid"></div>
         `;
         // Insert at the end
-        leftArea.appendChild(toolsCard);
+        leftAreaCards.appendChild(toolsCard);
     }
 
     // 2. Add Search Tool Entry
     const toolsContainer = toolsCard.querySelector(".content");
+    if (!toolsContainer) return;
+    
+    // Check if entry already exists
+    if (toolsContainer.querySelector(".image-search-entry")) return;
+
     const searchEntry = document.createElement("div");
-    searchEntry.className = "tool-entry";
+    searchEntry.className = "tool-entry image-search-entry"; // Added class for check
     searchEntry.innerHTML = `
         <i class="fa-solid fa-magnifying-glass-chart"></i>
         <span>以图搜图</span>
