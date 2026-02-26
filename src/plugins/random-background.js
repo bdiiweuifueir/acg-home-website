@@ -42,23 +42,35 @@ export function initRandomBackground(config) {
 
     // If no background restored (first visit or expired), load one immediately
     if (!restored) {
-        fetchNextResource().then(url => {
-            applyBackground(url);
-            // Save it so it persists on reload
-            try {
-                localStorage.setItem(STORAGE_KEYS.LAST_BG_URL, url);
-                localStorage.setItem(STORAGE_KEYS.LAST_BG_TIME, new Date().getTime());
-            } catch (e) {}
-        }).catch(err => {
-            console.error("[Background] Initial load failed:", err);
-        });
+        // Optimization: Use the first source immediately if it's an image, don't wait for preload
+        // This makes the first paint faster
+        const firstSource = sources[0];
+        const isVideo = /\.(mp4|webm)$/i.test(firstSource);
+        
+        if (!isVideo) {
+             applyBackground(firstSource);
+             // Then start preloading the next one
+             currentSourceIndex = 1;
+             preloadNextResource();
+        } else {
+            // For video, we still need to handle it carefully
+            fetchNextResource().then(url => {
+                applyBackground(url);
+                try {
+                    localStorage.setItem(STORAGE_KEYS.LAST_BG_URL, url);
+                    localStorage.setItem(STORAGE_KEYS.LAST_BG_TIME, new Date().getTime());
+                } catch (e) {}
+            }).catch(err => {
+                console.error("[Background] Initial load failed:", err);
+            });
+        }
+    } else {
+        // If restored, just preload next
+        preloadNextResource();
     }
 
     // Create UI
     createButton();
-
-    // Start preloading the next resource immediately
-    preloadNextResource();
 
     console.log("%c[Plugin]%c Random Background Loaded", CONSOLE_STYLES.TAG_PURPLE, CONSOLE_STYLES.INFO);
     isInitializing = false;

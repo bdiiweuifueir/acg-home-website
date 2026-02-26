@@ -409,9 +409,13 @@ function initMobileMenu() {
 }
 
 /**
- * 移除 Loading 动画
+ * 移除 Loading 动画 (Improved)
  */
 function removeLoader() {
+    // Only remove if it hasn't been removed yet
+    const loader = document.querySelector(SELECTORS.GLOBAL_LOADER);
+    if (!loader || loader.classList.contains("end")) return;
+
     const minimumLoadingTime = 500;
     const startTime = window.startTime || new Date().getTime(); // 获取 HTML 中定义的 startTime
     const currentTime = new Date().getTime();
@@ -419,9 +423,12 @@ function removeLoader() {
     const delay = Math.max(0, minimumLoadingTime - elapsedTime);
 
     setTimeout(() => {
-        const loader = document.querySelector(SELECTORS.GLOBAL_LOADER);
         if (loader) {
-            loader.className = "end";
+            loader.classList.add("end");
+            // Optionally remove from DOM after transition to free memory
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 1000);
         }
         document.body.style.overflow = "unset";
     }, delay);
