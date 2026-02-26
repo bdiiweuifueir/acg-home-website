@@ -237,9 +237,9 @@
     },
     "animeList": {
         "enable": true,
-        "bangumiId": "422037", 
+        "bangumiId": "1218952", 
         "dataPath": "/assets/data/anime-list.json",
-        "moreLink": "https://bangumi.tv/"
+        "moreLink": "https://bangumi.tv/user/1218952"
     },
     "animeNews": {
         "enable": true,
