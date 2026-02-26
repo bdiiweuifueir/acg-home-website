@@ -1,0 +1,64 @@
+{
+    "click": [
+        {
+            "selector": ".image-search-entry",
+            "text": ["想找图片的出处吗？SauceNAO 可是很厉害的哦！", "不要拿奇怪的图片来搜哦..."]
+        },
+        {
+            "selector": "#waifu #live2dcanvas",
+            "text": ["不要乱摸啦！", "快去学习！", "再摸我要报警了！", "Hentai!", "今天的作业写完了吗？"]
+        },
+        {
+            "selector": ".card-item",
+            "text": ["这里有很多好康的哦~", "随便看看吧~"]
+        },
+        {
+            "selector": ".aplayer-pic",
+            "text": ["想听点什么歌吗？", "这首歌很好听哦~"]
+        },
+        {
+            "selector": "#random-bg-btn",
+            "text": ["换个背景换个心情~", "哇，这张壁纸真好看！"]
+        }
+    ],
+    "mouseover": [
+        {
+            "selector": ".image-search-entry",
+            "text": ["这是什么工具？看起来很厉��的样子..."]
+        },
+        {
+            "selector": "#waifu",
+            "text": ["干嘛一直盯着我看..."]
+        }
+    ],
+    "seasons": [
+        {
+            "date": "01/01",
+            "text": "元旦快乐！新的一年也要加油哦~"
+        },
+        {
+            "date": "02/14",
+            "text": "情人节快乐！有收到巧克力吗？"
+        },
+        {
+            "date": "03/08",
+            "text": "妇女节快乐！"
+        },
+        {
+            "date": "05/01",
+            "text": "劳动节快乐！休息一下吧~"
+        },
+        {
+            "date": "06/01",
+            "text": "儿童节快乐！永远保持童心哦~"
+        },
+        {
+            "date": "10/01",
+            "text": "国庆节快乐！"
+        },
+        {
+            "date": "12/25",
+            "text": "圣诞节快乐！"
+        }
+    ]
+}

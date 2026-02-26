@@ -159,7 +159,7 @@
     "live2d": {
         "enable": true,
         "scriptPath": "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js",
-        "waifuPath": "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/waifu-tips.json",
+        "waifuPath": "/assets/live2d/waifu-tips.json",
         "cdnPath": "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/",
         "mobile": {
             "show": false
