@@ -33,7 +33,8 @@ import { initHitokoto } from "./plugins/hitokoto.js";
 import { initBackToTop } from "./plugins/back-to-top.js";
 import { initGlobalSearch } from "./plugins/global-search.js";
 import { initComment } from "./plugins/comment.js"; // Fixed import
-import { initPostLoader } from "./plugins/post-loader.js";
+import { initPostLoader } from "./plugins/post-loader.js"; // Keep PostLoader
+import { initImageSearch } from "./plugins/image-search.js"; // Import Image Search
 import { STORAGE_KEYS, SELECTORS, THEME_CONFIG, API_ENDPOINTS, CONSOLE_STYLES } from "./constants.js";
 
 /**
@@ -168,6 +169,7 @@ function initPlugins(config) {
         safeInit("Hitokoto", initHitokoto, config.content);
         safeInit("BackToTop", initBackToTop, config.content);
         safeInit("GlobalSearch", initGlobalSearch, config.content);
+        safeInit("ImageSearch", initImageSearch, config.content); // Init Image Search
         
         // PostLoader handles dynamic content and needs to refresh lightbox/comment
         if (typeof initPostLoader === 'function') {
