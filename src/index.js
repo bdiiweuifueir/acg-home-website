@@ -169,7 +169,11 @@ function initPlugins(config) {
         safeInit("Hitokoto", initHitokoto, config.content);
         safeInit("BackToTop", initBackToTop, config.content);
         safeInit("GlobalSearch", initGlobalSearch, config.content);
-        safeInit("ImageSearch", initImageSearch, config.content); // Init Image Search
+        
+        // Ensure Image Search is initialized after DOM is ready
+        requestAnimationFrame(() => {
+            safeInit("ImageSearch", initImageSearch, config.content); 
+        });
         
         // PostLoader handles dynamic content and needs to refresh lightbox/comment
         if (typeof initPostLoader === 'function') {
