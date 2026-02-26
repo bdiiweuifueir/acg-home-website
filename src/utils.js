@@ -34,12 +34,30 @@ function deepMerge(target, source) {
     return output;
 }
 
+// Robust fetch with timeout and retry
+export async function fetchWithTimeout(url, options = {}, timeout = 8000) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    
+    try {
+        const response = await fetch(url, {
+            ...options,
+            signal: controller.signal
+        });
+        clearTimeout(id);
+        return response;
+    } catch (error) {
+        clearTimeout(id);
+        throw error;
+    }
+}
+
 // 获取网站配置
 export async function getWebsiteConfig() {
     try {
         // 添加时间戳防止缓存
         const configUrl = `${API_ENDPOINTS.CONFIG}?t=${new Date().getTime()}`;
-        const response = await fetch(configUrl);
+        const response = await fetchWithTimeout(configUrl); // Use timeout fetch
         if (!response.ok) {
             throw new Error(`无法获取网站配置文件: ${response.statusText}`);
         }
@@ -100,7 +118,7 @@ export async function renderMarkdown() {
 
         if (src) {
             try {
-                const response = await fetch(src);
+                const response = await fetchWithTimeout(src); // Use timeout fetch
                 if (!response.ok) {
                     throw new Error(`无法获取 Markdown 文件: ${src} (Status: ${response.status})`);
                 }
