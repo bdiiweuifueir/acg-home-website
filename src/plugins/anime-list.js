@@ -44,29 +44,72 @@ export function initAnimeList(config) {
         cardsContainer.appendChild(animeCard);
     }
 
-    const dataPath = config.animeList.dataPath || "/assets/data/anime-list.json";
-    
-    fetch(dataPath)
+    // Determine data source
+    if (config.animeList.bangumiId) {
+        fetchBangumiData(config.animeList.bangumiId, animeCard, config.animeList.dataPath);
+    } else {
+        fetchLocalData(config.animeList.dataPath || "/assets/data/anime-list.json", animeCard);
+    }
+
+    console.debug("[Plugin] AnimeList Loaded");
+}
+
+function fetchLocalData(path, card) {
+    fetch(path)
         .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             return res.json();
         })
         .then(data => {
-            renderAnimeList(data, animeCard.querySelector("#anime-list-container"));
+            renderAnimeList(data, card.querySelector("#anime-list-container"));
+        })
+        .catch(err => handleError(err, card));
+}
+
+function fetchBangumiData(userId, card, fallbackPath) {
+    // Bangumi API: Get User Collections (Subject Type 2 = Anime)
+    // limit=6 (fetch a bit more than 4 to filter)
+    const apiUrl = `https://api.bgm.tv/v0/users/${userId}/collections?subject_type=2&limit=6&type=3`; // type=3 means 'doing' (在看)
+    
+    fetch(apiUrl)
+        .then(res => {
+            if (!res.ok) throw new Error(`Bangumi API error: ${res.status}`);
+            return res.json();
+        })
+        .then(data => {
+            const animeList = data.data.map(item => ({
+                title: item.subject.name_cn || item.subject.name,
+                cover: item.subject.images.medium || item.subject.images.common,
+                link: `https://bgm.tv/subject/${item.subject.id}`,
+                status: "watching", // Since we filtered by type=3
+                progress: `看到第 ${item.ep_status} 集`,
+                score: item.rate || 0
+            }));
+            renderAnimeList(animeList, card.querySelector("#anime-list-container"));
+            
+            // Add Sync Tip
+            const content = card.querySelector(".content");
+            if (content && !content.querySelector(".sync-tip")) {
+                const tip = document.createElement("div");
+                tip.className = "sync-tip";
+                tip.innerHTML = '<i class="fa-solid fa-rotate"></i> 数据同步自 Bangumi';
+                content.appendChild(tip);
+            }
         })
         .catch(err => {
-            console.error("AnimeList: Failed to load data", err);
-            const container = animeCard.querySelector("#anime-list-container");
-            if (container) {
-                container.innerHTML = `<div class="error-message">
-                    <i class="fa-solid fa-triangle-exclamation"></i> 数据加载失败
-                </div>`;
-            }
+            console.warn("AnimeList: Bangumi fetch failed, falling back to local.", err);
+            fetchLocalData(fallbackPath || "/assets/data/anime-list.json", card);
         });
+}
 
-    console.log("%c[Plugin]%c AnimeList Loaded", CONSOLE_STYLES.TAG_PURPLE, CONSOLE_STYLES.INFO);
+function handleError(err, card) {
+    console.error("AnimeList Error:", err);
+    const container = card.querySelector("#anime-list-container");
+    if (container) {
+        container.innerHTML = `<div class="error-message">
+            <i class="fa-solid fa-triangle-exclamation"></i> 数据加载失败
+        </div>`;
+    }
 }
 
 function renderAnimeList(data, container) {
