@@ -35,7 +35,7 @@ import { initGlobalSearch } from "./plugins/global-search.js";
 import { initComment } from "./plugins/comment.js"; // Fixed import
 import { initPostLoader } from "./plugins/post-loader.js"; // Keep PostLoader
 import { initImageSearch } from "./plugins/image-search.js"; // Import Image Search
-import { STORAGE_KEYS, SELECTORS, THEME_CONFIG, API_ENDPOINTS, CONSOLE_STYLES } from "./constants.js";
+import { STORAGE_KEYS, SELECTORS, THEME_CONFIG, CONSOLE_STYLES } from "./constants.js";
 
 /**
  * 核心初始化函数
