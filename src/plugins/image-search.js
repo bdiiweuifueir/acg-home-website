@@ -3,46 +3,59 @@ import "../styles/image-search.css";
 import { showToast } from "./toast.js";
 
 export function initImageSearch(config) {
-    // 1. Find or Create Tools Card
-    let toolsCard = document.getElementById("tools-card");
-    
-    // Robust selector logic
-    const leftAreaCards = document.querySelector(SELECTORS.LEFT_AREA_CARDS) || document.querySelector(".primary-container > .left-area > .cards");
-    
-    if (!leftAreaCards) {
-        console.warn("ImageSearch: Left area cards container not found, cannot insert tool.");
-        return;
-    }
+    const maxRetries = 10;
+    let retryCount = 0;
 
-    if (!toolsCard) {
-        toolsCard = document.createElement("div");
-        toolsCard.className = "card-item";
-        toolsCard.id = "tools-card";
-        toolsCard.innerHTML = `
-            <span class="title"><i class="fa-solid fa-toolbox"></i> 实用工具</span>
-            <div class="content tools-grid"></div>
+    const tryInit = () => {
+        // 1. Find or Create Tools Card
+        let toolsCard = document.getElementById("tools-card");
+        
+        // Robust selector logic
+        const leftAreaCards = document.querySelector(SELECTORS.LEFT_AREA_CARDS) || document.querySelector(".primary-container > .left-area > .cards");
+        
+        if (!leftAreaCards) {
+            if (retryCount < maxRetries) {
+                retryCount++;
+                // console.debug(`[ImageSearch] Container not found, retrying (${retryCount}/${maxRetries})...`);
+                setTimeout(tryInit, 500); // Retry every 500ms
+                return;
+            }
+            console.warn("ImageSearch: Left area cards container not found after retries, cannot insert tool.");
+            return;
+        }
+
+        if (!toolsCard) {
+            toolsCard = document.createElement("div");
+            toolsCard.className = "card-item";
+            toolsCard.id = "tools-card";
+            toolsCard.innerHTML = `
+                <span class="title"><i class="fa-solid fa-toolbox"></i> 实用工具</span>
+                <div class="content tools-grid"></div>
+            `;
+            // Insert at the end
+            leftAreaCards.appendChild(toolsCard);
+        }
+
+        // 2. Add Search Tool Entry
+        const toolsContainer = toolsCard.querySelector(".content");
+        if (!toolsContainer) return;
+        
+        // Check if entry already exists
+        if (toolsContainer.querySelector(".image-search-entry")) return;
+
+        const searchEntry = document.createElement("div");
+        searchEntry.className = "tool-entry image-search-entry"; // Added class for check
+        searchEntry.innerHTML = `
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            <span>以图搜图</span>
         `;
-        // Insert at the end
-        leftAreaCards.appendChild(toolsCard);
-    }
+        searchEntry.onclick = openSearchModal;
+        toolsContainer.appendChild(searchEntry);
 
-    // 2. Add Search Tool Entry
-    const toolsContainer = toolsCard.querySelector(".content");
-    if (!toolsContainer) return;
-    
-    // Check if entry already exists
-    if (toolsContainer.querySelector(".image-search-entry")) return;
+        console.debug("[Plugin] ImageSearch Loaded");
+    };
 
-    const searchEntry = document.createElement("div");
-    searchEntry.className = "tool-entry image-search-entry"; // Added class for check
-    searchEntry.innerHTML = `
-        <i class="fa-solid fa-magnifying-glass-chart"></i>
-        <span>以图搜图</span>
-    `;
-    searchEntry.onclick = openSearchModal;
-    toolsContainer.appendChild(searchEntry);
-
-    console.debug("[Plugin] ImageSearch Loaded");
+    tryInit();
 }
 
 function openSearchModal() {
