@@ -129,8 +129,10 @@ async function handleClick() {
         showToast("切换背景失败，请稍后重试", "error");
     } finally {
         if (currentBtn) {
-            currentBtn.classList.remove("loading");
-        }
+        currentBtn.classList.remove("loading");
+        // Force reflow to ensure animation removal
+        void currentBtn.offsetWidth;
+    }
     }
 }
 
@@ -154,9 +156,17 @@ function fetchNextResource(retryCount = 0) {
         const urlToLoad = (isStaticImage || isVideo) ? sourceUrl : `${sourceUrl}${separator}t=${new Date().getTime()}`;
 
         if (isVideo) {
-            // For video, we resolve immediately, browser will handle buffering
-            // We could try to preload via fetch blob, but that might be heavy
-            resolve(urlToLoad);
+            // For video, we should also preload it to ensure smooth playback
+            const video = document.createElement('video');
+            video.preload = 'auto';
+            video.src = urlToLoad;
+            video.onloadeddata = () => resolve(urlToLoad);
+            video.onerror = () => {
+                console.warn(`[Background] Failed to load video: ${urlToLoad}, retrying...`);
+                fetchNextResource(retryCount + 1).then(resolve).catch(reject);
+            };
+            // Fallback timeout for video loading
+            setTimeout(() => resolve(urlToLoad), 3000); 
         } else {
             // Preload image
             const img = new Image();
