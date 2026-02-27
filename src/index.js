@@ -282,8 +282,8 @@ function renderSocialIcons(config, container) {
                 const icon = config.content.masterInfo.socialLink.icon[key];
                 const link = config.content.masterInfo.socialLink.link[key];
                 if (icon && link) {
-                    return `<a href="${link}" target="_blank"><i class="${icon}"></i></a>`;
-                }
+            return `<a href="${link}" target="_blank" aria-label="${key} link"><i class="${icon}"></i></a>`;
+        }
                 return "";
             })
             .filter(Boolean);

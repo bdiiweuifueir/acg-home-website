@@ -68,11 +68,13 @@ a:has(i) {
     margin-top: 16px;
     border-radius: 12px;
     padding: 20px 46px 46px 46px;
-    background-color: rgba(255, 255, 255, 0.9); /* Changed from #ffffff to semi-transparent */
-    backdrop-filter: blur(10px); /* Glassmorphism */
+    background-color: #ffffff; /* Fallback for browsers without backdrop-filter */
+    background-color: rgba(255, 255, 255, 0.9); 
+    backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 8px 6px rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
+    will-change: backdrop-filter; /* Hint for browser optimization */
 
     * {
         position: relative;
