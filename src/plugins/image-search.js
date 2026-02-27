@@ -189,14 +189,14 @@ function createSearchModal() {
             return;
         }
         
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            previewImage.src = e.target.result;
-            uploadArea.style.display = "none";
-            previewContainer.style.display = "block";
-            searchBtn.disabled = false;
-        };
-        reader.readAsDataURL(file);
+        // Optimization: Use createObjectURL instead of FileReader (Base64) to save memory
+        const objectUrl = URL.createObjectURL(file);
+        previewImage.src = objectUrl;
+        previewImage.onload = () => URL.revokeObjectURL(objectUrl); // Release memory
+
+        uploadArea.style.display = "none";
+        previewContainer.style.display = "block";
+        searchBtn.disabled = false;
     }
 }
 
@@ -241,19 +241,32 @@ function renderResults(results, container) {
         const extUrl = res.data.ext_urls ? res.data.ext_urls[0] : "#";
         const thumb = res.header.thumbnail;
 
-        return `
-            <a href="${extUrl}" target="_blank" class="result-item">
-                <img src="${thumb}" class="result-thumb" loading="lazy">
-                <div class="result-info">
-                    <div class="result-title">${title}</div>
-                    <div class="result-author">${author}</div>
-                    <div class="result-similarity ${simClass}">相似度: ${similarity}%</div>
-                </div>
-                <div style="display:flex; align-items:center;">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </div>
-            </a>
+        const item = document.createElement("a");
+        item.href = extUrl;
+        item.target = "_blank";
+        item.className = "result-item";
+        
+        // Use textContent to prevent XSS
+        const titleText = title.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        const authorText = author.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+        item.innerHTML = `
+            <img src="${thumb}" class="result-thumb" loading="lazy" onerror="this.src='/assets/images/backgrounds/page-head/old.jpg'">
+            <div class="result-info">
+                <div class="result-title"></div> <!-- Set via textContent below -->
+                <div class="result-author"></div> <!-- Set via textContent below -->
+                <div class="result-similarity ${simClass}">相似度: ${similarity}%</div>
+            </div>
+            <div style="display:flex; align-items:center;">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
         `;
+        
+        // Securely set text content
+        item.querySelector(".result-title").textContent = title;
+        item.querySelector(".result-author").textContent = author;
+        
+        return item.outerHTML;
     }).join("");
 
     container.innerHTML = html;
