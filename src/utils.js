@@ -48,6 +48,10 @@ export async function fetchWithTimeout(url, options = {}, timeout = 8000) {
         return response;
     } catch (error) {
         clearTimeout(id);
+        // 区分超时错误和主动取消
+        if (error.name === 'AbortError') {
+            throw new Error(`Request timed out after ${timeout}ms: ${url}`);
+        }
         throw error;
     }
 }
