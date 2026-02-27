@@ -30,6 +30,9 @@ export default async function handler(req, res) {
         
         const data = await response.json();
         
+        // Cache response for 1 hour
+        res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
+        
         const chapters = data.data.map(ch => ({
             id: ch.id,
             chapter: ch.attributes.chapter,

@@ -35,7 +35,8 @@ export default async function handler(req, res) {
         
         const data = await response.json();
         
-        // Transform data for frontend
+        // Cache response for 1 hour
+        res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
         const results = data.data.map(manga => {
             const title = manga.attributes.title.en || manga.attributes.title.ja || Object.values(manga.attributes.title)[0];
             const coverRel = manga.relationships.find(r => r.type === 'cover_art');
