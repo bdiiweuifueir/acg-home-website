@@ -128,14 +128,14 @@ function createMangaModal() {
         if (!query) return;
         
         const resultsContainer = modal.querySelector("#manga-search-results");
-        resultsContainer.innerHTML = `<div class="manga-loading"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><p>搜索中...</p></div>`;
+        resultsContainer.innerHTML = `<div class="manga-loading"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><p>搜索中 (MangaDex API 较慢，请耐心等待)...</p></div>`;
         searchBtn.disabled = true;
 
         try {
             const data = await fetchMangaSearch(query);
             renderSearchResults(data, resultsContainer);
         } catch (e) {
-            resultsContainer.innerHTML = `<div class="manga-empty" style="color: red;">搜索失败: ${e.message}</div>`;
+            resultsContainer.innerHTML = `<div class="manga-empty" style="color: red;">搜索失败: ${e.message}<br><button class="manga-search-btn" onclick="document.getElementById('manga-search-btn').click()" style="margin:10px auto;">重试</button></div>`;
         } finally {
             searchBtn.disabled = false;
         }
@@ -162,7 +162,8 @@ function createMangaModal() {
 
 async function fetchMangaSearch(query) {
     const url = `${API_ENDPOINTS.MANGADEX_SEARCH}?query=${encodeURIComponent(query)}`;
-    const res = await fetchWithTimeout(url);
+    // Increase timeout to 15s for slow MangaDex API
+    const res = await fetchWithTimeout(url, {}, 15000);
     if (!res.ok) throw new Error("Search API failed");
     const data = await res.json();
     return data.results;
