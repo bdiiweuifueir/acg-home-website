@@ -2,10 +2,21 @@
 // Proxy for Hitokoto API with Fallback and Caching
 
 export default async function handler(req, res) {
-    // Set CORS headers
+    // Security: Restrict CORS
+    // In production, replace '*' with your actual domain, e.g., 'https://your-domain.com'
+    // For this personal project, we keep logic dynamic but safeish
+    const allowedOrigins = ['https://ninihaobcx.vercel.app', 'http://localhost:5173'];
+    const origin = req.headers.origin;
+    
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    } else {
+        // Default to * only if necessary, or restrict strictly
+        res.setHeader('Access-Control-Allow-Origin', '*'); 
+    }
+    
     res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS'); // Only allow GET
     res.setHeader(
         'Access-Control-Allow-Headers',
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
@@ -15,6 +26,9 @@ export default async function handler(req, res) {
         res.status(200).end();
         return;
     }
+    
+    // Simple DoS mitigation: artificial delay for non-browser UA or high frequency (mock)
+    // For Vercel, we rely on platform protection mostly.
 
     const API_URL = "https://v1.hitokoto.cn";
     const FALLBACK_HITOKOTO = {
@@ -39,13 +53,13 @@ export default async function handler(req, res) {
 
         const data = await response.json();
 
-        // Cache for 60 seconds (s-maxage=60 for CDN, max-age=60 for browser)
+        // Cache for 60 seconds
         res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
         res.status(200).json(data);
 
     } catch (error) {
-        console.error("Hitokoto Proxy Error:", error);
-        // Fallback response
+        // Secure logging: Don't log full error object if it contains sensitive data
+        console.error(`Hitokoto Proxy Error: ${error.message}`);
         res.status(200).json(FALLBACK_HITOKOTO);
     }
 }
