@@ -169,7 +169,9 @@ function createSearchModal() {
         const file = fileInput.files[0];
         searchBtn.disabled = true;
         searchBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 搜索中...';
-        resultsList.innerHTML = "";
+        resultsList.innerHTML = `<div class="searching-indicator">
+            <i class="fa-solid fa-satellite-dish fa-bounce"></i> 正在连接 SauceNAO 数据库...
+        </div>`;
 
         try {
             const results = await performSearch(file);
