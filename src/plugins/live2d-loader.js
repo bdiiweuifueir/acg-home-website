@@ -61,6 +61,7 @@ function handlePostLoad() {
     }
 
     // Use MutationObserver to wait for DOM elements
+    // Optimized: Only observe childList, assume widget injects directly into body or container
     const observer = new MutationObserver((mutations) => {
         let found = false;
         for (const mutation of mutations) {
@@ -73,16 +74,29 @@ function handlePostLoad() {
         }
         
         // If we found the elements, we can disconnect.
-        // The widget usually injects them together or in close succession.
         if (found && document.getElementById("waifu")) {
              observer.disconnect();
         }
     });
     
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Optimized: Removed subtree: true to reduce performance overhead
+    // The live2d-widget usually appends to body directly
+    observer.observe(document.body, { childList: true, subtree: false });
+
+    // Fallback polling for safety if widget injects deeper
+    const pollId = setInterval(() => {
+        if (document.getElementById("waifu")) {
+            applyStyles();
+            observer.disconnect();
+            clearInterval(pollId);
+        }
+    }, 1000);
 
     // Timeout protection
-    setTimeout(() => observer.disconnect(), 10000);
+    setTimeout(() => {
+        observer.disconnect();
+        clearInterval(pollId);
+    }, 10000);
 }
 
 function applyStyles() {
