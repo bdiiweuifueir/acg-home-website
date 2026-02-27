@@ -36,6 +36,12 @@ function deepMerge(target, source) {
 
 // Robust fetch with timeout and retry
 export async function fetchWithTimeout(url, options = {}, timeout = 8000) {
+    // Polyfill-like check for AbortController
+    if (typeof AbortController === 'undefined') {
+        // Fallback for older browsers: just fetch without timeout
+        return fetch(url, options);
+    }
+
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), timeout);
     
