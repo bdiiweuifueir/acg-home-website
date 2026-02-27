@@ -67,9 +67,25 @@ function fetchLocalData(path, card) {
 }
 
 function fetchBangumiData(userId, card, fallbackPath) {
-    // Bangumi API: Get User Collections (Subject Type 2 = Anime)
-    // limit=6 (fetch a bit more than 4 to filter)
-    const apiUrl = `https://api.bgm.tv/v0/users/${userId}/collections?subject_type=2&limit=6&type=3`; // type=3 means 'doing' (在看)
+    // 1. Check Session Storage Cache (5 minutes)
+    const cacheKey = `anime_list_cache_${userId}`;
+    const cachedData = sessionStorage.getItem(cacheKey);
+    if (cachedData) {
+        try {
+            const parsed = JSON.parse(cachedData);
+            if (new Date().getTime() - parsed.timestamp < 5 * 60 * 1000) {
+                renderAnimeList(parsed.data, card.querySelector("#anime-list-container"));
+                addSyncTip(card);
+                console.debug("[AnimeList] Loaded from cache");
+                return;
+            }
+        } catch (e) {
+            sessionStorage.removeItem(cacheKey);
+        }
+    }
+
+    // 2. Fetch from API
+    const apiUrl = `https://api.bgm.tv/v0/users/${userId}/collections?subject_type=2&limit=6&type=3`; // type=3 means 'doing'
     
     fetch(apiUrl)
         .then(res => {
@@ -77,29 +93,41 @@ function fetchBangumiData(userId, card, fallbackPath) {
             return res.json();
         })
         .then(data => {
+            // Robust mapping with optional chaining
             const animeList = data.data.map(item => ({
-                title: item.subject.name_cn || item.subject.name,
-                cover: item.subject.images.medium || item.subject.images.common,
-                link: `https://bgm.tv/subject/${item.subject.id}`,
-                status: "watching", // Since we filtered by type=3
-                progress: `看到第 ${item.ep_status} 集`,
+                title: item.subject?.name_cn || item.subject?.name || "未知番剧",
+                cover: item.subject?.images?.medium || item.subject?.images?.common || PATH_CONFIG.DEFAULT_COVER,
+                link: item.subject?.id ? `https://bgm.tv/subject/${item.subject.id}` : "#",
+                status: "watching",
+                progress: `看到第 ${item.ep_status || 0} 集`,
                 score: item.rate || 0
             }));
+
+            // Save to cache
+            try {
+                sessionStorage.setItem(cacheKey, JSON.stringify({
+                    timestamp: new Date().getTime(),
+                    data: animeList
+                }));
+            } catch (e) { console.warn("SessionStorage full"); }
+
             renderAnimeList(animeList, card.querySelector("#anime-list-container"));
-            
-            // Add Sync Tip
-            const content = card.querySelector(".content");
-            if (content && !content.querySelector(".sync-tip")) {
-                const tip = document.createElement("div");
-                tip.className = "sync-tip";
-                tip.innerHTML = '<i class="fa-solid fa-rotate"></i> 数据同步自 Bangumi';
-                content.appendChild(tip);
-            }
+            addSyncTip(card);
         })
         .catch(err => {
             console.warn("AnimeList: Bangumi fetch failed, falling back to local.", err);
             fetchLocalData(fallbackPath || "/assets/data/anime-list.json", card);
         });
+}
+
+function addSyncTip(card) {
+    const content = card.querySelector(".content");
+    if (content && !content.querySelector(".sync-tip")) {
+        const tip = document.createElement("div");
+        tip.className = "sync-tip";
+        tip.innerHTML = '<i class="fa-solid fa-rotate"></i> 数据同步自 Bangumi';
+        content.appendChild(tip);
+    }
 }
 
 function handleError(err, card) {
