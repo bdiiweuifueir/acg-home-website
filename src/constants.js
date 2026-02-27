@@ -40,7 +40,8 @@ export const THEME_CONFIG = {
 };
 
 export const API_ENDPOINTS = {
-    HITOKOTO: "https://v1.hitokoto.cn",
+    // Use local serverless proxy if available, fallback to direct
+    HITOKOTO: "/api/hitokoto", // Use Vercel Proxy
     CONFIG: "./config.json",
 };
 
