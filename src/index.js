@@ -26,6 +26,7 @@ import { initAnimeList } from "./plugins/anime-list.js";
 import { initAnimeNews } from "./plugins/anime-news.js";
 import { initGalgameSection } from "./plugins/galgame-section.js"; // Import Galgame Plugin
 import { initMangaSection } from "./plugins/manga-section.js"; // Import Manga Plugin
+import { initFriends } from "./plugins/friends.js"; // Import Friends Plugin
 import { initNavigation } from "./plugins/navigation.js";
 import { initGameLauncher } from "./plugins/game-launcher.js"; // Import Game Launcher
 import { initRandomBackground } from "./plugins/random-background.js";
@@ -153,6 +154,7 @@ function initPlugins(config) {
         safeInit("AnimeNews", initAnimeNews, config.content);
         safeInit("GalgameSection", initGalgameSection, config.content); 
         safeInit("MangaSection", initMangaSection, config.content); 
+        safeInit("Friends", initFriends, config.content);
         
         // Ensure Game Launcher is initialized and handle potential DOM timing issues
         requestAnimationFrame(() => {

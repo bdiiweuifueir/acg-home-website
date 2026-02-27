@@ -1,170 +1,296 @@
-import { CONSOLE_STYLES, PATH_CONFIG } from "../constants.js";
+import { API_ENDPOINTS, SELECTORS, CONSOLE_STYLES } from "../constants.js";
 import "../styles/manga-section.css";
-
-// Module state
-let allBooks = [];
-let currentFilter = 'all';
+import { showToast } from "./toast.js";
+import { fetchWithTimeout } from "../utils.js";
 
 export function initMangaSection(config) {
-    if (!config || !config.manga || !config.manga.enable) {
-        return;
+    // 1. Create Entry in Tools Card
+    const createEntry = () => {
+        let toolsCard = document.getElementById("tools-card");
+        if (!toolsCard) {
+             // If tools card doesn't exist yet (maybe ImageSearch hasn't run), wait a bit
+             // But usually ImageSearch creates it. If not, we create it.
+             const leftAreaCards = document.querySelector(SELECTORS.LEFT_AREA_CARDS);
+             if (leftAreaCards) {
+                toolsCard = document.createElement("div");
+                toolsCard.className = "card-item";
+                toolsCard.id = "tools-card";
+                toolsCard.innerHTML = `
+                    <span class="title"><i class="fa-solid fa-toolbox"></i> 实用工具</span>
+                    <div class="content tools-grid"></div>
+                `;
+                leftAreaCards.appendChild(toolsCard);
+             } else {
+                 return;
+             }
+        }
+        
+        const toolsContainer = toolsCard.querySelector(".content");
+        if (!toolsContainer || toolsContainer.querySelector(".manga-entry")) return;
+
+        const entry = document.createElement("div");
+        entry.className = "tool-entry manga-entry";
+        entry.innerHTML = `
+            <i class="fa-solid fa-book-journal-whills"></i>
+            <span>漫画阅读</span>
+        `;
+        entry.onclick = openMangaModal;
+        toolsContainer.appendChild(entry);
+        
+        console.debug("[Plugin] MangaSection Loaded");
+    };
+
+    // Wait for DOM
+    setTimeout(createEntry, 1000);
+}
+
+// --- UI Logic ---
+
+let currentMangaId = null;
+let currentChapterId = null;
+
+function openMangaModal() {
+    if (!document.getElementById("manga-modal")) {
+        createMangaModal();
     }
+    const modal = document.getElementById("manga-modal");
+    requestAnimationFrame(() => modal.classList.add("show"));
+}
 
-    const cardsContainer = document.querySelector(".primary-container > .left-area > .cards");
-    if (!cardsContainer) {
-        console.warn("MangaSection: Cards container not found.");
-        return;
-    }
+function createMangaModal() {
+    const modal = document.createElement("div");
+    modal.id = "manga-modal";
+    modal.className = "manga-section-modal";
+    
+    modal.innerHTML = `
+        <div class="manga-container">
+            <div class="manga-header">
+                <div class="manga-header-title">
+                    <i class="fa-solid fa-book-open"></i> MangaDex 漫画阅读
+                </div>
+                <div class="manga-close-btn"><i class="fa-solid fa-xmark"></i></div>
+            </div>
 
-    // Create Card
-    const mangaCard = document.createElement("div");
-    mangaCard.className = "card-item";
-    mangaCard.id = "manga-section-card";
-
-    mangaCard.innerHTML = `
-        <span class="title"><i class="fa-solid fa-book-open"></i>漫画与轻小说</span>
-        <div class="content">
-            <div id="manga-filter-bar" class="manga-filter-bar"></div>
-            <div id="manga-list-container" class="manga-grid">
-                <div class="manga-loading">
-                    <i class="fa-solid fa-spinner"></i>
-                    <span>正在从书架取书中...</span>
+            <!-- View 1: Search -->
+            <div class="manga-search-view" id="manga-search-view">
+                <div class="manga-search-bar">
+                    <input type="text" class="manga-search-input" placeholder="输入漫画名称 (支持中文)..." id="manga-search-input">
+                    <button class="manga-search-btn" id="manga-search-btn">
+                        <i class="fa-solid fa-search"></i> 搜索
+                    </button>
+                </div>
+                <div class="manga-content" id="manga-search-results">
+                    <div class="manga-empty">
+                        <i class="fa-solid fa-book-bookmark" style="font-size: 3rem; margin-bottom: 10px; display:block;"></i>
+                        请输入关键词开始搜索
+                    </div>
                 </div>
             </div>
-            <div class="daisy-tip">
-                <a href="https://github.com/niuhuan/daisy" target="_blank" title="Powered by Daisy">
-                    <i class="fa-brands fa-github"></i> Recommended: Daisy Reader
-                </a>
+
+            <!-- View 2: Chapter List -->
+            <div class="manga-content chapter-list-view" id="manga-chapter-view">
+                <div class="back-btn" id="back-to-search"><i class="fa-solid fa-arrow-left"></i> 返回搜索</div>
+                <div class="chapter-header">
+                    <img src="" class="chapter-cover" id="manga-detail-cover">
+                    <div class="chapter-meta">
+                        <h3 class="manga-title" id="manga-detail-title" style="font-size: 1.5rem; margin-bottom: 10px;"></h3>
+                        <p id="manga-detail-desc" style="font-size: 0.9rem; color: #666; max-height: 100px; overflow-y: auto;"></p>
+                    </div>
+                </div>
+                <div class="chapter-list" id="chapter-list-container"></div>
             </div>
+        </div>
+
+        <!-- Reader Overlay -->
+        <div class="reader-view" id="manga-reader-view">
+            <div class="reader-header">
+                <span id="reader-title">Chapter Title</span>
+                <div class="manga-close-btn" id="close-reader" style="color: #fff;"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <div class="reader-content" id="reader-pages"></div>
         </div>
     `;
 
-    // Insert logic: Place after Galgame section
-    const galgameCard = document.getElementById("galgame-section-card");
-    const animeCard = document.getElementById("anime-list-card");
+    document.body.appendChild(modal);
+
+    // Bind Events
+    const closeBtn = modal.querySelector(".manga-close-btn");
+    const searchInput = modal.querySelector("#manga-search-input");
+    const searchBtn = modal.querySelector("#manga-search-btn");
+    const backToSearchBtn = modal.querySelector("#back-to-search");
+    const closeReaderBtn = modal.querySelector("#close-reader");
     
-    if (galgameCard && galgameCard.nextSibling) {
-        cardsContainer.insertBefore(mangaCard, galgameCard.nextSibling);
-    } else if (animeCard && animeCard.nextSibling) {
-        cardsContainer.insertBefore(mangaCard, animeCard.nextSibling);
-    } else {
-        cardsContainer.appendChild(mangaCard);
+    closeBtn.onclick = () => modal.classList.remove("show");
+    
+    // Search
+    const doSearch = async () => {
+        const query = searchInput.value.trim();
+        if (!query) return;
+        
+        const resultsContainer = modal.querySelector("#manga-search-results");
+        resultsContainer.innerHTML = `<div class="manga-loading"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><p>搜索中...</p></div>`;
+        searchBtn.disabled = true;
+
+        try {
+            const data = await fetchMangaSearch(query);
+            renderSearchResults(data, resultsContainer);
+        } catch (e) {
+            resultsContainer.innerHTML = `<div class="manga-empty" style="color: red;">搜索失败: ${e.message}</div>`;
+        } finally {
+            searchBtn.disabled = false;
+        }
+    };
+
+    searchBtn.onclick = doSearch;
+    searchInput.onkeypress = (e) => {
+        if (e.key === 'Enter') doSearch();
+    };
+
+    // Navigation
+    backToSearchBtn.onclick = () => {
+        document.getElementById("manga-chapter-view").style.display = "none";
+        document.getElementById("manga-search-view").style.display = "block";
+    };
+
+    closeReaderBtn.onclick = () => {
+        document.getElementById("manga-reader-view").style.display = "none";
+        document.body.style.overflow = ""; // Restore scroll
+    };
+}
+
+// --- API Calls ---
+
+async function fetchMangaSearch(query) {
+    const url = `${API_ENDPOINTS.MANGADEX_SEARCH}?query=${encodeURIComponent(query)}`;
+    const res = await fetchWithTimeout(url);
+    if (!res.ok) throw new Error("Search API failed");
+    const data = await res.json();
+    return data.results;
+}
+
+async function fetchChapters(mangaId) {
+    const url = `${API_ENDPOINTS.MANGADEX_CHAPTERS}?id=${mangaId}`;
+    const res = await fetchWithTimeout(url);
+    if (!res.ok) throw new Error("Chapter API failed");
+    const data = await res.json();
+    return data.chapters;
+}
+
+async function fetchPages(chapterId) {
+    const url = `${API_ENDPOINTS.MANGADEX_PAGES}?id=${chapterId}`;
+    const res = await fetchWithTimeout(url);
+    if (!res.ok) throw new Error("Pages API failed");
+    const data = await res.json();
+    return data.pages;
+}
+
+// --- Render Logic ---
+
+function renderSearchResults(results, container) {
+    if (!results || results.length === 0) {
+        container.innerHTML = `<div class="manga-empty">未找到相关漫画</div>`;
+        return;
     }
 
-    // Render Filters
-    renderFilterBar(mangaCard);
+    container.innerHTML = `<div class="manga-grid"></div>`;
+    const grid = container.querySelector(".manga-grid");
 
-    // Fetch Data
-    const dataPath = config.manga.dataPath || "/assets/data/manga-list.json";
-    fetchLocalData(dataPath, mangaCard);
-
-    console.log("%c[Plugin]%c MangaSection Loaded", CONSOLE_STYLES.TAG_PURPLE, CONSOLE_STYLES.INFO);
-}
-
-function renderFilterBar(card) {
-    const filterBar = card.querySelector("#manga-filter-bar");
-    const filters = [
-        { key: 'all', label: '全部' },
-        { key: 'reading', label: '在看' },
-        { key: 'completed', label: '看完' },
-        { key: 'planned', label: '想看' }
-    ];
-
-    filterBar.innerHTML = '';
-    filters.forEach(f => {
-        const btn = document.createElement("button");
-        btn.className = `manga-filter-btn ${f.key === currentFilter ? 'active' : ''}`;
-        btn.innerText = f.label;
-        btn.onclick = () => updateFilter(f.key, card);
-        filterBar.appendChild(btn);
+    results.forEach(manga => {
+        const card = document.createElement("div");
+        card.className = "manga-card";
+        card.innerHTML = `
+            <img src="${manga.cover}" class="manga-cover" loading="lazy">
+            <div class="manga-info">
+                <div class="manga-title" title="${manga.title}">${manga.title}</div>
+                <div class="manga-year">${manga.year || "Unknown"}</div>
+            </div>
+        `;
+        card.onclick = () => loadMangaDetails(manga);
+        grid.appendChild(card);
     });
 }
 
-function updateFilter(filter, card) {
-    currentFilter = filter;
+async function loadMangaDetails(manga) {
+    currentMangaId = manga.id;
     
-    // Update buttons
-    const buttons = card.querySelectorAll(".manga-filter-btn");
-    buttons.forEach(btn => {
-        if (btn.innerText === getFilterLabel(filter)) {
-            btn.classList.add("active");
-        } else {
-            btn.classList.remove("active");
-        }
-    });
+    // Switch View
+    document.getElementById("manga-search-view").style.display = "none";
+    const chapterView = document.getElementById("manga-chapter-view");
+    chapterView.style.display = "flex";
+    
+    // Set Meta
+    document.getElementById("manga-detail-cover").src = manga.cover;
+    document.getElementById("manga-detail-title").textContent = manga.title;
+    document.getElementById("manga-detail-desc").textContent = manga.desc || "暂无简介";
+    
+    // Load Chapters
+    const listContainer = document.getElementById("chapter-list-container");
+    listContainer.innerHTML = `<div class="manga-loading"><i class="fa-solid fa-spinner fa-spin"></i><p>加载章节中...</p></div>`;
 
-    // Filter Data
-    const filteredData = filter === 'all' 
-        ? allBooks 
-        : allBooks.filter(b => b.status === filter);
-    
-    renderMangaList(filteredData, card.querySelector("#manga-list-container"));
+    try {
+        const chapters = await fetchChapters(manga.id);
+        renderChapterList(chapters, listContainer);
+    } catch (e) {
+        listContainer.innerHTML = `<div class="manga-empty">加载章节失败</div>`;
+    }
 }
 
-function getFilterLabel(key) {
-    const map = {
-        'all': '全部',
-        'reading': '在看',
-        'completed': '看完',
-        'planned': '想看'
-    };
-    return map[key];
-}
-
-function fetchLocalData(path, card) {
-    fetch(path)
-        .then(res => {
-            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-            return res.json();
-        })
-        .then(data => {
-            allBooks = data;
-            renderMangaList(allBooks, card.querySelector("#manga-list-container"));
-        })
-        .catch(err => {
-            console.error("MangaSection Error:", err);
-            const container = card.querySelector("#manga-list-container");
-            if (container) {
-                container.innerHTML = `<div class="manga-loading" style="color: #ef4444;"><i class="fa-solid fa-circle-exclamation"></i><span>书架倒塌了...</span></div>`;
-            }
-        });
-}
-
-function renderMangaList(data, container) {
-    if (!container) return;
-    
-    if (!data || data.length === 0) {
-        container.innerHTML = `<div class="manga-loading" style="height: 100px;"><span>暂无书籍</span></div>`;
+function renderChapterList(chapters, container) {
+    if (!chapters || chapters.length === 0) {
+        container.innerHTML = `<div class="manga-empty">该漫画暂无章节或无中文资源</div>`;
         return;
     }
 
     container.innerHTML = "";
-    // Limit to 9 items
-    const displayData = data.slice(0, 9);
-
-    displayData.forEach(book => {
-        const item = document.createElement("a");
-        item.href = book.link || "javascript:void(0);";
-        item.target = "_blank";
-        item.className = "manga-item";
-
-        const statusClass = `status-${book.status}`;
-        const statusText = getFilterLabel(book.status) || '未知';
-        const typeText = book.type === 'novel' ? '轻小说' : '漫画';
-
-        const scoreHtml = book.score > 0 
-            ? `<div class="manga-score-badge"><i class="fa-solid fa-star"></i>${book.score}</div>` 
-            : '';
+    chapters.forEach(ch => {
+        const item = document.createElement("div");
+        item.className = "chapter-item";
+        
+        let langLabel = "";
+        if (ch.lang === 'zh' || ch.lang === 'zh-hk') langLabel = "中文";
+        else if (ch.lang === 'en') langLabel = "ENG";
+        else langLabel = ch.lang;
 
         item.innerHTML = `
-            <div class="manga-cover-wrapper">
-                <img src="${book.cover}" alt="${book.title}" loading="lazy" onerror="this.onerror=null;this.src='${PATH_CONFIG.DEFAULT_COVER}';this.style.objectFit='cover';">
-                <div class="manga-status-badge ${statusClass}">${statusText}</div>
-                <div class="manga-type-badge">${typeText}</div>
-                ${scoreHtml}
+            <span>${ch.chapter ? `Ch.${ch.chapter} - ` : ""}${ch.title}</span>
+            <div>
+                <span style="color:#888; font-size:12px;">${ch.pages}P</span>
+                <span class="chapter-lang-tag">${langLabel}</span>
             </div>
-            <div class="manga-title" title="${book.title}">${book.title}</div>
         `;
+        item.onclick = () => openReader(ch);
         container.appendChild(item);
+    });
+}
+
+async function openReader(chapter) {
+    currentChapterId = chapter.id;
+    const readerView = document.getElementById("manga-reader-view");
+    const pagesContainer = document.getElementById("reader-pages");
+    const title = document.getElementById("reader-title");
+    
+    readerView.style.display = "flex";
+    document.body.style.overflow = "hidden"; // Prevent background scroll
+    
+    title.textContent = `Loading...`;
+    pagesContainer.innerHTML = `<div class="reader-loading"><i class="fa-solid fa-spinner fa-spin fa-3x"></i></div>`;
+
+    try {
+        const pages = await fetchPages(chapter.id);
+        title.textContent = `${chapter.chapter ? `Ch.${chapter.chapter}` : ""} ${chapter.title}`;
+        renderPages(pages, pagesContainer);
+    } catch (e) {
+        pagesContainer.innerHTML = `<div class="reader-loading">加载图片失败: ${e.message}</div>`;
+    }
+}
+
+function renderPages(pages, container) {
+    container.innerHTML = "";
+    pages.forEach(url => {
+        const img = document.createElement("img");
+        img.src = url;
+        img.className = "reader-page";
+        img.loading = "lazy";
+        container.appendChild(img);
     });
 }
