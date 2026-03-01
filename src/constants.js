@@ -42,9 +42,13 @@ export const THEME_CONFIG = {
 export const API_ENDPOINTS = {
     // Use local serverless proxy if available, fallback to direct
     HITOKOTO: "/api/hitokoto", // Use Vercel Proxy
-    MANGADEX_SEARCH: "/api/manga/search",
-    MANGADEX_CHAPTERS: "/api/manga/chapters",
-    MANGADEX_PAGES: "/api/manga/pages",
+    
+    // CopyManga Proxies
+    COPY_SEARCH: "/api/copy/search",
+    COPY_COMIC: "/api/copy/comic",
+    COPY_CHAPTER: "/api/copy/chapter",
+    COPY_IMAGE: "/api/copy/image",
+    
     CONFIG: "./config.json",
 };
 

@@ -8,8 +8,6 @@ export function initMangaSection(config) {
     const createEntry = () => {
         let toolsCard = document.getElementById("tools-card");
         if (!toolsCard) {
-             // If tools card doesn't exist yet (maybe ImageSearch hasn't run), wait a bit
-             // But usually ImageSearch creates it. If not, we create it.
              const leftAreaCards = document.querySelector(SELECTORS.LEFT_AREA_CARDS);
              if (leftAreaCards) {
                 toolsCard = document.createElement("div");
@@ -32,21 +30,20 @@ export function initMangaSection(config) {
         entry.className = "tool-entry manga-entry";
         entry.innerHTML = `
             <i class="fa-solid fa-book-journal-whills"></i>
-            <span>漫画阅读</span>
+            <span>CopyManga</span>
         `;
         entry.onclick = openMangaModal;
         toolsContainer.appendChild(entry);
         
-        console.debug("[Plugin] MangaSection Loaded");
+        console.debug("[Plugin] CopyManga Loaded");
     };
 
-    // Wait for DOM
     setTimeout(createEntry, 1000);
 }
 
 // --- UI Logic ---
 
-let currentMangaId = null;
+let currentComicId = null;
 let currentChapterId = null;
 
 function openMangaModal() {
@@ -66,7 +63,7 @@ function createMangaModal() {
         <div class="manga-container">
             <div class="manga-header">
                 <div class="manga-header-title">
-                    <i class="fa-solid fa-book-open"></i> MangaDex 漫画阅读
+                    <i class="fa-solid fa-book-open"></i> CopyManga 阅读器
                 </div>
                 <div class="manga-close-btn"><i class="fa-solid fa-xmark"></i></div>
             </div>
@@ -74,7 +71,7 @@ function createMangaModal() {
             <!-- View 1: Search -->
             <div class="manga-search-view" id="manga-search-view">
                 <div class="manga-search-bar">
-                    <input type="text" class="manga-search-input" placeholder="输入漫画名称 (支持中文)..." id="manga-search-input">
+                    <input type="text" class="manga-search-input" placeholder="输入漫画名称 (如: 鬼灭)..." id="manga-search-input">
                     <button class="manga-search-btn" id="manga-search-btn">
                         <i class="fa-solid fa-search"></i> 搜索
                     </button>
@@ -94,7 +91,9 @@ function createMangaModal() {
                     <img src="" class="chapter-cover" id="manga-detail-cover">
                     <div class="chapter-meta">
                         <h3 class="manga-title" id="manga-detail-title" style="font-size: 1.5rem; margin-bottom: 10px;"></h3>
-                        <p id="manga-detail-desc" style="font-size: 0.9rem; color: #666; max-height: 100px; overflow-y: auto;"></p>
+                        <p id="manga-detail-author" style="color:#666; margin-bottom:5px;"></p>
+                        <p id="manga-detail-status" style="font-size:12px; background:#eee; display:inline-block; padding:2px 6px; border-radius:4px;"></p>
+                        <p id="manga-detail-desc" style="font-size: 0.9rem; color: #666; max-height: 80px; overflow-y: auto; margin-top:10px;"></p>
                     </div>
                 </div>
                 <div class="chapter-list" id="chapter-list-container"></div>
@@ -128,11 +127,11 @@ function createMangaModal() {
         if (!query) return;
         
         const resultsContainer = modal.querySelector("#manga-search-results");
-        resultsContainer.innerHTML = `<div class="manga-loading"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><p>搜索中 (MangaDex API 较慢，请耐心等待)...</p></div>`;
+        resultsContainer.innerHTML = `<div class="manga-loading"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><p>搜索 CopyManga 中...</p></div>`;
         searchBtn.disabled = true;
 
         try {
-            const data = await fetchMangaSearch(query);
+            const data = await fetchCopySearch(query);
             renderSearchResults(data, resultsContainer);
         } catch (e) {
             resultsContainer.innerHTML = `<div class="manga-empty" style="color: red;">搜索失败: ${e.message}<br><button class="manga-search-btn" onclick="document.getElementById('manga-search-btn').click()" style="margin:10px auto;">重试</button></div>`;
@@ -160,29 +159,32 @@ function createMangaModal() {
 
 // --- API Calls ---
 
-async function fetchMangaSearch(query) {
-    const url = `${API_ENDPOINTS.MANGADEX_SEARCH}?query=${encodeURIComponent(query)}`;
-    // Increase timeout to 15s for slow MangaDex API
+async function fetchCopySearch(query) {
+    const url = `${API_ENDPOINTS.COPY_SEARCH}?q=${encodeURIComponent(query)}`;
+    // Increase timeout to 15s
     const res = await fetchWithTimeout(url, {}, 15000);
     if (!res.ok) throw new Error("Search API failed");
     const data = await res.json();
+    if (data.error) throw new Error(data.error);
     return data.results;
 }
 
-async function fetchChapters(mangaId) {
-    const url = `${API_ENDPOINTS.MANGADEX_CHAPTERS}?id=${mangaId}`;
-    const res = await fetchWithTimeout(url);
-    if (!res.ok) throw new Error("Chapter API failed");
+async function fetchCopyComic(id) {
+    const url = `${API_ENDPOINTS.COPY_COMIC}?id=${id}`;
+    const res = await fetchWithTimeout(url, {}, 15000);
+    if (!res.ok) throw new Error("Comic API failed");
     const data = await res.json();
-    return data.chapters;
+    if (data.error) throw new Error(data.error);
+    return data;
 }
 
-async function fetchPages(chapterId) {
-    const url = `${API_ENDPOINTS.MANGADEX_PAGES}?id=${chapterId}`;
-    const res = await fetchWithTimeout(url);
-    if (!res.ok) throw new Error("Pages API failed");
+async function fetchCopyChapter(id, comicId) {
+    const url = `${API_ENDPOINTS.COPY_CHAPTER}?id=${id}&comicId=${comicId}`;
+    const res = await fetchWithTimeout(url, {}, 15000);
+    if (!res.ok) throw new Error("Chapter API failed");
     const data = await res.json();
-    return data.pages;
+    if (data.error) throw new Error(data.error);
+    return data.pages; // Array of image URLs
 }
 
 // --- Render Logic ---
@@ -199,46 +201,53 @@ function renderSearchResults(results, container) {
     results.forEach(manga => {
         const card = document.createElement("div");
         card.className = "manga-card";
+        // Use Image Proxy for Cover
+        const coverUrl = `${API_ENDPOINTS.COPY_IMAGE}?url=${encodeURIComponent(manga.cover)}`;
+        
         card.innerHTML = `
-            <img src="${manga.cover}" class="manga-cover" loading="lazy">
+            <img src="${coverUrl}" class="manga-cover" loading="lazy">
             <div class="manga-info">
                 <div class="manga-title" title="${manga.title}">${manga.title}</div>
-                <div class="manga-year">${manga.year || "Unknown"}</div>
+                <div class="manga-year">${manga.author || "Unknown"}</div>
             </div>
         `;
-        card.onclick = () => loadMangaDetails(manga);
+        card.onclick = () => loadMangaDetails(manga.id);
         grid.appendChild(card);
     });
 }
 
-async function loadMangaDetails(manga) {
-    currentMangaId = manga.id;
+async function loadMangaDetails(comicId) {
+    currentComicId = comicId;
     
     // Switch View
     document.getElementById("manga-search-view").style.display = "none";
     const chapterView = document.getElementById("manga-chapter-view");
     chapterView.style.display = "flex";
     
-    // Set Meta
-    document.getElementById("manga-detail-cover").src = manga.cover;
-    document.getElementById("manga-detail-title").textContent = manga.title;
-    document.getElementById("manga-detail-desc").textContent = manga.desc || "暂无简介";
-    
-    // Load Chapters
-    const listContainer = document.getElementById("chapter-list-container");
-    listContainer.innerHTML = `<div class="manga-loading"><i class="fa-solid fa-spinner fa-spin"></i><p>加载章节中...</p></div>`;
+    // Clear previous data
+    document.getElementById("manga-detail-title").textContent = "Loading...";
+    document.getElementById("chapter-list-container").innerHTML = `<div class="manga-loading"><i class="fa-solid fa-spinner fa-spin"></i><p>加载详情中...</p></div>`;
 
     try {
-        const chapters = await fetchChapters(manga.id);
-        renderChapterList(chapters, listContainer);
+        const comic = await fetchCopyComic(comicId);
+        
+        // Update Meta
+        document.getElementById("manga-detail-title").textContent = comic.title;
+        document.getElementById("manga-detail-author").textContent = comic.author;
+        document.getElementById("manga-detail-status").textContent = comic.status;
+        document.getElementById("manga-detail-desc").textContent = comic.desc || "暂无简介";
+        document.getElementById("manga-detail-cover").src = `${API_ENDPOINTS.COPY_IMAGE}?url=${encodeURIComponent(comic.cover)}`;
+        
+        renderChapterList(comic.chapters);
     } catch (e) {
-        listContainer.innerHTML = `<div class="manga-empty">加载章节失败</div>`;
+        document.getElementById("chapter-list-container").innerHTML = `<div class="manga-empty">加载失败: ${e.message}</div>`;
     }
 }
 
-function renderChapterList(chapters, container) {
+function renderChapterList(chapters) {
+    const container = document.getElementById("chapter-list-container");
     if (!chapters || chapters.length === 0) {
-        container.innerHTML = `<div class="manga-empty">该漫画暂无章节或无中文资源</div>`;
+        container.innerHTML = `<div class="manga-empty">暂无章节</div>`;
         return;
     }
 
@@ -246,18 +255,9 @@ function renderChapterList(chapters, container) {
     chapters.forEach(ch => {
         const item = document.createElement("div");
         item.className = "chapter-item";
-        
-        let langLabel = "";
-        if (ch.lang === 'zh' || ch.lang === 'zh-hk') langLabel = "中文";
-        else if (ch.lang === 'en') langLabel = "ENG";
-        else langLabel = ch.lang;
-
         item.innerHTML = `
-            <span>${ch.chapter ? `Ch.${ch.chapter} - ` : ""}${ch.title}</span>
-            <div>
-                <span style="color:#888; font-size:12px;">${ch.pages}P</span>
-                <span class="chapter-lang-tag">${langLabel}</span>
-            </div>
+            <span>${ch.title}</span>
+            <span style="color:#888; font-size:12px;">${ch.size}P</span>
         `;
         item.onclick = () => openReader(ch);
         container.appendChild(item);
@@ -277,8 +277,8 @@ async function openReader(chapter) {
     pagesContainer.innerHTML = `<div class="reader-loading"><i class="fa-solid fa-spinner fa-spin fa-3x"></i></div>`;
 
     try {
-        const pages = await fetchPages(chapter.id);
-        title.textContent = `${chapter.chapter ? `Ch.${chapter.chapter}` : ""} ${chapter.title}`;
+        const pages = await fetchCopyChapter(chapter.id, currentComicId);
+        title.textContent = chapter.title;
         renderPages(pages, pagesContainer);
     } catch (e) {
         pagesContainer.innerHTML = `<div class="reader-loading">加载图片失败: ${e.message}</div>`;
@@ -289,9 +289,17 @@ function renderPages(pages, container) {
     container.innerHTML = "";
     pages.forEach(url => {
         const img = document.createElement("img");
-        img.src = url;
+        // Use Image Proxy
+        img.src = `${API_ENDPOINTS.COPY_IMAGE}?url=${encodeURIComponent(url)}`;
         img.className = "reader-page";
         img.loading = "lazy";
+        // Add error handling
+        img.onerror = function() {
+            this.alt = "图片加载失败";
+            this.style.border = "1px solid red";
+            this.style.padding = "20px";
+            this.style.color = "white";
+        };
         container.appendChild(img);
     });
 }
