@@ -34,7 +34,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
         <link rel="stylesheet" href="/loaders/loaders.css" />
-        <iframe id="global-loader-iframe" src="/loaders/global.html"></iframe>
+        <iframe id="global-loader-iframe" src="/loaders/global.html" title="全局加载器"></iframe>
 
         <!-- FontAwesome handled by Vite import -->
 
@@ -67,12 +67,12 @@
             <div class="left-area">
                 <div class="cards">
                     <div class="card-item" id="personal-info">
-                        <img class="avatar" :src="config.content.masterInfo.avatar || '/assets/images/avatar.png'" :alt="config.content.masterInfo.name + ' 的头像'" />
+                        <img class="avatar" :src="config.content.masterInfo.avatar || '/assets/images/avatar.png'" :alt="config.content.masterInfo.name + ' 的头像'" title="用户头像" />
                         <span class="name" x-text="config.content.masterInfo.name">Loading...</span>
                         <div class="social-icons" aria-label="社交媒体链接">Loading...</div>
-                        <div style="margin-top: 10px; text-align: center; display: flex; justify-content: center; gap: 15px;">
-                            <a href="#about" class="about-btn" style="font-size: 12px; color: #49b1f5; text-decoration: none;"><i class="fa-solid fa-user"></i> 关于我</a>
-                            <a href="#friends" class="about-btn" style="font-size: 12px; color: #49b1f5; text-decoration: none;"><i class="fa-solid fa-link"></i> 友情链接</a>
+                        <div class="about-links">
+                            <a href="#about" class="about-btn"><i class="fa-solid fa-user"></i> 关于我</a>
+                            <a href="#friends" class="about-btn"><i class="fa-solid fa-link"></i> 友情链接</a>
                         </div>
                     </div>
                     <div class="card-item" id="recommend">
@@ -111,14 +111,14 @@
             <!-- 球球你别改这里可以嘛呜呜呜 (＞﹏＜) -->
             <!-- “[Loading...]”的实际内容可以在 config.json 的 masterInfo.info 项中修改哦~ -->
             <span
-                >本站由 <span class="webmaster-info"><a :href="config.content.masterInfo.website" target="_blank" x-text="config.content.masterInfo.name">[Loading...]</a> 和 </span><a href="https://hic.top" target="_blank">成成0v0</a> 用 <i class="fa-solid fa-heart"></i> 制作</span
+                >本站由 <span class="webmaster-info"><a :href="config.content.masterInfo.website" target="_blank" rel="noopener" x-text="config.content.masterInfo.name">[Loading...]</a> 和 </span><a href="https://hic.top" target="_blank" rel="noopener">成成0v0</a> 用 <i class="fa-solid fa-heart"></i> 制作</span
             >
 
-            <span>Powered by <a href="https://github.com/ChengCheng0v0/ACG-Home" target="_blank">ACG-Home</a></span>
-            <span style="margin-top: 5px; opacity: 0.5; font-size: 12px;"><a href="/admin/" style="color: inherit; text-decoration: none;">Admin</a></span>
+            <span>Powered by <a href="https://github.com/ChengCheng0v0/ACG-Home" target="_blank" rel="noopener">ACG-Home</a></span>
+            <span class="admin-link"><a href="/admin/">Admin</a></span>
         </div>
 
-        <iframe id="theme-color-loader-iframe" src="/loaders/theme-color.html"></iframe>
+        <iframe id="theme-color-loader-iframe" src="/loaders/theme-color.html" title="主题颜色加载器"></iframe>
 
         <script>
             // 隐藏滚动条，等待加载完成
