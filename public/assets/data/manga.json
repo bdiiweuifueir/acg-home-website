@@ -1,0 +1,52 @@
+[
+  {
+    "id": "local-slime",
+    "title": "关于我转生变成史莱姆这档事",
+    "cover": "https://images.dmzj.com/webpic/18/shimulaimu0326l.jpg",
+    "author": "伏濑 / 川上泰树",
+    "status": "连载中",
+    "desc": "上班族三上悟被歹徒刺杀身亡后，回过神来发现自己转生到了异世界。不过，自己以此姿态苏醒时，竟然变成了史莱姆！",
+    "chapters": [
+      {
+        "id": "ch1",
+        "title": "第1话 死亡与转生",
+        "size": 3,
+        "pages": [
+          "https://placehold.co/600x800/EEE/31343C?text=Page+1",
+          "https://placehold.co/600x800/EEE/31343C?text=Page+2",
+          "https://placehold.co/600x800/EEE/31343C?text=Page+3"
+        ]
+      },
+      {
+        "id": "ch2",
+        "title": "第2话 哥布林村的守护者",
+        "size": 2,
+        "pages": [
+          "https://placehold.co/600x800/EEE/31343C?text=Ch2+Page+1",
+          "https://placehold.co/600x800/EEE/31343C?text=Ch2+Page+2"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "local-onepiece",
+    "title": "One Piece 海贼王",
+    "cover": "https://images.dmzj.com/webpic/13/haizeiwang0326l.jpg",
+    "author": "尾田荣一郎",
+    "status": "连载中",
+    "desc": "财富，权力，地位，曾经拥有一切的“海贼王”哥尔·D·罗杰，在临死前留下了一句话，让全世界的人们，趋之若鹜奔向大海：“想要我的财宝吗？想要的话可以给你，去找吧！我把一切都放在那里了！”于是所有的人们开始起航，趋之若鹜的奔向大海，世界迎来了“大海贼时代”。",
+    "chapters": [
+      {
+        "id": "ch1000",
+        "title": "第1000话 草帽路飞",
+        "size": 4,
+        "pages": [
+          "https://placehold.co/600x800/222/FFF?text=OP+Ch1000+P1",
+          "https://placehold.co/600x800/222/FFF?text=OP+Ch1000+P2",
+          "https://placehold.co/600x800/222/FFF?text=OP+Ch1000+P3",
+          "https://placehold.co/600x800/222/FFF?text=OP+Ch1000+P4"
+        ]
+      }
+    ]
+  }
+]
