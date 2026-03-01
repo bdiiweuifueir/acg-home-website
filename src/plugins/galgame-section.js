@@ -87,12 +87,22 @@ function renderFilterBar(card) {
     // Launch Demo Button
     const launchBtn = document.createElement("button");
     launchBtn.className = "galgame-filter-btn";
-    launchBtn.style.marginLeft = "auto"; // Push to right
+    launchBtn.style.marginLeft = "auto"; 
     launchBtn.style.backgroundColor = "#ff4081";
     launchBtn.style.color = "white";
-    launchBtn.innerHTML = '<i class="fa-solid fa-play"></i> 试玩 Demo';
+    launchBtn.innerHTML = '<i class="fa-solid fa-play"></i> Web Demo';
     launchBtn.onclick = launchWebGalDemo;
     filterBar.appendChild(launchBtn);
+
+    // Launch Krkr Button
+    const krkrBtn = document.createElement("button");
+    krkrBtn.className = "galgame-filter-btn";
+    krkrBtn.style.marginLeft = "5px";
+    krkrBtn.style.backgroundColor = "#9c27b0";
+    krkrBtn.style.color = "white";
+    krkrBtn.innerHTML = '<i class="fa-solid fa-rocket"></i> Krkr';
+    krkrBtn.onclick = () => window.open('/games/krkr-engine/index.html', '_blank');
+    filterBar.appendChild(krkrBtn);
 }
 
 function launchWebGalDemo() {
