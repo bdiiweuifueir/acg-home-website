@@ -49,9 +49,9 @@ export function initGalgameSection(config) {
         cardsContainer.appendChild(galgameCard);
     }
 
-    // Render Filter Bar
+    // Render Filter Bar and Launch Button
     renderFilterBar(galgameCard);
-
+    
     // Determine data source
     if (config.galgame.bangumiId) {
         fetchBangumiData(config.galgame.bangumiId, galgameCard);
@@ -74,6 +74,8 @@ function renderFilterBar(card) {
     ];
 
     filterBar.innerHTML = '';
+    
+    // Filter Buttons
     filters.forEach(f => {
         const btn = document.createElement("button");
         btn.className = `galgame-filter-btn ${f.key === currentFilter ? 'active' : ''}`;
@@ -81,6 +83,42 @@ function renderFilterBar(card) {
         btn.onclick = () => updateFilter(f.key, card);
         filterBar.appendChild(btn);
     });
+
+    // Launch Demo Button
+    const launchBtn = document.createElement("button");
+    launchBtn.className = "galgame-filter-btn";
+    launchBtn.style.marginLeft = "auto"; // Push to right
+    launchBtn.style.backgroundColor = "#ff4081";
+    launchBtn.style.color = "white";
+    launchBtn.innerHTML = '<i class="fa-solid fa-play"></i> 试玩 Demo';
+    launchBtn.onclick = launchWebGalDemo;
+    filterBar.appendChild(launchBtn);
+}
+
+function launchWebGalDemo() {
+    // Create or show modal with iframe
+    let modal = document.getElementById("webgal-modal");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "webgal-modal";
+        modal.style.cssText = `
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000;
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+        `;
+        modal.innerHTML = `
+            <div style="height: 40px; background: #222; display: flex; align-items: center; padding: 0 20px; justify-content: space-between; color: #fff;">
+                <span>Web Galgame Engine Demo</span>
+                <button onclick="document.getElementById('webgal-modal').style.display='none'" style="background:none; border:none; color:#fff; cursor:pointer; font-size: 20px;">×</button>
+            </div>
+            <iframe src="/games/web-gal/index.html" style="flex: 1; border: none; width: 100%; height: 100%;"></iframe>
+        `;
+        document.body.appendChild(modal);
+    }
+    modal.style.display = "flex";
 }
 
 function updateFilter(filter, card) {

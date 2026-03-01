@@ -1,0 +1,84 @@
+[
+    {
+        "type": "bg",
+        "file": "https://placehold.co/1920x1080/000/FFF?text=Black+Screen"
+    },
+    {
+        "type": "say",
+        "name": "？？？",
+        "text": "（醒醒……快醒醒……）"
+    },
+    {
+        "type": "say",
+        "name": "我",
+        "text": "嗯……头好痛……"
+    },
+    {
+        "type": "bg",
+        "file": "https://placehold.co/1920x1080/EEE/333?text=Classroom"
+    },
+    {
+        "type": "chara",
+        "file": "https://placehold.co/600x1000/FFC0CB/000?text=Girl+Smile"
+    },
+    {
+        "type": "say",
+        "name": "神秘少女",
+        "text": "太好了！你终于醒了！"
+    },
+    {
+        "type": "say",
+        "name": "我",
+        "text": "你是……？"
+    },
+    {
+        "type": "say",
+        "name": "神秘少女",
+        "text": "我是 Trae AI 派来的引导员哦！欢迎来到 Web Galgame 的世界！"
+    },
+    {
+        "type": "choice",
+        "options": [
+            { "text": "这技术太强了！", "next": true },
+            { "text": "一般般吧。", "jump": "bad_end" }
+        ]
+    },
+    {
+        "type": "chara",
+        "file": "https://placehold.co/600x1000/FFC0CB/000?text=Girl+Happy"
+    },
+    {
+        "type": "say",
+        "name": "神秘少女",
+        "text": "嘿嘿，我就知道你会喜欢的！"
+    },
+    {
+        "type": "say",
+        "name": "神秘少女",
+        "text": "只要把你的游戏资源放进来，就可以在网页上玩任何游戏了！"
+    },
+    {
+        "type": "jump",
+        "target": "end"
+    },
+    {
+        "label": "bad_end",
+        "type": "chara",
+        "file": "https://placehold.co/600x1000/555/FFF?text=Girl+Sad"
+    },
+    {
+        "type": "say",
+        "name": "神秘少女",
+        "text": "呜呜呜……我会继续努力改进的……"
+    },
+    {
+        "label": "end",
+        "type": "bg",
+        "file": "https://placehold.co/1920x1080/000/FFF?text=THE+END"
+    },
+    {
+        "type": "say",
+        "name": "系统",
+        "text": "演示结束。感谢游玩！"
+    }
+]
