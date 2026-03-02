@@ -45,7 +45,6 @@ export function initMangaSection(config) {
 
 let currentComicId = null;
 let currentChapterId = null;
-let isLocalMode = false; // Default to Online Mode
 
 function openMangaModal() {
     if (!document.getElementById("manga-modal")) {
@@ -64,26 +63,15 @@ function createMangaModal() {
         <div class="manga-container">
             <div class="manga-header">
                 <div class="manga-header-title">
-                    <i class="fa-solid fa-book-open"></i> 漫画阅读器
+                    <i class="fa-solid fa-book-open"></i> CopyManga 阅读器
                 </div>
                 <div class="manga-close-btn"><i class="fa-solid fa-xmark"></i></div>
             </div>
 
             <!-- View 1: Search -->
             <div class="manga-search-view" id="manga-search-view">
-                <div class="manga-mode-switch" style="padding: 10px 24px; display: flex; gap: 15px; border-bottom: 1px solid #eee;">
-                    <label style="cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                        <input type="radio" name="manga-mode" value="online" checked> 
-                        <span><i class="fa-solid fa-globe"></i> CopyManga (在线)</span>
-                    </label>
-                    <label style="cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                        <input type="radio" name="manga-mode" value="local"> 
-                        <span><i class="fa-solid fa-hard-drive"></i> 本地书架</span>
-                    </label>
-                </div>
-
                 <div class="manga-search-bar">
-                    <input type="text" class="manga-search-input" placeholder="输入漫画名称..." id="manga-search-input">
+                    <input type="text" class="manga-search-input" placeholder="输入漫画名称 (如: 鬼灭)..." id="manga-search-input">
                     <button class="manga-search-btn" id="manga-search-btn">
                         <i class="fa-solid fa-search"></i> 搜索
                     </button>
@@ -130,41 +118,20 @@ function createMangaModal() {
     const searchBtn = modal.querySelector("#manga-search-btn");
     const backToSearchBtn = modal.querySelector("#back-to-search");
     const closeReaderBtn = modal.querySelector("#close-reader");
-    const modeRadios = modal.querySelectorAll('input[name="manga-mode"]');
     
     closeBtn.onclick = () => modal.classList.remove("show");
     
-    // Mode Switch
-    modeRadios.forEach(radio => {
-        radio.onchange = (e) => {
-            isLocalMode = e.target.value === 'local';
-            searchInput.placeholder = isLocalMode ? "在本地书架中搜索..." : "输入漫画名称 (如: 鬼灭)...";
-            // Clear results
-            modal.querySelector("#manga-search-results").innerHTML = `<div class="manga-empty">已切换模式，请重新搜索</div>`;
-            
-            // If Local, auto-load all
-            if (isLocalMode) {
-                doSearch(true); // true = force load all
-            }
-        };
-    });
-
     // Search
-    const doSearch = async (loadAll = false) => {
+    const doSearch = async () => {
         const query = searchInput.value.trim();
-        if (!query && !loadAll) return;
+        if (!query) return;
         
         const resultsContainer = modal.querySelector("#manga-search-results");
-        resultsContainer.innerHTML = `<div class="manga-loading"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><p>${isLocalMode ? "加载本地书架..." : "搜索 CopyManga 中..."}</p></div>`;
+        resultsContainer.innerHTML = `<div class="manga-loading"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><p>搜索 CopyManga 中...</p></div>`;
         searchBtn.disabled = true;
 
         try {
-            let data;
-            if (isLocalMode) {
-                data = await fetchLocalManga(query);
-            } else {
-                data = await fetchCopySearch(query);
-            }
+            const data = await fetchCopySearch(query);
             renderSearchResults(data, resultsContainer);
         } catch (e) {
             resultsContainer.innerHTML = `<div class="manga-empty" style="color: red;">搜索失败: ${e.message}<br><button class="manga-search-btn" onclick="document.getElementById('manga-search-btn').click()" style="margin:10px auto;">重试</button></div>`;
@@ -173,7 +140,7 @@ function createMangaModal() {
         }
     };
 
-    searchBtn.onclick = () => doSearch();
+    searchBtn.onclick = doSearch;
     searchInput.onkeypress = (e) => {
         if (e.key === 'Enter') doSearch();
     };
@@ -192,17 +159,6 @@ function createMangaModal() {
 
 // --- API Calls ---
 
-// Local Fetcher
-async function fetchLocalManga(query) {
-    const res = await fetch("/assets/data/manga.json");
-    if (!res.ok) throw new Error("Local data not found");
-    const data = await res.json();
-    
-    if (!query) return data; // Return all if no query
-    
-    return data.filter(m => m.title.includes(query) || m.author.includes(query));
-}
-
 async function fetchCopySearch(query) {
     const url = `${API_ENDPOINTS.COPY_SEARCH}?q=${encodeURIComponent(query)}`;
     // Increase timeout to 15s
@@ -214,10 +170,6 @@ async function fetchCopySearch(query) {
 }
 
 async function fetchCopyComic(id) {
-    if (isLocalMode) {
-        const data = await fetchLocalManga();
-        return data.find(m => m.id === id);
-    }
     const url = `${API_ENDPOINTS.COPY_COMIC}?id=${id}`;
     const res = await fetchWithTimeout(url, {}, 15000);
     if (!res.ok) throw new Error("Comic API failed");
@@ -227,11 +179,6 @@ async function fetchCopyComic(id) {
 }
 
 async function fetchCopyChapter(id, comicId) {
-    if (isLocalMode) {
-        const comic = await fetchCopyComic(comicId);
-        const chapter = comic.chapters.find(c => c.id === id);
-        return chapter ? chapter.pages : [];
-    }
     const url = `${API_ENDPOINTS.COPY_CHAPTER}?id=${id}&comicId=${comicId}`;
     const res = await fetchWithTimeout(url, {}, 15000);
     if (!res.ok) throw new Error("Chapter API failed");
@@ -254,19 +201,9 @@ function renderSearchResults(results, container) {
     results.forEach(manga => {
         const card = document.createElement("div");
         card.className = "manga-card";
+        // Use Image Proxy for Cover
+        const coverUrl = `${API_ENDPOINTS.COPY_IMAGE}?url=${encodeURIComponent(manga.cover)}`;
         
-        let coverUrl = manga.cover;
-        // Only proxy if online mode and not local placeholder
-        if (!isLocalMode && !coverUrl.startsWith("http")) { 
-             // CopyManga cover logic handled by backend usually, but here we just pass it
-             // Actually backend search returns full URL usually? No, CopyManga returns relative or absolute.
-             // Let's assume absolute for now or proxy it.
-        }
-        
-        if (!isLocalMode) {
-            coverUrl = `${API_ENDPOINTS.COPY_IMAGE}?url=${encodeURIComponent(manga.cover)}`;
-        }
-
         card.innerHTML = `
             <img src="${coverUrl}" class="manga-cover" loading="lazy">
             <div class="manga-info">
@@ -299,12 +236,7 @@ async function loadMangaDetails(comicId) {
         document.getElementById("manga-detail-author").textContent = comic.author;
         document.getElementById("manga-detail-status").textContent = comic.status;
         document.getElementById("manga-detail-desc").textContent = comic.desc || "暂无简介";
-        
-        let coverUrl = comic.cover;
-        if (!isLocalMode) {
-             coverUrl = `${API_ENDPOINTS.COPY_IMAGE}?url=${encodeURIComponent(comic.cover)}`;
-        }
-        document.getElementById("manga-detail-cover").src = coverUrl;
+        document.getElementById("manga-detail-cover").src = `${API_ENDPOINTS.COPY_IMAGE}?url=${encodeURIComponent(comic.cover)}`;
         
         renderChapterList(comic.chapters);
     } catch (e) {
@@ -325,7 +257,7 @@ function renderChapterList(chapters) {
         item.className = "chapter-item";
         item.innerHTML = `
             <span>${ch.title}</span>
-            <span style="color:#888; font-size:12px;">${ch.size || ch.pages?.length || 0}P</span>
+            <span style="color:#888; font-size:12px;">${ch.size}P</span>
         `;
         item.onclick = () => openReader(ch);
         container.appendChild(item);
@@ -357,13 +289,8 @@ function renderPages(pages, container) {
     container.innerHTML = "";
     pages.forEach(url => {
         const img = document.createElement("img");
-        
-        if (!isLocalMode) {
-            img.src = `${API_ENDPOINTS.COPY_IMAGE}?url=${encodeURIComponent(url)}`;
-        } else {
-            img.src = url;
-        }
-        
+        // Use Image Proxy
+        img.src = `${API_ENDPOINTS.COPY_IMAGE}?url=${encodeURIComponent(url)}`;
         img.className = "reader-page";
         img.loading = "lazy";
         // Add error handling
