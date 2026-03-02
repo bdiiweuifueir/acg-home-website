@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WebGAL Engine</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; }
+        #app { width: 100vw; height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <!-- Load WebGAL Engine -->
+    <!-- Attempt to load local engine first, fallback to CDN -->
+    <script src="WebGAL.js"></script>
+    <script>
+        // Check if WebGAL loaded
+        if (typeof WebGAL === 'undefined') {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@openwebgal/webgal@latest/dist/WebGAL.js';
+            script.onload = () => console.log("WebGAL loaded from CDN");
+            script.onerror = () => alert("无法加载 WebGAL 引擎，请检查网络或手动下载 WebGAL.js");
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>

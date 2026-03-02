@@ -103,6 +103,16 @@ function renderFilterBar(card) {
     krkrBtn.innerHTML = '<i class="fa-solid fa-rocket"></i> Krkr';
     krkrBtn.onclick = () => window.open('/games/krkr-engine/index.html', '_blank');
     filterBar.appendChild(krkrBtn);
+
+    // Launch WebGAL Button (New)
+    const webgalBtn = document.createElement("button");
+    webgalBtn.className = "galgame-filter-btn";
+    webgalBtn.style.marginLeft = "5px";
+    webgalBtn.style.backgroundColor = "#00bcd4"; // Cyan
+    webgalBtn.style.color = "white";
+    webgalBtn.innerHTML = '<i class="fa-solid fa-gamepad"></i> WebGAL';
+    webgalBtn.onclick = () => window.open('/games/engines/webgal/index.html', '_blank');
+    filterBar.appendChild(webgalBtn);
 }
 
 function launchWebGalDemo() {
